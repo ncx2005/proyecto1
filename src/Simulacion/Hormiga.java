@@ -12,7 +12,10 @@ import ListaSimple.Nodo;
  * @version 8 feb 2024
  */
 public final class Hormiga {
-    private GrafoMatriz matriz;
+    
+    //Declarar la matriz de adyacencia como un atributo est&aacute;tico de la clase Hormiga.
+    //Esto permitir&aacute; que todas las instancias de la clase compartan la misma matriz.
+    private static GrafoMatriz matriz;
     private Ciudad ciudadActual;
     private Lista caminoRecorrido;
 
@@ -21,7 +24,7 @@ public final class Hormiga {
      * @param matr el grafo matriz
      */
     public Hormiga(GrafoMatriz matr) {
-        this.matriz = matr;
+        Hormiga.matriz = matr;
     }
 
     /**
@@ -112,5 +115,14 @@ public final class Hormiga {
      */
     public GrafoMatriz getMatriz() {
         return matriz;
+    }
+    
+    /**
+    * Actualiza los valores de una matriz con base en una matriz de actualizaci&oacute;n.
+    * 
+    * @param nuevaMatriz  La matriz de actualizaci&oacute;n que contiene los nuevos valores.
+    */
+    public static void actualizarMatriz(GrafoMatriz nuevaMatriz) {
+        matriz = nuevaMatriz;
     }
 }
