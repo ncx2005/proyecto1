@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Grafo;
 
 /**Clase querepresenta un nodo del grafo.
@@ -10,11 +6,11 @@ package Grafo;
  * @author nelsoncarrillo
  * @version 8 feb 2024s
  */
-public class Vertice {
+public class Ciudad {
     
     //Los atributos.
-    String nombre;
-    int numVertice;
+    private String nombre;
+    private int numVertice;
     
     /**M&eacute;todo constructor de la ciudad.
     * que viene siendo un v&eacute;rtice del nodo.
@@ -23,7 +19,7 @@ public class Vertice {
     * @version 8 feb 2024
     * @param x nombre del v&eacute;rtice.
     */
-    public Vertice(String x){ 
+    public Ciudad(String x){ 
         nombre = x;
         numVertice = -1;
     } 
@@ -39,6 +35,17 @@ public class Vertice {
         return nombre; 
     }
     
+    /**Getter del n&uacute;mero de la ciudad.
+    * que viene siendo un v&eacute;rtice del nodo.
+    *
+    * @author nelsoncarrillo
+    * @version 8 feb 2024
+    * @return <code>int</code> del n&uacute;mero de la ciudad.
+    */
+    public int numVertice(){
+        return numVertice;
+    }
+    
     /**M&eacute;todo que comprueba que dos ciudades sean iguales.
     * equals pero para ciudades.
     *
@@ -48,7 +55,7 @@ public class Vertice {
     * @return <code>true</code> si tienen mismo nombre de  ciudad.
     *         <code>false</code> si tienen distinto nombre de  ciudad.
     */
-    public boolean equals(Vertice n){ 
+    public boolean equals(Ciudad n){ 
         return nombre.equals(n.nombre); 
     }
     
@@ -69,6 +76,7 @@ public class Vertice {
     * @version 8 feb 2024
     * @return <code>String</code> con las caracter&iacute;sticas de la ciudad.
     */
+    @Override
     public String toString(){
         return nombre + " (" + numVertice + ")";
     }

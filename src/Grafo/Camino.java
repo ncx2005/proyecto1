@@ -1,0 +1,111 @@
+package Grafo;
+
+/**
+ * Clase que representa un camino entre dos ciudades.
+ * 
+ * @author tito_
+ */
+public class Camino {
+    private Ciudad ciudadOrigen;
+    private Ciudad ciudadDestino;
+    private double distancia;
+    private double feromonas;
+
+    /**
+     * Constructor de la clase Camino.
+     * 
+     * @param ciudadOrigen la ciudad de origen del camino.
+     * @param ciudadDestino la ciudad de destino del camino.
+     * @param distancia la distancia del camino.
+     * @param feromonas las feromonas del camino.
+     * @author tito_
+     */
+    public Camino(Ciudad ciudadOrigen, Ciudad ciudadDestino, double distancia, double feromonas) {
+        this.ciudadOrigen = ciudadOrigen;
+        this.ciudadDestino = ciudadDestino;
+        this.distancia = distancia;
+        this.feromonas = feromonas;
+    }
+    
+    /**
+     * Constructor vacío de la clase Camino.
+     * @author tito_
+     */
+    public Camino(){
+    }
+
+    /**
+     * Método para obtener la ciudad de origen del camino.
+     * 
+     * @return la ciudad de origen del camino.
+     * @author tito_
+     */
+    public Ciudad getCiudadOrigen() {
+        return ciudadOrigen;
+    }
+
+    /**
+     * Método para establecer la ciudad de origen del camino.
+     * 
+     * @param ciudadOrigen la ciudad de origen del camino.
+     * @author tito_
+     */
+    public void setCiudadOrigen(Ciudad ciudadOrigen) {
+        this.ciudadOrigen = ciudadOrigen;
+    }
+
+    /**
+     * Método para obtener la ciudad de destino del camino.
+     * 
+     * @return la ciudad de destino del camino.
+     * @author tito_
+     */
+    public Ciudad getCiudadDestino() {
+        return ciudadDestino;
+    }
+
+    /**
+     * Método para establecer la ciudad de destino del camino.
+     * 
+     * @param ciudadDestino la ciudad de destino del camino.
+     * @author tito_
+     */
+    public void setCiudadDestino(Ciudad ciudadDestino) {
+        this.ciudadDestino = ciudadDestino;
+    }
+
+    /**
+     * Método para obtener la distancia del camino.
+     * 
+     * @return la distancia del camino.
+     * @author tito_
+     */
+    public double getDistancia() {
+        return distancia;
+    }
+
+    /**
+     * Método para establecer la distancia del camino.
+     * 
+     * @param distancia la distancia del camino.
+     * @author tito_
+     */
+    public void setDistancia(double distancia) {
+        this.distancia = distancia;
+    }
+
+    /**
+     * Método toString que retorna una representación en forma de cadena del camino.
+     * 
+     * @return una cadena que representa el camino.
+     * @author tito_
+     */
+    @Override
+    public String toString() {
+        return "Camino{" +
+                "ciudadOrigen=" + ciudadOrigen +
+                ", ciudadDestino=" + ciudadDestino +
+                ", distancia=" + distancia +
+                '}';
+    }
+}

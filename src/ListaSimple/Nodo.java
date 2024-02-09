@@ -1,4 +1,6 @@
-package proyecto1;
+package ListaSimple;
+
+import Grafo.Camino;
 
 public class Nodo {
     private Camino valor;

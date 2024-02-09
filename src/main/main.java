@@ -4,8 +4,6 @@
  */
 package main;
 
-import proyecto1.InterfazFiles;
-
 /**
  *
  * @author Posilandia
