@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Grafo;
+package proyecto1;
 
 /**Clase querepresenta un nodo del grafo.
  * Nodo pues ciudad, con su nombre (String) y n&uactue;mero asignado.
