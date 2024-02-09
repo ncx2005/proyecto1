@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Grafo;
+package proyecto1;
 
 /**Clase que determina la matriz de adyacencia de nuestro grafo.
  * Se trabaja con matriz de adyacencia en vez de lista.
