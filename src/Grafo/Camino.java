@@ -1,4 +1,5 @@
 package Grafo;
+import ListaSimple.Lista;
 
 /**
  * Clase que representa un camino entre dos ciudades.
@@ -10,6 +11,7 @@ public class Camino {
     private Ciudad ciudadDestino;
     private double distancia;
     private double feromonas;
+    private Lista DistanciasDeHormigasQueHanPasado;
 
     /**
      * Constructor de la clase Camino.
@@ -112,6 +114,16 @@ public class Camino {
      */
     public void setDistancia(double distancia) {
         this.distancia = distancia;
+    }
+    
+    /**
+     * Método para establecer la distancia del camino.
+     * 
+     * @author tito_
+     * @return lista de las hormigas que pisaron ese camino.
+     */
+    public Lista getHormigasQueHanPasado() {
+        return this.DistanciasDeHormigasQueHanPasado;
     }
 
     /**

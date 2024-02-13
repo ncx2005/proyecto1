@@ -1,7 +1,5 @@
 package ListaSimple;
 
-import Grafo.Camino;
-
 /**
  * Clase que representa una lista enlazada.
  * @author tito_
@@ -20,12 +18,12 @@ public class Lista {
     }
 
     /**
-     * M&eacute;todo para insertar un valor en la lista.
+     * M&eacute;todo para insertarNumeroAlFinal un valor en la lista.
      * @author tito_
      * 
-     * @param valor el valor a insertar en la lista.
+     * @param valor el valor a insertarNumeroAlFinal en la lista.
      */
-    public void insertar(double valor) {
+    public void insertarNumeroAlFinal(double valor) {
         Nodo nuevoNodo = new Nodo(valor);
         if (cabeza == null) {
             cabeza = nuevoNodo;

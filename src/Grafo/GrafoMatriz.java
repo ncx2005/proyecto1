@@ -173,11 +173,11 @@ public class GrafoMatriz {
         return this.matAd;
     }
     
-    /*Setter de la matriz de caminos.
+    /**Setter de la matriz de caminos.
      * 
      * @author nelsoncarrillo
      * @version 8 feb 2024
-     * @param la matriz nueva
+     * @param nueva la matriz nueva
      */
     public void setMatAd(Camino[][] nueva) {
         this.matAd=nueva;
