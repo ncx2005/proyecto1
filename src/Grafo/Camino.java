@@ -17,14 +17,14 @@ public class Camino {
      * @param ciudadOrigen la ciudad de origen del camino.
      * @param ciudadDestino la ciudad de destino del camino.
      * @param distancia la distancia del camino.
-     * @param feromonas las feromonas del camino.
+     * @param numeroDeCiudades para calcular el valor inicial de la cantidad de feromonas en el camino.
      * @author tito_
      */
-    public Camino(Ciudad ciudadOrigen, Ciudad ciudadDestino, double distancia, double feromonas) {
+    public Camino(Ciudad ciudadOrigen, Ciudad ciudadDestino, double distancia, int numeroDeCiudades) {
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
         this.distancia = distancia;
-        this.feromonas = feromonas;
+        this.feromonas = 1/numeroDeCiudades;
     }
     
     /**
@@ -83,6 +83,17 @@ public class Camino {
     public double getDistancia() {
         return distancia;
     }
+    
+    /**
+     * Método para obtener la cantidad de feromonas del camino.
+     * 
+     * @return las feromonas del camino.
+     * @author tito_
+     */
+    public double getFeromonas() {
+        return this.feromonas;
+    }
+
 
     /**
      * Método para establecer la distancia del camino.

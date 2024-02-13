@@ -9,7 +9,7 @@ package Grafo;
 public class Ciudad {
     
     //Los atributos.
-    private String nombre;
+    private final String nombre;
     private int numVertice;
     
     /**M&eacute;todo constructor de la ciudad.
@@ -31,7 +31,7 @@ public class Ciudad {
     * @version 8 feb 2024
     * @return <code>String</code> del nombre de la ciudad.
     */
-    public String nomVertice(){ 
+    public String getNombreDeCiudad(){ 
         return nombre; 
     }
     
@@ -42,7 +42,7 @@ public class Ciudad {
     * @version 8 feb 2024
     * @return <code>int</code> del n&uacute;mero de la ciudad.
     */
-    public int numVertice(){
+    public int getNumeroDeCiudad(){
         return numVertice;
     }
     

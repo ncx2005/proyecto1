@@ -13,8 +13,8 @@ public class GrafoMatriz {
     
     //Los atributos.
     private int numVerts; //Numero de vertices
-    Ciudad [] verts; //Array describe las columnas y las filas.
-    Camino [][] matAd; //La matriz.
+    private Ciudad [] verts; //Array describe las columnas y las filas.
+    private Camino [][] matAd; //La matriz.
     
     /**M&eacute;todo constructor de la matriz de adyacencia.
      * No recibe par&aacute;metros, la inicializa con los valores predeterminados.
@@ -25,34 +25,33 @@ public class GrafoMatriz {
     public GrafoMatriz(){ 
     }
     
-    
-    
     /**M&eacute;todo constructor de la matriz de adyacencia.
     * 
     *
     * @author nelsoncarrillo
     * @version 8 feb 2024
-    * @param mx n&uacute;mero de v&eacute;rtices.
+    * @param numeroDeVertices n&uacute;mero de v&eacute;rtices.
     */
-    public GrafoMatriz(int mx){ 
-        matAd = new Camino [mx][mx]; 
-        verts = new Ciudad[mx]; 
-        for (int i = 0; i < mx; i++)  //En la matriz habr&aacute; <code>null</code> o un Objeto de tipo Camino. 
-            for (int j = 0; i < mx; i++) 
+    public GrafoMatriz(int numeroDeVertices){ 
+        this.numVerts=numeroDeVertices;
+        this.matAd = new Camino [numeroDeVertices][numeroDeVertices]; 
+        this.verts = new Ciudad[numeroDeVertices]; 
+        for (int i = 0; i < numeroDeVertices; i++)  //En la matriz habr&aacute; <code>null</code> o un Objeto de tipo Camino. 
+            for (int j = 0; i < numeroDeVertices; i++) 
                 matAd[i][j] = null;
     }
     
-    /**M&eacute;todo que permite añadir un v&eacute;rtice.
+    /** * M&eacute;todo que permite añadir un v&eacute;rtice.
     * Verifica si existe primero, de no ser pues se agrega.
     *
     * @author nelsoncarrillo
     * @version 8 feb 2024
-    * @param nom nombre del nuevo v&eacute;rtices.
+    * @param nombreDevertice nombre del nuevo v&eacute;rtices.
     */
-    public void nuevoVertice (String nom){ 
-        boolean esta = numVertice(nom) >= 0; 
+    public void nuevoVertice (String nombreDevertice){ 
+        boolean esta = numVertice(nombreDevertice) >= 0; 
         if (!esta){ 
-            Ciudad v = new Ciudad(nom); //Se utiliza el constructor de la clase Ciudad.
+            Ciudad v = new Ciudad(nombreDevertice); //Se utiliza el constructor de la clase Ciudad.
             v.asigVert(numVerts);
             verts[numVerts++] = v; //se agrega una nueva fila y columna en la matriz.
         }
@@ -67,11 +66,10 @@ public class GrafoMatriz {
     * @return <code>int</code>-1 si no se ubica o bien el i (index) dentro de la matriz.
     */
     public int numVertice(String vs){
-        Ciudad v = new Ciudad(vs);
         boolean encontrado = false;
         int i =0;
         for (; (i < numVerts) && !encontrado;){
-            encontrado = verts[i].equals(v);
+            encontrado = verts[i].getNombreDeCiudad().equals(vs);
             if (!encontrado) i++ ;
         }
         return (i < numVerts) ? i : -1 ; //devuelve el valor de `i` si `i` es menor que `numVerts`, de lo contrario, devuelve -1.
@@ -84,15 +82,14 @@ public class GrafoMatriz {
     * @param a nombre de ciudad de adyacencia de ese camino.
     * @param b nombre de segunda ciudad de adyacencia de ese camino.
      * @param distancia del nuevo camino.
-     * @param feromonas del nuevo camino.
      * @throws java.lang.Exception
     */
-    public void nuevoCamino(String a, String b,double distancia,double feromonas)throws Exception{
+    public void nuevoCamino(String a, String b,double distancia)throws Exception{
         int va, vb;
         va = numVertice(a);
         vb = numVertice(b); //Se ubican ambas ciudades.
         if (va < 0 || vb < 0) throw new Exception ("Vértice no existe");
-        Camino caminonuevo = new Camino(verts[va],verts[vb],distancia,feromonas);
+        Camino caminonuevo = new Camino(verts[va],verts[vb],distancia,this.getNumVerts());
         matAd[va][vb] = caminonuevo; //los elementos de la matriz son 1 si hay camino entre esas dos ciudades.
     }
     
@@ -156,4 +153,26 @@ public class GrafoMatriz {
     public int getNumVerts() {
         return numVerts;
     }
+    
+    /**Getter de la matriz de caminos.
+     * 
+     * @author nelsoncarrillo
+     * @version 8 feb 2024
+     * @return la matriz
+     */
+    public Camino[][] getMatAd() {
+        return this.matAd;
+    }
+    
+    /**Getter de una de las ciudades.
+     * 
+     * @author nelsoncarrillo
+     * @version 12 feb 2024
+     * @param n numero de ciudad a buscar.
+     * @return la Ciudad como objeto.
+     */
+    public Ciudad getCiudad(int n) {
+        return this.verts[n];
+    }
 }
+
