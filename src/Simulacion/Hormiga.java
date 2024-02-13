@@ -56,7 +56,7 @@ public final class Hormiga {
      * @return el camino recorrido
      */
     public boolean[] getCaminoRecorrido() {
-        return ciudadesVisitadas;
+        return this.ciudadesVisitadas;
     }
 
     /**
@@ -88,12 +88,12 @@ public final class Hormiga {
      * @return index de la ciudad a la que ir&aacute;
      *         <code>-1</code> si no es posible desplazarse por los motivos especificados.
      */
-    private int getSiguienteCiudad() {
+    private int getSiguienteCiudad() throws Exception {
         
         int NumeroCiudadActual = this.getCiudadActual().getNumeroDeCiudad();
         int numCiudades = this.getMatriz().getNumVerts();
-        Camino[][] caminos = this.getMatriz().getMatAd();
         Lista Probabilidades = new Lista();
+        Camino[][] caminos = this.getMatriz().getMatAd();
         Random random = new Random();
         double valorAleatorio = random.nextDouble();
         double alfa = 1;
@@ -101,7 +101,7 @@ public final class Hormiga {
         int[] ciudadesAnexas = new int[numCiudades];
         
         for(int i = 0 ; i < numCiudades ; i++){
-            if(caminos[NumeroCiudadActual][i]!= null && this.ciudadesVisitadas[i] == false){
+            if((this.getMatriz().adyacente(NumeroCiudadActual, i)) && (this.ciudadesVisitadas[i] == false)){
                 double Numerador = ((Math.pow(caminos[NumeroCiudadActual][i].getFeromonas(),alfa))*(Math.pow((1/caminos[NumeroCiudadActual][i].getDistancia()),beta)));
                 Probabilidades.insertar(Numerador);
                 ciudadesAnexas[i]=i;
@@ -110,36 +110,47 @@ public final class Hormiga {
             }
         }
         
-        double Denominador = Probabilidades.sumarNumeros();
-        
-        Nodo aux = Probabilidades.getCabeza();
-        while(aux != null){
-            aux.setValor(aux.getValor()/Denominador);
-            aux = aux.getSiguiente();
-        }  
-        
-        double[] rangos = new double[Probabilidades.getSize()];
-        rangos[0]=0;
-        aux = Probabilidades.getCabeza();
-        for(int j = 0;j<Probabilidades.getSize();j++){
-            rangos[j+1] = aux.getValor() + rangos[j];
-            aux=aux.getSiguiente();
-        }
-        
-        for (int i = 0; i < rangos.length - 1; i++) {
-            if (valorAleatorio >= rangos[i] && valorAleatorio < rangos[i + 1]) {
-                int verifier =0;
-                for(int j = 0;j<ciudadesAnexas.length;j++){
-                    if(ciudadesAnexas[i] != 0){
-                        if(verifier == i){
-                            return i;
+        if(Probabilidades.getSize()>0){
+            
+            //DADA A F&OACUTE;RMULA SE DEBEN SUMAR TODOS.
+            double Denominador = Probabilidades.sumarNumeros();
+            
+            //SE DIVIDE ENTRE CADA NUMERADOR DADO QUE ES EL MISMO PARA TODOS.
+            Nodo aux = Probabilidades.getCabeza();
+            while(aux != null){
+                aux.setValor(aux.getValor()/Denominador);
+                aux = aux.getSiguiente();
+            }  
+            
+            //LOS RANGOS LOS DELIMITAREMOS EN UN ARRAY, DE MODO QUE EL RANDOM LUEGO SE UBIQUE EN ALGUNO DE LOS CONJUNTOS.
+            double[] rangos = new double[Probabilidades.getSize()];
+            rangos[0]=0;
+            aux = Probabilidades.getCabeza();
+            for(int j = 0;j<Probabilidades.getSize();j++){
+                rangos[j+1] = aux.getValor() + rangos[j];
+                aux=aux.getSiguiente();
+            }
+            
+            //TENIENDO YA EL VALOR ALEATORIO.
+            for (int i = 0; i < rangos.length - 1; i++) {
+                if (valorAleatorio >= rangos[i] && valorAleatorio < rangos[i + 1]) {
+                    int verifier = 0;
+                    for(int j = 0;j<ciudadesAnexas.length;j++){
+                        if((ciudadesAnexas[j] != 0)&&(verifier == i)){
+                            return ciudadesAnexas[j];
+                        }else if(ciudadesAnexas[j] != 0){
+                            //CON LA CORRIDA EN FR&IACUTE;O SE BUSCA ES CON EL RANGO YA UBICADO
+                            //ENCONTRARLA CIUDAD A LA QUE ESA PROBABILIDAD CORRESPONDE.
+                            //CON EL ARRAY AUXILIAR DE CIUDADES ANEXAS.
+                            verifier++;
                         }
-                        verifier++;
                     }
                 }
             }
         }
+        
         return -1; // Si el numerito no se encuentra en ningún espacio del rango.
+    
     }
     
     
@@ -154,41 +165,41 @@ public final class Hormiga {
      * @version 12 feb 2024
      * @return <code>true</code> si se movi&oacute; con &eacute;xito.
      *         <code>false</code> si ya han sido visitadas todas las ciudades.
+     * @throws java.lang.Exception en caso que se mueva a un vertice que no existe.
      */
-   /**
-public boolean irHaciaSiguienteCiudad() {
-    int numeroDeSiguienteCiudad = this.getSiguienteCiudad();
-    int m = 10;
-    var Q = 2;
+    public boolean irHaciaSiguienteCiudad() throws Exception {
+        int numeroDeSiguienteCiudad = this.getSiguienteCiudad();
+        int m = 10;
+        var Q = 2;
 
-    if (numeroDeSiguienteCiudad == -1) {
-        return false;
-    } else {
-        Camino camino = this.getMatriz().getMatAd()[this.getCiudadActual().getNumeroDeCiudad()][numeroDeSiguienteCiudad];
-        double nuevasFeromonas = camino.getFeromonas();
+        if (numeroDeSiguienteCiudad == -1) {
+            return false; //Ya que no se habr&iacute;a movido de ciudad.
+        } else {
+            Camino camino = this.getMatriz().getMatAd()[this.getCiudadActual().getNumeroDeCiudad()][numeroDeSiguienteCiudad];
+            double nuevasFeromonas = camino.getFeromonas();
 
-        for (int k = 0; k < m; k++) {
-            double Lk = 0;
-            int currentCity = this.getCiudadActual().getNumeroDeCiudad();
-            int ciudadSiguiente = this.getSiguienteCiudad();
+            for (int k = 0; k < m; k++) {
+                double Lk = 0;
+                int currentCity = this.getCiudadActual().getNumeroDeCiudad();
+                int ciudadSiguiente = this.getSiguienteCiudad();
 
-            while (ciudadSiguiente != -1) {
-                Camino road = this.getMatriz().getMatAd()[currentCity][ciudadSiguiente];
-                Lk += road.getDistancia();
-                currentCity = ciudadSiguiente;
-                ciudadSiguiente = this.getSiguienteCiudad();
+                while (ciudadSiguiente != -1) {
+                    Camino road = this.getMatriz().getMatAd()[currentCity][ciudadSiguiente];
+                    Lk += road.getDistancia();
+                    currentCity = ciudadSiguiente;
+                    ciudadSiguiente = this.getSiguienteCiudad();
+                }
+
+                nuevasFeromonas += Q / Lk;
             }
 
-            nuevasFeromonas += Q / Lk;
+            camino.setFeromonas(nuevasFeromonas);
+
+            this.setCiudadActual(this.getMatriz().getCiudad(numeroDeSiguienteCiudad));
+            this.getCaminoRecorrido()[numeroDeSiguienteCiudad] = true;
+            return true;
         }
-
-        camino.setFeromonas(nuevasFeromonas);
-
-        this.setCiudadActual(this.getMatriz().getCiudad(numeroDeSiguienteCiudad));
-        this.getCaminoRecorrido()[numeroDeSiguienteCiudad] = true;
-        return true;
     }
-}
 
     
     

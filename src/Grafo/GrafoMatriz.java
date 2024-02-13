@@ -37,7 +37,7 @@ public class GrafoMatriz {
         this.matAd = new Camino [numeroDeVertices][numeroDeVertices]; 
         this.verts = new Ciudad[numeroDeVertices]; 
         for (int i = 0; i < numeroDeVertices; i++)  //En la matriz habr&aacute; <code>null</code> o un Objeto de tipo Camino. 
-            for (int j = 0; i < numeroDeVertices; i++) 
+            for (int j = 0; j < numeroDeVertices; j++) 
                 matAd[i][j] = null;
     }
     
@@ -53,7 +53,14 @@ public class GrafoMatriz {
         if (!esta){ 
             Ciudad v = new Ciudad(nombreDevertice); //Se utiliza el constructor de la clase Ciudad.
             v.asigVert(numVerts);
-            verts[numVerts++] = v; //se agrega una nueva fila y columna en la matriz.
+            verts[numVerts] = v; //se agrega una nueva fila y columna en la matriz.
+            Camino[][] nuevaMatriz = new Camino[numVerts + 1][numVerts + 1];
+            // Copiar los valores de la matriz original a la nueva matriz.
+            for (int i = 0; i < numVerts; i++) {
+                System.arraycopy(matAd[i], 0, nuevaMatriz[i], 0, numVerts);
+            }
+            this.setMatAd(nuevaMatriz);
+            this.numVerts++;
         }
     }
     
@@ -90,7 +97,8 @@ public class GrafoMatriz {
         vb = numVertice(b); //Se ubican ambas ciudades.
         if (va < 0 || vb < 0) throw new Exception ("Vértice no existe");
         Camino caminonuevo = new Camino(verts[va],verts[vb],distancia,this.getNumVerts());
-        matAd[va][vb] = caminonuevo; //los elementos de la matriz son 1 si hay camino entre esas dos ciudades.
+        matAd[va][vb] = caminonuevo; //los elementos de la matriz son un objeto tipo Camino si hay camino entre esas dos ciudades.
+        matAd[vb][va] = caminonuevo;
     }
     
     /** * M&eacute;todo que crea un nuevo arco o camino.En este caso, un camino entre dos ciudades pero 
@@ -107,7 +115,8 @@ public class GrafoMatriz {
     public void nuevoCamino(int va, int vb, int distancia,int feromonas)throws Exception{
         if (va < 0 || vb < 0) throw new Exception ("Vértice no existe");
         Camino caminonuevo = new Camino(verts[va],verts[vb],distancia,feromonas);
-        matAd[va][vb] = caminonuevo; //los elementos de la matriz son 1 si hay camino entre esas dos ciudades.
+        matAd[va][vb] = caminonuevo; //los elementos de la matriz son un objeto tipo Camino si hay camino entre esas dos ciudades.
+        matAd[vb][va] = caminonuevo;
     }
     
     /** * M&eacute;todo que determina si dos vértices, v1 y v2, forman un arco.En este caso, pues que en la matriz, entre ellos, haya un 1.
@@ -125,7 +134,7 @@ public class GrafoMatriz {
         va = numVertice(a);
         vb = numVertice(b);
         if (va < 0 || vb < 0) throw new Exception ("Vértice no existe");
-        return matAd[va][vb] != null;
+        return ((matAd[va][vb] != null) && (matAd[vb][va] != null));
     }
     
     /** * M&eacute;todo que determina si dos vértices, v1 y v2, forman un arco.En este caso se conocen directamente el n&uactue;mero de cada ciudad en el
@@ -141,7 +150,7 @@ public class GrafoMatriz {
     */
     public boolean adyacente(int va,int vb)throws Exception{
         if (va < 0 || vb < 0) throw new Exception ("Vértice no existe");
-        return matAd[va][vb]!=null;
+        return ((matAd[va][vb] != null) && (matAd[vb][va] != null));
     } 
 
     /**Getter de la cantidad de ciudades.
@@ -164,11 +173,21 @@ public class GrafoMatriz {
         return this.matAd;
     }
     
-    /**Getter de una de las ciudades.
+    /*Setter de la matriz de caminos.
+     * 
+     * @author nelsoncarrillo
+     * @version 8 feb 2024
+     * @param la matriz nueva
+     */
+    public void setMatAd(Camino[][] nueva) {
+        this.matAd=nueva;
+    }
+    
+    /**Getter de una de las ciudades conociendo su index.
      * 
      * @author nelsoncarrillo
      * @version 12 feb 2024
-     * @param n numero de ciudad a buscar.
+     * @param n numero o index de ciudad a buscar.
      * @return la Ciudad como objeto.
      */
     public Ciudad getCiudad(int n) {
