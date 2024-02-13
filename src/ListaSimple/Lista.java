@@ -25,7 +25,7 @@ public class Lista {
      * 
      * @param valor el valor a insertar en la lista.
      */
-    public void insertar(Camino valor) {
+    public void insertar(double valor) {
         Nodo nuevoNodo = new Nodo(valor);
         if (cabeza == null) {
             cabeza = nuevoNodo;
@@ -76,5 +76,28 @@ public class Lista {
      */
     public Nodo getCola() {
         return cola;
+    }
+    
+    /**
+     * Método para vaciar la lista.
+     */
+    public void vaciar() {
+        this.cabeza = null;
+        this.cola = null;
+        this.size=0;
+    }
+    
+    /**
+     * Método para sumar todos los números que componen la lista.
+     * @return la suma de los números de la lista.
+     */
+    public double sumarNumeros() {
+        double suma = 0;
+        Nodo nodoActual = cabeza;
+        while (nodoActual != null) {
+            suma += nodoActual.getValor();
+            nodoActual = nodoActual.getSiguiente();
+        }
+        return suma;
     }
 }

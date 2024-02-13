@@ -94,6 +94,15 @@ public class Camino {
         return this.feromonas;
     }
 
+    /**
+     * Método para establecer la cantidad de feromonas del camino.
+     * 
+     * @param feromona las feromonas del camino.
+     * @author tito_
+     */
+    public void setFeromonas(double feromona) {
+        this.feromonas=feromona;
+    }
 
     /**
      * Método para establecer la distancia del camino.

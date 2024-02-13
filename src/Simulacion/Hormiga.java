@@ -2,6 +2,8 @@ package Simulacion;
 import Grafo.Camino;
 import Grafo.GrafoMatriz;
 import Grafo.Ciudad;        
+import ListaSimple.Lista;
+import ListaSimple.Nodo;
 import java.util.Random;
         
 /**
@@ -16,7 +18,6 @@ public final class Hormiga {
     private static GrafoMatriz matriz;
     private Ciudad ciudadActual;
     private final boolean [] ciudadesVisitadas;
-    private double[][] probabilidades;
 
     /**
      * Constructor de la clase Hormiga que recibe una Ciudad.
@@ -40,22 +41,6 @@ public final class Hormiga {
     public Ciudad getCiudadActual() {
         return ciudadActual;
     }
-
-    /**
-     * Obtiene la probabilidad actual de la hormiga.
-     * @return la probabilidad actual
-     */
-    public double[][] getProbabilidades() {
-        return this.probabilidades;
-    }
-    
-    /**
-     * Establece la probabilidad actual de la hormiga.
-     * @param probs matriz con probabilidades de caminos.
-     */
-    public void setProbabilidades(double[][] probs) {
-        this.probabilidades=probs;
-    }
     
     /**
      * Establece la ciudad actual de la hormiga.
@@ -71,16 +56,6 @@ public final class Hormiga {
      */
     public boolean[] getCaminoRecorrido() {
         return ciudadesVisitadas;
-    }
-
-    /**
-     * Mueve la hormiga a la siguiente ciudad y registra el camino recorrido.
-     * @param siguienteCiudad la siguiente ciudad a la que se mueve la hormiga
-     * @param siguienteCamino el camino recorrido hacia la siguiente ciudad
-     */
-    public void moverHormiga(Ciudad siguienteCiudad, Camino siguienteCamino) {
-        this.ciudadActual = siguienteCiudad;
-        this.ciudadesVisitadas[siguienteCiudad.getNumeroDeCiudad()]=true;
     }
 
     /**
@@ -100,84 +75,73 @@ public final class Hormiga {
         Hormiga.matriz = nuevaMatriz;
     }
     
-    /** Modifica la matriz de posibilidades de selecci&oacute;camino.
+    /** Devuelve, si existe, la ciudad Adyacente a la que se encuentre la hormiga a la que ir&aacute;.
      * Se logra de manera probabilística a través de la expresi&oacute;n.
      * Se hace privado ya que solo complementa otro de los m&eacute;todos de la hormiga.
+     * Si ya visit&oacute; todas las adyacentes, pues ah&iacutel se qued&oacute;.
+     * Si qeuda en una calle ciega, ah&iacute; queda ya que no se debe ser 
+     * visitada dos veces por una hormiga en una misma iteraci&oacute;n.
      * 
      * @author nelsoncarrillo
      * @version 12 feb 2024
+     * @return index de la ciudad a la que ir&aacute;
+     *         <code>-1</code> si no es posible desplazarse por los motivos especificados.
      */
-    private void calcularProbabilidades() {
-        GrafoMatriz MatrizCaminos = this.getMatriz();
-        boolean[] CiudadesVisitadas = this.getCaminoRecorrido();
+    private int getSiguienteCiudad() {
+        
         int NumeroCiudadActual = this.getCiudadActual().getNumeroDeCiudad();
-        int numCiudades = MatrizCaminos.getNumVerts();
-        Camino[][] caminos = MatrizCaminos.getMatAd();
+        int numCiudades = this.getMatriz().getNumVerts();
+        Camino[][] caminos = this.getMatriz().getMatAd();
+        Lista Probabilidades = new Lista();
+        Random random = new Random();
+        double valorAleatorio = random.nextDouble();
         double alfa = 1;
         double beta = 2;
-        double probabilidadTotal = 0.0;
-        double[][] Probabilidades = this.getProbabilidades();
+        int[] ciudadesAnexas = new int[numCiudades];
         
-        for (int i = 0; i < MatrizCaminos.getNumVerts(); i++) {
-            if (!CiudadesVisitadas[i]) {
-                double numerador = Math.pow(caminos[NumeroCiudadActual][i].getFeromonas(), alfa) * Math.pow(1.0 / caminos[NumeroCiudadActual][i].getDistancia(), beta);
-                for (int j = 0; j < numCiudades; j++) {
-                    if (!CiudadesVisitadas[j]) {
-                        double denominador = Math.pow(caminos[NumeroCiudadActual][j].getFeromonas(), alfa) * Math.pow(1.0 / caminos[NumeroCiudadActual][j].getDistancia(), beta);
-                        probabilidadTotal += numerador / denominador;
+        for(int i = 0 ; i < numCiudades ; i++){
+            if(caminos[NumeroCiudadActual][i]!= null && this.ciudadesVisitadas[i] == false){
+                double Numerador = ((Math.pow(caminos[NumeroCiudadActual][i].getFeromonas(),alfa))*(Math.pow((1/caminos[NumeroCiudadActual][i].getDistancia()),beta)));
+                Probabilidades.insertar(Numerador);
+                ciudadesAnexas[i]=i;
+            }else{
+                ciudadesAnexas[i]=0;
+            }
+        }
+        
+        double Denominador = Probabilidades.sumarNumeros();
+        
+        Nodo aux = Probabilidades.getCabeza();
+        while(aux != null){
+            aux.setValor(aux.getValor()/Denominador);
+            aux = aux.getSiguiente();
+        }  
+        
+        double[] rangos = new double[Probabilidades.getSize()];
+        rangos[0]=0;
+        aux = Probabilidades.getCabeza();
+        for(int j = 0;j<Probabilidades.getSize();j++){
+            rangos[j+1] = aux.getValor() + rangos[j];
+            aux=aux.getSiguiente();
+        }
+        
+        for (int i = 0; i < rangos.length - 1; i++) {
+            if (valorAleatorio >= rangos[i] && valorAleatorio < rangos[i + 1]) {
+                int verifier =0;
+                for(int j = 0;j<ciudadesAnexas.length;j++){
+                    if(ciudadesAnexas[i] != 0){
+                        if(verifier == i){
+                            return i;
+                        }
+                        verifier++;
                     }
                 }
             }
         }
-        for (int i = 0; i < numCiudades; i++) {
-            if (!CiudadesVisitadas[i]) {
-                for (int j = 0; j < numCiudades; j++) {
-                    if (!CiudadesVisitadas[j]) {
-                        double numerador = Math.pow(caminos[NumeroCiudadActual][j].getFeromonas(), alfa) * Math.pow(1.0 / caminos[NumeroCiudadActual][j].getDistancia(), beta);
-                        double denominador = Math.pow(caminos[NumeroCiudadActual][i].getFeromonas(), alfa) * Math.pow(1.0 / caminos[NumeroCiudadActual][i].getDistancia(), beta);
-                        Probabilidades[NumeroCiudadActual][i] = numerador / denominador / probabilidadTotal;
-                    }
-                }
-            }
-        }
-        this.setProbabilidades(Probabilidades);
+        return -1; // Si el numerito no se encuentra en ningún espacio del rango.
     }
     
-    /** Devuelve el n&uacute;mero de la siguiente ciudad a la que se desplaza.
-     * Con las probabilidades ya establecidas(dentro del mismo m&eacute;todo) 
-     * de cada camino pues disponible procede a comparar necesario con un n&uacute;mero 
-     * aleatorio para saber cu&aacute;l camino seguir&aacute; la hormiga.
-     * Se hace privado ya que solo complementa otro de los m&eacute;todos de la hormiga.
-     * @author nelsoncarrillo
-     * @version 12 feb 2024
-     * @return <code>int</code> n&uacute;mero o index de la nueva ciudad.
-     *         <code>int = -1</code> si ya han sido visitadas todas las ciudades.
-     */
-    private int getNumeroSiguienteCiudad(){
-        Random random = new Random();
-        this.calcularProbabilidades();
-        double valorAleatorio = random.nextDouble();
-        double probabilidadAcumulada = 0.0;
-        double[][] ArrProbabilidades = this.getProbabilidades();
-        
-        for (int i = 0; i < this.getMatriz().getNumVerts(); i++) {
-            if (!ciudadesVisitadas[i]) {
-                probabilidadAcumulada += ArrProbabilidades[this.getCiudadActual().getNumeroDeCiudad()][i];
-                if (valorAleatorio <= probabilidadAcumulada) {
-                    return i;
-                }
-            }
-        }
-
-        // Si no se selecciona ninguna ciudad, volver a la primera ciudad no visitada
-        for (int i = 0; i < this.getMatriz().getNumVerts(); i++) {
-            if (!ciudadesVisitadas[i]) {
-                return i;
-            }
-        }
-
-        return -1; // Si todas las ciudades han sido visitadas
-    }
+    
     
     /**
      * Establece o ubica a la hormiga en una nueva ciudad.
@@ -191,14 +155,20 @@ public final class Hormiga {
      *         <code>false</code> si ya han sido visitadas todas las ciudades.
      */
     public boolean irHaciaSiguienteCiudad(){
-        int NumeroDeSiguienteCiudad = this.getNumeroSiguienteCiudad();
+        int NumeroDeSiguienteCiudad = this.getSiguienteCiudad();
         if(NumeroDeSiguienteCiudad == -1){
             return false; // Si todas las ciudades han sido visitadas
         }else{
+            //Falta colocar la Actualización por incremento.
+            /**
+             Seria algo como:
+             * Camino recorrido = this.getMatriz[this.getCiudadActual().getNumeroDeCiudad()][NumeroDeSiguienteCiudad];
+             * //Codear la formula #2 aca y llegar a un double que se llame feromona//
+             * recorrido.setFeromonas(feromona);
+             */
             this.setCiudadActual(this.getMatriz().getCiudad(NumeroDeSiguienteCiudad));
             this.getCaminoRecorrido()[NumeroDeSiguienteCiudad]=true;
-            //Falta colocar la Actualización por incremento.
-            return true;
+            return true; //Que si pudo desplazarse.
         }
     }
     

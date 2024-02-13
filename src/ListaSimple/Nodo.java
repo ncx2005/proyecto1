@@ -1,21 +1,19 @@
 package ListaSimple;
 
-import Grafo.Camino;
-
 public class Nodo {
-    private Camino valor;
+    private double valor;
     private Nodo siguiente;
 
-    public Nodo(Camino valor) {
+    public Nodo(double valor) {
         this.valor = valor;
         this.siguiente = null;
     }
 
-    public Camino getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(Camino valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
