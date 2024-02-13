@@ -11,6 +11,7 @@ import java.util.Random;
  * @author tito_
  * @version 8 feb 2024
  */
+
 public final class Hormiga {
     
     //Declarar la matriz de adyacencia como un atributo est&aacute;tico de la clase Hormiga.
@@ -154,23 +155,41 @@ public final class Hormiga {
      * @return <code>true</code> si se movi&oacute; con &eacute;xito.
      *         <code>false</code> si ya han sido visitadas todas las ciudades.
      */
-    public boolean irHaciaSiguienteCiudad(){
-        int NumeroDeSiguienteCiudad = this.getSiguienteCiudad();
-        if(NumeroDeSiguienteCiudad == -1){
-            return false; // Si todas las ciudades han sido visitadas
-        }else{
-            //Falta colocar la Actualización por incremento.
-            /**
-             Seria algo como:
-             * Camino recorrido = this.getMatriz[this.getCiudadActual().getNumeroDeCiudad()][NumeroDeSiguienteCiudad];
-             * //Codear la formula #2 aca y llegar a un double que se llame feromona//
-             * recorrido.setFeromonas(feromona);
-             */
-            this.setCiudadActual(this.getMatriz().getCiudad(NumeroDeSiguienteCiudad));
-            this.getCaminoRecorrido()[NumeroDeSiguienteCiudad]=true;
-            return true; //Que si pudo desplazarse.
+   /**
+public boolean irHaciaSiguienteCiudad() {
+    int numeroDeSiguienteCiudad = this.getSiguienteCiudad();
+    int m = 10;
+    var Q = 2;
+
+    if (numeroDeSiguienteCiudad == -1) {
+        return false;
+    } else {
+        Camino camino = this.getMatriz().getMatAd()[this.getCiudadActual().getNumeroDeCiudad()][numeroDeSiguienteCiudad];
+        double nuevasFeromonas = camino.getFeromonas();
+
+        for (int k = 0; k < m; k++) {
+            double Lk = 0;
+            int currentCity = this.getCiudadActual().getNumeroDeCiudad();
+            int ciudadSiguiente = this.getSiguienteCiudad();
+
+            while (ciudadSiguiente != -1) {
+                Camino road = this.getMatriz().getMatAd()[currentCity][ciudadSiguiente];
+                Lk += road.getDistancia();
+                currentCity = ciudadSiguiente;
+                ciudadSiguiente = this.getSiguienteCiudad();
+            }
+
+            nuevasFeromonas += Q / Lk;
         }
+
+        camino.setFeromonas(nuevasFeromonas);
+
+        this.setCiudadActual(this.getMatriz().getCiudad(numeroDeSiguienteCiudad));
+        this.getCaminoRecorrido()[numeroDeSiguienteCiudad] = true;
+        return true;
     }
+}
+
     
     
 }
