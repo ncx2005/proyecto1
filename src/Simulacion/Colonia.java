@@ -1,4 +1,8 @@
 package Simulacion;
+import Grafo.Camino;
+import Grafo.GrafoMatriz;
+ 
+
 
 /**
  * Clase que representa una colonia de hormigas que realiza una optimizaci&oacute;n.
@@ -10,12 +14,18 @@ package Simulacion;
  * @version 13 feb 2024
  */
 public class Colonia {
+    private GrafoMatriz matriz;
     
     //Atrtibutos (LOS INDICA EL USUARIO).
     private int CantidadDeHormigas;
     //private int CantidadDeCiclos;
     //private Ciudad CiudadInicio;
     //private Ciudad CiudadFin; Usaremos en este metodo de simulacion while ciudad actual!=fin;
+    
+    
+    public GrafoMatriz getMatriz() {
+        return matriz;
+    }
     
     /**
      * Constructor de la clase Colonia.
@@ -24,8 +34,9 @@ public class Colonia {
      * @author nelsoncarrillo
      * @version 13 feb 2024
      */
-    public Colonia(int cantidadHormigas) { //Agregar params..;
+    public Colonia(int cantidadHormigas, int numVertices) { //Agregar params..;
         this.CantidadDeHormigas = cantidadHormigas;
+        this.matriz = new GrafoMatriz(numVertices);
         //this.CiudadInicio = new Ciudad();
         //this.CiudadFin = new Ciudad();
     }
@@ -59,5 +70,17 @@ public class Colonia {
     public void iniciarOptimizacion() {
         // Lógica para inicializar la optimización, crear las hormigas, etc.
     }
-    
+    public void actualizarPorEvaporacion(double rho) {
+    int numCiudades = this.getMatriz().getNumVerts();
+    for (int r = 0; r < numCiudades; r++) {
+        for (int s = 0; s < numCiudades; s++) {
+            if (r != s) { // Evitar actualizar feromonas en bucles de una ciudad a sí misma
+                Camino camino = this.getMatriz().getMatAd()[r][s];
+                camino.setFeromonas(    (1 - rho) * camino.getFeromonas());
+                Camino road = this.getMatriz().getMatAd()[s][r];
+                road.setFeromonas(    (1 - rho) * road.getFeromonas());
+            }
+        }
+    }
+}
 }
