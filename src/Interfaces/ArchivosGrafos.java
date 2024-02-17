@@ -9,6 +9,8 @@ import Funciones.LeerArchivo;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -49,11 +51,16 @@ public class ArchivosGrafos extends javax.swing.JFrame {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         text.setText("NO SE HA CARGADO UN GRAFO.");
+        SavedMessage.setText("Grafo sin guardar.");
         text.setEditable(false);
+        Exit.setContentAreaFilled(false);
+        Exit.setBorderPainted(false);
     }
     
     FunctionsTXT f = new FunctionsTXT();
     LeerArchivo content = new LeerArchivo();
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+    LocalDateTime now = LocalDateTime.now();
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,6 +78,8 @@ public class ArchivosGrafos extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         Exit = new javax.swing.JButton();
         Atras = new javax.swing.JButton();
+        GuardarArchivo = new javax.swing.JButton();
+        SavedMessage = new javax.swing.JTextField();
         Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -97,13 +106,16 @@ public class ArchivosGrafos extends javax.swing.JFrame {
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
-        Exit.setText("X");
+        Exit.setForeground(new java.awt.Color(255, 255, 255));
+        Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton.png"))); // NOI18N
+        Exit.setBorder(null);
+        Exit.setBorderPainted(false);
         Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ExitActionPerformed(evt);
             }
         });
-        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 20, 60, -1));
+        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 50, 50));
 
         Atras.setText("Atrás");
         Atras.addActionListener(new java.awt.event.ActionListener() {
@@ -112,6 +124,21 @@ public class ArchivosGrafos extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
+
+        GuardarArchivo.setText("Guardar Archivo Como");
+        GuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GuardarArchivoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 170, -1));
+
+        SavedMessage.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SavedMessageActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SavedMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 290, -1));
 
         Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HD-wallpaper-sand-waves-wavy-desert-traces-texture.jpg"))); // NOI18N
         jPanel1.add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 610));
@@ -130,7 +157,7 @@ public class ArchivosGrafos extends javax.swing.JFrame {
                     
                     String documento = f.AbrirArchivo(archivo);
                     String path = archivo.getAbsolutePath();
-                    contenidoFile = content.leertxt(path);
+                    this.contenidoFile = content.leertxt(path);
                     if (!f.ValidarTxt(contenidoFile)){
                         JOptionPane.showMessageDialog(null, "El contenido del archivo no cumple con la estructura requerida\nPor favor intentelo de nuevo");
                     } else{
@@ -138,6 +165,7 @@ public class ArchivosGrafos extends javax.swing.JFrame {
                         this.caminos = f.getCaminos(contenidoFile);
                         this.ciudades= f.getCiudades(contenidoFile);
                         text.setText(documento);
+                        this.contenidoFile=documento;
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Archivo No Compatible");
@@ -156,6 +184,16 @@ public class ArchivosGrafos extends javax.swing.JFrame {
         this.interfazinicio.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AtrasActionPerformed
+
+    private void GuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarArchivoActionPerformed
+        // TODO add your handling code here:
+        if(f.guardarArchivo(contenidoFile))
+            SavedMessage.setText("Archivo Guardado "+dtf.format(now));
+    }//GEN-LAST:event_GuardarArchivoActionPerformed
+
+    private void SavedMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavedMessageActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SavedMessageActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,9 +223,7 @@ public class ArchivosGrafos extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            }
+        java.awt.EventQueue.invokeLater(() -> {
         });
     }
 
@@ -195,6 +231,8 @@ public class ArchivosGrafos extends javax.swing.JFrame {
     private javax.swing.JButton Abrir;
     private javax.swing.JButton Atras;
     private javax.swing.JButton Exit;
+    private javax.swing.JButton GuardarArchivo;
+    private javax.swing.JTextField SavedMessage;
     private javax.swing.JLabel Wallpaper;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

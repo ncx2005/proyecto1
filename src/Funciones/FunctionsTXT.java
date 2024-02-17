@@ -1,11 +1,13 @@
 package Funciones;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Scanner;
@@ -111,6 +113,28 @@ public class FunctionsTXT {
         String[] roads = caminos.split("\n");
         String[] roads1 = Arrays.copyOfRange(roads, 1, roads.length);
         return roads1;
+    }
+    
+    /**
+    * Guarda el contenido en un archivo de texto en la ubicaci&oacute;n seleccionada por el usuario.
+    * Sirve como un guardar como del word.
+    * 
+    * @param contenido El contenido a guardar en el archivo.
+    * @return <code>true</code> si el archivo se guardó exitosamente.
+    *         <code>false</code> en caso contrario.
+    */
+    public boolean guardarArchivo(String contenido) {
+        JFileChooser fileChooser = new JFileChooser();
+        int seleccion = fileChooser.showSaveDialog(null);
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileChooser.getSelectedFile()))) {
+                writer.write(contenido);
+                return true;
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null,"Error al guardar.");
+            }
+        }
+        return false;
     }
     
     
