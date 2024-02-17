@@ -4,6 +4,8 @@
  */
 package main;
 
+import Interfaces.Inicio;
+
 /**
  *
  * @author Posilandia
@@ -15,6 +17,8 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Inicio a = new Inicio();
+        a.show();
         
     }
     
