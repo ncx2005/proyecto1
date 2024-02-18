@@ -4,7 +4,8 @@
  */
 package main;
 
-import Interfaces.Inicio;
+
+import Interfaces.Menu;
 
 /**
  *
@@ -17,8 +18,8 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Inicio a = new Inicio();
-        a.show();
+        Menu a = new Menu();
+        a.setVisible(true);
         
     }
     

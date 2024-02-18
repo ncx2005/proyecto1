@@ -64,6 +64,42 @@ public class GrafoMatriz {
         }
     }
     
+/**Borra un vertice de la matriz de adyacencia.
+    * @param nombreDevertice el nombre del vértice que se quiere borrar
+    * @author tito_
+    * @version 17 feb 2024
+    */
+    public void borrarVertice (String nombreDevertice){ 
+        int indice = numVertice(nombreDevertice); // Buscar el índice del vértice
+        if (indice >= 0){ // Si el vértice existe
+            // Eliminar el vértice del arreglo
+            for (int i = indice; i < numVerts - 1; i++) {
+                verts[i] = verts[i + 1];
+            }
+            // Reducir el número de vértices
+            numVerts--;
+            // Crear una nueva matriz de adyacencia
+            Camino[][] nuevaMatriz = new Camino[numVerts][numVerts];
+            // Copiar los valores de la matriz original a la nueva matriz
+            for (int i = 0; i < numVerts; i++) {
+                for (int j = 0; j < numVerts; j++) {
+                    if (i < indice && j < indice) { // Caso 1: ambos índices son menores que el índice del vértice borrado
+                        nuevaMatriz[i][j] = matAd[i][j];
+                    } else if (i >= indice && j < indice) { // Caso 2: el índice de la fila es mayor o igual que el índice del vértice borrado y el índice de la columna es menor
+                        nuevaMatriz[i][j] = matAd[i + 1][j];
+                    } else if (i < indice && j >= indice) { // Caso 3: el índice de la fila es menor que el índice del vértice borrado y el índice de la columna es mayor o igual
+                        nuevaMatriz[i][j] = matAd[i][j + 1];
+                    } else { // Caso 4: ambos índices son mayores o iguales que el índice del vértice borrado
+                        nuevaMatriz[i][j] = matAd[i + 1][j + 1];
+                    }
+                }
+            }
+            // Actualizar la matriz de adyacencia
+            this.setMatAd(nuevaMatriz);
+        }
+    }
+
+    
     /**M&eacute;todo que verifica si se ubica un v&eacute;rtice.
     * Verifica solo si se incluye dendtro del grafo.
     *
@@ -80,7 +116,7 @@ public class GrafoMatriz {
             if (!encontrado) i++ ;
         }
         return (i < numVerts) ? i : -1 ; //devuelve el valor de `i` si `i` es menor que `numVerts`, de lo contrario, devuelve -1.
-    }
+    }   
     
     /** * M&eacute;todo que crea un nuevo arco o camino.En este caso, un camino entre dos ciudades.
     *

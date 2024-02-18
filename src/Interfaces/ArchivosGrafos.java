@@ -29,7 +29,11 @@ public class ArchivosGrafos extends javax.swing.JFrame {
     private String[] ciudades;
     private String[] caminos;
     private String contenidoFile;
-    private Inicio interfazinicio;
+    private Menu interfazMenu;
+
+    ArchivosGrafos() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
     /**Devuelve si tiene guardado un grafo.
      * En caso de no, no se puede realizar la simulaci&oacute;n.
@@ -45,9 +49,9 @@ public class ArchivosGrafos extends javax.swing.JFrame {
      * Creates new form ArchivosGrafos.
      * @param interfaz para agregar bot&oacute;n de regresar.
      */
-    public ArchivosGrafos(Inicio interfaz) {
+    public ArchivosGrafos(Menu interfaz) {
         initComponents();
-        this.interfazinicio=interfaz;
+        this.interfazMenu=interfaz;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         text.setText("NO SE HA CARGADO UN GRAFO.");
@@ -181,7 +185,7 @@ public class ArchivosGrafos extends javax.swing.JFrame {
 
     private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         // TODO add your handling code here:
-        this.interfazinicio.setVisible(true);
+        this.interfazMenu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AtrasActionPerformed
 
