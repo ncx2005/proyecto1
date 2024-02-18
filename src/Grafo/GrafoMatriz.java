@@ -64,12 +64,16 @@ public class GrafoMatriz {
         }
     }
     
-/**Borra un vertice de la matriz de adyacencia.
+    /**Borra un v&eacute;rtice de la matriz de adyacencia.
+     * Pues pasado como param y se valida que exista.
+     * 
     * @param nombreDevertice el nombre del vértice que se quiere borrar
     * @author tito_
     * @version 17 feb 2024
+    * @return <code>true</code> si se puede borrar el v&eacute;rtice.
+    *         <code>false</code> si no se pudo borrar el v&eacute;rtice.
     */
-    public void borrarVertice (String nombreDevertice){ 
+    public boolean borrarVertice (String nombreDevertice){ 
         int indice = numVertice(nombreDevertice); // Buscar el índice del vértice
         if (indice >= 0){ // Si el vértice existe
             // Eliminar el vértice del arreglo
@@ -96,6 +100,9 @@ public class GrafoMatriz {
             }
             // Actualizar la matriz de adyacencia
             this.setMatAd(nuevaMatriz);
+            return true;
+        }else{
+            return false;
         }
     }
 
