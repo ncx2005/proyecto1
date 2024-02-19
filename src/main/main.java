@@ -1,15 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package main;
-
-
-import Interfaces.MenuPrincipal;
 
 /**
  *
- * @author Posilandia
+ * @author nelsoncarrillo & tito_
  */
 public class main {
 
@@ -18,8 +11,8 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        MenuPrincipal a = new MenuPrincipal();
-        a.setVisible(true);
+        //MenuPrincipal a = new MenuPrincipal();
+        //a.setVisible(true);
         
     }
     

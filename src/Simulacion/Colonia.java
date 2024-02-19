@@ -1,6 +1,7 @@
 package Simulacion;
 import Grafo.Camino;
 import Grafo.GrafoMatriz;
+import javax.swing.JOptionPane;
  
 
 
@@ -91,5 +92,45 @@ public class Colonia {
                 }
             }
         }
+    }
+    
+    /**
+     * Agrega una nueva ciudad a la matriz y sus respectivos caminos.
+     * Evidentemente, debe haber misma cantidad de ciudades anexas que caminos,
+     * y se valida en este m&eacute;todo que las ciudades inscritas como anexas
+     * existan en la matriz, en el grafo pues.
+     * 
+     * @author nelsoncarrillo
+     * @version 19 feb 2024
+     * @param NumeroDeNuevaCiudad casteado del input del usuario validado en interfaz.
+     * @param CiudadesAnexas Array del input del usuario.
+     * @param DistanciaCiudades Array en base del input del usuario.
+     * @return <code>true</code> si se agrega con &eacute;xito.
+     *         <code>false</code> si bien no existe una de las ciudades anexas o un tipo de dato malo.          
+     */
+    public boolean AgregarCiudad(int NumeroDeNuevaCiudad,String[] CiudadesAnexas,String[] DistanciaCiudades){
+        if(this.getMatriz().getNumVerts()==20){ //esta en el limite
+            return false;
+        }
+        for(int i=0;i<CiudadesAnexas.length;i++){
+            CiudadesAnexas[i]= CiudadesAnexas[i].trim();
+            DistanciaCiudades[i]= DistanciaCiudades[i].trim();
+            try{
+                Integer.valueOf(CiudadesAnexas[i]);
+                Double.valueOf(DistanciaCiudades[i]);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Error en el Input.\nRecuerde debe ser un número.", "ERROR", JOptionPane.WARNING_MESSAGE);
+                return false;
+            }
+        }
+        boolean p = this.getMatriz().nuevoVertice(Integer.toString(NumeroDeNuevaCiudad));
+        if(!p)
+            return false;
+        for(int i=0;i<CiudadesAnexas.length;i++){
+            if(this.getMatriz().numVertice(CiudadesAnexas[i])<0)
+                return false;
+            this.getMatriz().nuevoCamino(Integer.toString(NumeroDeNuevaCiudad),CiudadesAnexas[i], Double.parseDouble(DistanciaCiudades[i]));
+        }
+        return true;
     }
 }

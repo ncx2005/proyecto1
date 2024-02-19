@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Simulacion.Colonia;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,6 +15,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     
     private GestionArchivosGUI interfazArchivos = new GestionArchivosGUI(MenuPrincipal.this);
     private AgregarCiudad interfazGrafos = new AgregarCiudad(MenuPrincipal.this);
+    Colonia coloniaAST;
 
     /**
      * Creates new form MenuPrincipal
@@ -138,7 +140,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void OpenGrafosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenGrafosActionPerformed
         // TODO add your handling code here:
         if(!this.interfazArchivos.isGuardar()){
-            JOptionPane.showMessageDialog(null, "No Hay Grafo Guardado Para Editar.");
+            JOptionPane.showMessageDialog(null, "No Hay Grafo Guardado Para Editar.","ERROR", JOptionPane.WARNING_MESSAGE);
         }else{
             this.setVisible(false);
             this.interfazGrafos.setVisible(true);

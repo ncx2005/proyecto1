@@ -1,17 +1,11 @@
 package Funciones;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -99,19 +93,25 @@ public class FunctionsTXT {
         }
     }
     
-    public String[] getCiudades(String contenido){
+    public String[] getCiudades(String contenido) {
         String[] separar = contenido.split("aristas");
-        String ciudades = separar [0];
+        String ciudades = separar[0];
         String[] cities = ciudades.split("\n");
-        String[] cities1 = Arrays.copyOfRange(cities, 1, cities.length);
+        String[] cities1 = new String[cities.length - 1];
+        for (int i = 1; i < cities.length; i++) {
+            cities1[i - 1] = cities[i];
+        }
         return cities1;
     }
     
-    public String[] getCaminos(String contenido){
+    public String[] getCaminos(String contenido) {
         String[] separar = contenido.split("aristas");
-        String caminos = separar [1];
+        String caminos = separar[1];
         String[] roads = caminos.split("\n");
-        String[] roads1 = Arrays.copyOfRange(roads, 1, roads.length);
+        String[] roads1 = new String[roads.length - 1];
+        for (int i = 1; i < roads.length; i++) {
+            roads1[i - 1] = roads[i];
+        }
         return roads1;
     }
     

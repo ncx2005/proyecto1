@@ -1,5 +1,7 @@
 package Grafo;
 
+import javax.swing.JOptionPane;
+
 /**Clase que determina la matriz de adyacencia de nuestro grafo.
  * Se trabaja con matriz de adyacencia en vez de lista.
  * Representa los arcos, relaciones entre un par de nodos de un grafo.
@@ -41,14 +43,14 @@ public class GrafoMatriz {
                 matAd[i][j] = null;
     }
     
-    /** * M&eacute;todo que permite añadir un v&eacute;rtice.
-    * Verifica si existe primero, de no ser pues se agrega.
+    /** * M&eacute;todo que permite añadir un v&eacute;rtice.Verifica si existe primero, de no ser pues se agrega.
     *
     * @author nelsoncarrillo
     * @version 8 feb 2024
     * @param nombreDevertice nombre del nuevo v&eacute;rtices.
+    * @return 
     */
-    public void nuevoVertice (String nombreDevertice){ 
+    public boolean nuevoVertice (String nombreDevertice){ 
         boolean esta = numVertice(nombreDevertice) >= 0; 
         if (!esta){ 
             Ciudad v = new Ciudad(nombreDevertice); //Se utiliza el constructor de la clase Ciudad.
@@ -61,7 +63,9 @@ public class GrafoMatriz {
             }
             this.setMatAd(nuevaMatriz);
             this.numVerts++;
+            return true;
         }
+        return false;
     }
     
     /**Borra un v&eacute;rtice de la matriz de adyacencia.
@@ -74,6 +78,9 @@ public class GrafoMatriz {
     *         <code>false</code> si no se pudo borrar el v&eacute;rtice.
     */
     public boolean borrarVertice (String nombreDevertice){ 
+        if(this.getNumVerts()==4){
+            return false;
+        }
         int indice = numVertice(nombreDevertice); // Buscar el índice del vértice
         if (indice >= 0){ // Si el vértice existe
             // Eliminar el vértice del arreglo
@@ -134,11 +141,12 @@ public class GrafoMatriz {
      * @param distancia del nuevo camino.
      * @throws java.lang.Exception
     */
-    public void nuevoCamino(String a, String b,double distancia)throws Exception{
+    public void nuevoCamino(String a, String b,double distancia){
         int va, vb;
         va = numVertice(a);
         vb = numVertice(b); //Se ubican ambas ciudades.
-        if (va < 0 || vb < 0) throw new Exception ("Vértice no existe");
+        if (va < 0 || vb < 0)
+            JOptionPane.showMessageDialog(null, "Error en el Input.\nError en Grafo Ubicando ciudad.", "ERROR", JOptionPane.WARNING_MESSAGE);
         Camino caminonuevo = new Camino(verts[va],verts[vb],distancia,this.getNumVerts());
         matAd[va][vb] = caminonuevo; //los elementos de la matriz son un objeto tipo Camino si hay camino entre esas dos ciudades.
         matAd[vb][va] = caminonuevo;
