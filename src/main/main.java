@@ -1,4 +1,5 @@
 package main;
+import Interfaces.MenuPrincipal;
 
 /**
  *
@@ -11,8 +12,8 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        //MenuPrincipal a = new MenuPrincipal();
-        //a.setVisible(true);
+        MenuPrincipal a = new MenuPrincipal();
+        a.setVisible(true);
         
     }
     
