@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author nelsoncarrillo
  */
-public class ArchivosGrafos extends javax.swing.JFrame {
+public class GestionArchivosGUI extends javax.swing.JFrame {
     
     // Atributos de la clase
     JFileChooser seleccionar = new JFileChooser();
@@ -29,11 +29,8 @@ public class ArchivosGrafos extends javax.swing.JFrame {
     private String[] ciudades;
     private String[] caminos;
     private String contenidoFile;
-    private Menu interfazMenu;
+    private MenuPrincipal interfazMenu;
 
-    ArchivosGrafos() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 
     /**Devuelve si tiene guardado un grafo.
      * En caso de no, no se puede realizar la simulaci&oacute;n.
@@ -49,7 +46,7 @@ public class ArchivosGrafos extends javax.swing.JFrame {
      * Creates new form ArchivosGrafos.
      * @param interfaz para agregar bot&oacute;n de regresar.
      */
-    public ArchivosGrafos(Menu interfaz) {
+    public GestionArchivosGUI(MenuPrincipal interfaz) {
         initComponents();
         this.interfazMenu=interfaz;
         this.setResizable(false);
@@ -119,15 +116,19 @@ public class ArchivosGrafos extends javax.swing.JFrame {
                 ExitActionPerformed(evt);
             }
         });
-        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, 50, 50));
+        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 40, 40));
 
-        Atras.setText("Atrás");
+        Atras.setBackground(null);
+        Atras.setForeground(null);
+        Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rounded-back-icon-element-free-png-2.png"))); // NOI18N
+        Atras.setBorder(null);
+        Atras.setBorderPainted(false);
         Atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 560, -1, -1));
+        jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, -1, -1));
 
         GuardarArchivo.setText("Guardar Archivo Como");
         GuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
@@ -216,14 +217,15 @@ public class ArchivosGrafos extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ArchivosGrafos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionArchivosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ArchivosGrafos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionArchivosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ArchivosGrafos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionArchivosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ArchivosGrafos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GestionArchivosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */

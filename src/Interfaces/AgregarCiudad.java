@@ -9,12 +9,17 @@ package Interfaces;
  * @author nelsoncarrillo
  */
 public class AgregarCiudad extends javax.swing.JFrame {
+    
+    private MenuPrincipal interfazMenu;
 
     /**
      * Creates new form AgregarCiudad
      */
-    public AgregarCiudad() {
+    public AgregarCiudad(MenuPrincipal interfaz) {
         initComponents();
+        this.interfazMenu=interfaz;
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -26,21 +31,66 @@ public class AgregarCiudad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        Exit = new javax.swing.JButton();
+        Atras = new javax.swing.JButton();
+        background = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Exit.setBackground(null);
+        Exit.setForeground(null);
+        Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton.png"))); // NOI18N
+        Exit.setBorder(null);
+        Exit.setBorderPainted(false);
+        Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ExitActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 20, 40, 40));
+
+        Atras.setBackground(null);
+        Atras.setForeground(null);
+        Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rounded-back-icon-element-free-png-2.png"))); // NOI18N
+        Atras.setBorder(null);
+        Atras.setBorderPainted(false);
+        Atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtrasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, -1, -1));
+
+        background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HD-wallpaper-brown-fondo-gradient-man-mix-note-para-purple-rose-simple-2.jpg"))); // NOI18N
+        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 490));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_ExitActionPerformed
+
+    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
+        // TODO add your handling code here:
+        this.interfazMenu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_AtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,13 +120,14 @@ public class AgregarCiudad extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AgregarCiudad().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Atras;
+    private javax.swing.JButton Exit;
+    private javax.swing.JLabel background;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
