@@ -1,5 +1,5 @@
 package GraficarGrafo;
-import java.io.File;
+import Grafo.GrafoMatriz;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 
@@ -8,8 +8,7 @@ import org.graphstream.graph.implementations.*;
  * @author nelsoncarrillo
  */
 public class GraficarGrafo {
-    int[] grafo;
-    public void mostrar(){
+    public void mostrar(GrafoMatriz matriz){
         System.setProperty("org.graphstream.ui", "swing");
         Graph graph = new SingleGraph("Almacenes");
         

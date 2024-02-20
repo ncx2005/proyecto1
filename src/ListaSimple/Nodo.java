@@ -9,6 +9,8 @@ package ListaSimple;
 public class Nodo {
     private double valor;
     private int VoyHaciaCiudad=0;
+    //Con estos dos metodos se hace del nodo una clase contenedora .
+    //facilita el accesado a los datos.
     private Nodo siguiente;
     private double distancia;
 
@@ -82,6 +84,13 @@ public class Nodo {
         return this.VoyHaciaCiudad;
     }
     
+    /**
+     * Obtiene la distancia del camino.
+     * Decidimos que a la hora de haber aristas multiponderadas el 
+     * elemento distintivo será la distancia.
+     * 
+     * @return <code>double</code> distancia del camino.
+     */
     public double getDistancia(){
         return this.distancia;
     }

@@ -217,12 +217,20 @@ public final class Hormiga {
      */
     public boolean irHaciaSiguienteCiudad(int CantidadDeHormigas,int alfa,int beta) throws Exception {
         //SE UTILIZA EL M&Eacute:TODO ANTERIOR;
-        double[] numeroDeSiguienteCiudad = this.getSiguienteCiudad(alfa,beta); //tienes la distancia que es unica y la ciudad.
+        double[] SiguienteMovimiento = this.getSiguienteCiudad(alfa,beta); //tienes la distancia que es unica y la ciudad.
         int m = CantidadDeHormigas;
-        Camino CaminoTransitado = this.getMatriz().getMatAd()[numeroDeSiguienteCiudad][this.getCiudadActual().getNumeroDeCiudad()];
+        ListaCaminos listaposiblescaminos = this.getMatriz().getMatAd()[(int)SiguienteMovimiento[0]][this.getCiudadActual().getNumeroDeCiudad()];
+        NodoCamino primero = listaposiblescaminos.getCabeza();
+        Camino CaminoTransitado = new Camino();
+        while(primero!=null){
+            if(primero.getValor().getDistancia() == SiguienteMovimiento[1]){
+                CaminoTransitado = primero.getValor();
+            }
+            primero = primero.getSiguiente();
+        }
         var Q = 1;
         double SumaPorIncremento=0.0;
-        if (numeroDeSiguienteCiudad == -1) {
+        if ((SiguienteMovimiento[0]==0.0)&&(SiguienteMovimiento[1]==0.0)) {
             //Ya que no se habr&iacute;a movido de ciudad la hormiga.
             return false; 
         }else{
@@ -237,7 +245,7 @@ public final class Hormiga {
             //Tao <- Tao + Sumatoria de recorridos de las hormigas que han pasado por el camino o arista.
             CaminoTransitado.setFeromonas(CaminoTransitado.getFeromonas() + SumaPorIncremento);
             //Se confirma el cambio de ciudad ya con la cantidad de feromonas actualizada del camino que acaba de recorrer.
-            this.setCiudadActual(numeroDeSiguienteCiudad);
+            this.setCiudadActual((int)SiguienteMovimiento[0]);
             return true;
         }
     } 
