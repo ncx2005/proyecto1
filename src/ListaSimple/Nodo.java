@@ -8,7 +8,9 @@ package ListaSimple;
 
 public class Nodo {
     private double valor;
+    private int VoyHaciaCiudad=0;
     private Nodo siguiente;
+    private double distancia;
 
     /**
      * Constructor de la clase Nodo.
@@ -19,6 +21,20 @@ public class Nodo {
         this.valor = valor;
         this.siguiente = null;
     }
+    
+    /**
+     * Constructor de la clase Nodo.
+     * 
+     * @param valor el valor del nodo.
+     * @param sig
+     */
+    public Nodo(double valor,int sig,double dist) {
+        this.valor = valor;
+        this.siguiente = null;
+        this.VoyHaciaCiudad=sig;
+        this.distancia=dist;
+    }
+    
 
     /**
      * Obtiene el valor del nodo.
@@ -54,5 +70,19 @@ public class Nodo {
      */
     public void setSiguiente(Nodo siguiente) {
         this.siguiente = siguiente;
+    }
+    
+    /**
+     * Obtiene la ciudad a la que se apunta dicha probabilidad.
+     * Se le agrega ya que se consideran aristas multiponderadas.
+     * 
+     * @return <code>int</code> del numero de ciudad.
+     */
+    public int getCiudad(){
+        return this.VoyHaciaCiudad;
+    }
+    
+    public double getDistancia(){
+        return this.distancia;
     }
 }

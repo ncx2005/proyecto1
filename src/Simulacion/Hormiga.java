@@ -3,7 +3,9 @@ import Grafo.Camino;
 import Grafo.GrafoMatriz;
 import Grafo.Ciudad;        
 import ListaSimple.Lista;
+import ListaSimple.ListaCaminos;
 import ListaSimple.Nodo;
+import ListaSimple.NodoCamino;
 import java.util.Random;
         
 /**
@@ -19,7 +21,7 @@ public final class Hormiga {
     private static GrafoMatriz matriz;
     private Ciudad ciudadActual;
     private final boolean [] ciudadesVisitadas;
-    private double distanciarecorrida =0;
+    private double distanciarecorrida = 0;
 
     /**
      * Constructor de la clase Hormiga que recibe una Ciudad.
@@ -114,76 +116,87 @@ public final class Hormiga {
      * @param alfa puede ser modificado por usuario entonces se deja como param.
      * @param beta puede ser modificado por usuario entonces se deja como param.
      */
-    private int getSiguienteCiudad(int alfa,int beta) throws Exception {
+    private double[] getSiguienteCiudad(int alfa,int beta) throws Exception {
         
         int NumeroCiudadActual = this.getCiudadActual().getNumeroDeCiudad();
         int numCiudades = this.getMatriz().getNumVerts();
         Lista Probabilidades = new Lista();
-        Camino[][] caminos = this.getMatriz().getMatAd();
+        ListaCaminos[][] caminos = this.getMatriz().getMatAd();
+        double[] resultado = new double[2];
         
         //Se genera el n&uacute;mero aleatorio.
         Random random = new Random();
         double valorAleatorio = random.nextDouble(); 
-        int[] ciudadesAnexas = new int[numCiudades];
+        boolean[] ciudadesAnexas = new boolean[numCiudades];
         
         for(int i = 0 ; i < numCiudades ; i++){
             if((this.getMatriz().adyacente(NumeroCiudadActual, i)) && (this.ciudadesVisitadas[i] == false)){
-                double Numerador = ((Math.pow(caminos[NumeroCiudadActual][i].getFeromonas(),alfa))*(Math.pow((1/caminos[NumeroCiudadActual][i].getDistancia()),beta)));
-                Probabilidades.insertarNumeroAlFinal(Numerador);
-                ciudadesAnexas[i]=i;
+                NodoCamino aux = caminos[NumeroCiudadActual][i].getCabeza(); //Obtengo el camino que las une.
+                while(aux!=null){
+                    double Numerador = ((Math.pow(aux.getValor().getFeromonas(),alfa))*(Math.pow((1/aux.getValor().getDistancia()),beta)));
+                    Probabilidades.InsertarReferenciaACamino(Numerador,i,aux.getValor().getDistancia());
+                    aux=aux.getSiguiente();
+                }
+                ciudadesAnexas[i]=true;
             }else{
-                ciudadesAnexas[i]=0;
+                ciudadesAnexas[i]=false;
             }
         }
-        
+        //probabilidades tengo ((0,112;1),(0,123;1),(0,832;7))
         if(Probabilidades.getSize()>0){
             
             //DADA A F&OACUTE;RMULA SE DEBEN SUMAR TODOS.
             double Denominador = Probabilidades.sumarNumeros();
             
             //SE DIVIDE ENTRE CADA NUMERADOR DADO QUE ES EL MISMO PARA TODOS.
-            Nodo aux = Probabilidades.getCabeza();
-            while(aux != null){
-                aux.setValor(aux.getValor()/Denominador);
-                aux = aux.getSiguiente();
+            Nodo auxiliar = Probabilidades.getCabeza();
+            while(auxiliar != null){
+                auxiliar.setValor(auxiliar.getValor()/Denominador);
+                auxiliar = auxiliar.getSiguiente();
             }  
             
             //LOS RANGOS LOS DELIMITAREMOS EN UN ARRAY, DE MODO QUE EL RANDOM LUEGO SE UBIQUE EN ALGUNO DE LOS CONJUNTOS.
-            double[] rangos = new double[Probabilidades.getSize()];
+            double[] rangos = new double[Probabilidades.getSize()]; //[1,2,3];[1,2,3,4]
             rangos[0]=0;
-            aux = Probabilidades.getCabeza();
+            Nodo aux = Probabilidades.getCabeza();
             for(int j = 0;j<Probabilidades.getSize();j++){
                 rangos[j+1] = aux.getValor() + rangos[j];
                 aux=aux.getSiguiente();
             }
             
+            //this.setDistanciaRecorrida(this.getDistanciaRecorrida()+caminos[this.getCiudadActual().getNumeroDeCiudad()][j].getDistancia());
+            //caminos[j][this.getCiudadActual().getNumeroDeCiudad()].getHormigasQueHanPasado().InsertarReferenciaACamino(this.getDistanciaRecorrida());
+            //caminos[this.getCiudadActual().getNumeroDeCiudad()][j].getHormigasQueHanPasado().InsertarReferenciaACamino(this.getDistanciaRecorrida());
+            //[0,0.3,0.7,1]
             //TENIENDO YA EL VALOR ALEATORIO.
+            int verifier = 0;
             for (int i = 0; i < rangos.length - 1; i++) {
                 if (valorAleatorio >= rangos[i] && valorAleatorio < rangos[i + 1]) {
-                    int verifier = 0;
-                    for(int j = 0;j<ciudadesAnexas.length;j++){
-                        if((ciudadesAnexas[j] != 0)&&(verifier == i)){
-                            
-                            //Para complementar luego la actualizaci&oacute;n de feromonas del camino que transita...
-                            this.setDistanciaRecorrida(this.getDistanciaRecorrida()+caminos[this.getCiudadActual().getNumeroDeCiudad()][j].getDistancia());
-                            caminos[j][this.getCiudadActual().getNumeroDeCiudad()].getHormigasQueHanPasado().insertarNumeroAlFinal(this.getDistanciaRecorrida());
-                            caminos[this.getCiudadActual().getNumeroDeCiudad()][j].getHormigasQueHanPasado().insertarNumeroAlFinal(this.getDistanciaRecorrida());
-                            //Se devuelve el n&uacute;mero de la nueva ciudad a la que se va a dirigir.
-                            return ciudadesAnexas[j];
-                            
-                        }else if(ciudadesAnexas[j] != 0){
-                            
-                            //CON LA CORRIDA EN FR&IACUTE;O SE BUSCA ES CON EL RANGO YA UBICADO
-                            //ENCONTRARLA CIUDAD A LA QUE ESA PROBABILIDAD CORRESPONDE.
-                            //CON EL ARRAY AUXILIAR DE CIUDADES ANEXAS.
-                            verifier++;
-                        }
+                    Nodo auxiliar2 = Probabilidades.getCabeza();
+                    for(int k=0;k<verifier;k++){
+                        auxiliar2=auxiliar2.getSiguiente();
                     }
+                this.setDistanciaRecorrida(this.getDistanciaRecorrida()+auxiliar2.getDistancia());
+                NodoCamino auxiliar3 = caminos[auxiliar2.getCiudad()][this.getCiudadActual().getNumeroDeCiudad()].getCabeza();
+                while(auxiliar3.getValor().getDistancia()!=auxiliar2.getDistancia()){
+                    auxiliar3 = auxiliar3.getSiguiente();
                 }
+                auxiliar3.getValor().getHormigasQueHanPasado().InsertarNumeroAlFinal(this.getDistanciaRecorrida());
+                NodoCamino auxiliar4 = caminos[this.getCiudadActual().getNumeroDeCiudad()][auxiliar2.getCiudad()].getCabeza();
+                while(auxiliar4.getValor().getDistancia()!=auxiliar2.getDistancia()){
+                    auxiliar4 = auxiliar4.getSiguiente();
+                }
+                auxiliar4.getValor().getHormigasQueHanPasado().InsertarNumeroAlFinal(this.getDistanciaRecorrida());
+                resultado[0]= auxiliar2.getCiudad();
+                resultado[1]=auxiliar4.getValor().getDistancia();
+                return resultado;
+                }
+                verifier++;
             }
         }
-        
-        return -1; // Si el numerito no se encuentra en ningún espacio del rango.
+        resultado[0]=0.0;
+        resultado[1]=0.0;
+        return resultado; // Si el numerito no se encuentra en ningún espacio del rango.
     
     }
     
@@ -204,7 +217,7 @@ public final class Hormiga {
      */
     public boolean irHaciaSiguienteCiudad(int CantidadDeHormigas,int alfa,int beta) throws Exception {
         //SE UTILIZA EL M&Eacute:TODO ANTERIOR;
-        int numeroDeSiguienteCiudad = this.getSiguienteCiudad(alfa,beta);
+        double[] numeroDeSiguienteCiudad = this.getSiguienteCiudad(alfa,beta); //tienes la distancia que es unica y la ciudad.
         int m = CantidadDeHormigas;
         Camino CaminoTransitado = this.getMatriz().getMatAd()[numeroDeSiguienteCiudad][this.getCiudadActual().getNumeroDeCiudad()];
         var Q = 1;

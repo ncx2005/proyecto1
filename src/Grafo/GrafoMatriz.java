@@ -1,5 +1,5 @@
 package Grafo;
-
+import ListaSimple.ListaCaminos;
 import javax.swing.JOptionPane;
 
 /**Clase que determina la matriz de adyacencia de nuestro grafo.
@@ -16,7 +16,7 @@ public class GrafoMatriz {
     //Los atributos.
     private int numVerts; //Numero de vertices
     private Ciudad [] verts; //Array describe las columnas y las filas.
-    private Camino [][] matAd; //La matriz.
+    private ListaCaminos [][] matAd; //La matriz.
     
     /**M&eacute;todo constructor de la matriz de adyacencia.
      * No recibe par&aacute;metros, la inicializa con los valores predeterminados.
@@ -36,19 +36,21 @@ public class GrafoMatriz {
     */
     public GrafoMatriz(int numeroDeVertices){ 
         this.numVerts=numeroDeVertices;
-        this.matAd = new Camino [numeroDeVertices][numeroDeVertices]; 
+        this.matAd = new ListaCaminos [numeroDeVertices][numeroDeVertices]; 
         this.verts = new Ciudad[numeroDeVertices]; 
-        for (int i = 0; i < numeroDeVertices; i++)  //En la matriz habr&aacute; <code>null</code> o un Objeto de tipo Camino. 
+        for (int i = 0; i < numeroDeVertices; i++)  //En la matriz habr&aacute;n listas ya quw puede haber multiponderadas. 
             for (int j = 0; j < numeroDeVertices; j++) 
-                matAd[i][j] = null;
+                matAd[i][j] = new ListaCaminos();
     }
     
-    /** * M&eacute;todo que permite añadir un v&eacute;rtice.Verifica si existe primero, de no ser pues se agrega.
+    /** * M&eacute;todo que permite añadir un v&eacute;rtice.
+     * Verifica si existe primero, de no ser pues se agrega.
     *
     * @author nelsoncarrillo
     * @version 8 feb 2024
     * @param nombreDevertice nombre del nuevo v&eacute;rtices.
-    * @return 
+    * @return <code>true</code> si se pudo agregar.
+    *         <code>false</code> si ocurre uno de los casos borde.
     */
     public boolean nuevoVertice (String nombreDevertice){ 
         boolean esta = numVertice(nombreDevertice) >= 0; 
@@ -56,10 +58,14 @@ public class GrafoMatriz {
             Ciudad v = new Ciudad(nombreDevertice); //Se utiliza el constructor de la clase Ciudad.
             v.asigVert(numVerts);
             verts[numVerts] = v; //se agrega una nueva fila y columna en la matriz.
-            Camino[][] nuevaMatriz = new Camino[numVerts + 1][numVerts + 1];
+            ListaCaminos[][] nuevaMatriz = new ListaCaminos[numVerts + 1][numVerts + 1];
             // Copiar los valores de la matriz original a la nueva matriz.
             for (int i = 0; i < numVerts; i++) {
                 System.arraycopy(matAd[i], 0, nuevaMatriz[i], 0, numVerts);
+            }
+            for (int i =0;i<numVerts+1;i++){
+                nuevaMatriz[numVerts][i] = new ListaCaminos();
+                nuevaMatriz[i][numVerts] = new ListaCaminos();
             }
             this.setMatAd(nuevaMatriz);
             this.numVerts++;
@@ -78,7 +84,7 @@ public class GrafoMatriz {
     *         <code>false</code> si no se pudo borrar el v&eacute;rtice.
     */
     public boolean borrarVertice (String nombreDevertice){ 
-        if(this.getNumVerts()==4){
+        if(this.getNumVerts() == 4){
             return false;
         }
         int indice = numVertice(nombreDevertice); // Buscar el índice del vértice
@@ -88,9 +94,9 @@ public class GrafoMatriz {
                 verts[i] = verts[i + 1];
             }
             // Reducir el número de vértices
-            numVerts--;
+            this.numVerts--;
             // Crear una nueva matriz de adyacencia
-            Camino[][] nuevaMatriz = new Camino[numVerts][numVerts];
+            ListaCaminos[][] nuevaMatriz = new ListaCaminos[numVerts][numVerts];
             // Copiar los valores de la matriz original a la nueva matriz
             for (int i = 0; i < numVerts; i++) {
                 for (int j = 0; j < numVerts; j++) {
@@ -148,8 +154,8 @@ public class GrafoMatriz {
         if (va < 0 || vb < 0)
             JOptionPane.showMessageDialog(null, "Error en el Input.\nError en Grafo Ubicando ciudad.", "ERROR", JOptionPane.WARNING_MESSAGE);
         Camino caminonuevo = new Camino(verts[va],verts[vb],distancia,this.getNumVerts());
-        matAd[va][vb] = caminonuevo; //los elementos de la matriz son un objeto tipo Camino si hay camino entre esas dos ciudades.
-        matAd[vb][va] = caminonuevo;
+        matAd[va][vb].insertarCaminoAlFinal(caminonuevo);
+        matAd[vb][va].insertarCaminoAlFinal(caminonuevo);
     }
     
     /** * M&eacute;todo que crea un nuevo arco o camino.En este caso, un camino entre dos ciudades pero 
@@ -166,8 +172,8 @@ public class GrafoMatriz {
     public void nuevoCamino(int va, int vb, int distancia,int feromonas)throws Exception{
         if (va < 0 || vb < 0) throw new Exception ("Vértice no existe");
         Camino caminonuevo = new Camino(verts[va],verts[vb],distancia,feromonas);
-        matAd[va][vb] = caminonuevo; //los elementos de la matriz son un objeto tipo Camino si hay camino entre esas dos ciudades.
-        matAd[vb][va] = caminonuevo;
+        matAd[va][vb].insertarCaminoAlFinal(caminonuevo);
+        matAd[vb][va].insertarCaminoAlFinal(caminonuevo);
     }
     
     /** * M&eacute;todo que determina si dos vértices, v1 y v2, forman un arco.En este caso, pues que en la matriz, entre ellos, haya un 1.
@@ -185,11 +191,12 @@ public class GrafoMatriz {
         va = numVertice(a);
         vb = numVertice(b);
         if (va < 0 || vb < 0) throw new Exception ("Vértice no existe");
-        return ((matAd[va][vb] != null) && (matAd[vb][va] != null));
+        return ((!matAd[va][vb].esVacia()) && (!matAd[vb][va].esVacia()));
     }
     
-    /** * M&eacute;todo que determina si dos vértices, v1 y v2, forman un arco.En este caso se conocen directamente el n&uactue;mero de cada ciudad en el
- array de las ciudades como columnas y filas.
+    /** * M&eacute;todo que determina si dos vértices, v1 y v2, forman un arco.
+     * En este caso se conocen directamente el n&uactue;mero de cada ciudad en el
+       array de las ciudades como columnas y filas.
     *
     * @author nelsoncarrillo
     * @version 8 feb 2024
@@ -201,7 +208,7 @@ public class GrafoMatriz {
     */
     public boolean adyacente(int va,int vb)throws Exception{
         if (va < 0 || vb < 0) throw new Exception ("Vértice no existe");
-        return ((matAd[va][vb] != null) && (matAd[vb][va] != null));
+        return((!matAd[va][vb].esVacia()) && (!matAd[vb][va].esVacia()));
     } 
 
     /**Getter de la cantidad de ciudades.
@@ -220,7 +227,7 @@ public class GrafoMatriz {
      * @version 8 feb 2024
      * @return la matriz
      */
-    public Camino[][] getMatAd() {
+    public ListaCaminos[][] getMatAd() {
         return this.matAd;
     }
     
@@ -230,7 +237,7 @@ public class GrafoMatriz {
      * @version 8 feb 2024
      * @param nueva la matriz nueva
      */
-    public void setMatAd(Camino[][] nueva) {
+    public void setMatAd(ListaCaminos[][] nueva) {
         this.matAd=nueva;
     }
     

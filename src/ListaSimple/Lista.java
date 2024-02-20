@@ -7,7 +7,7 @@ package ListaSimple;
 public class Lista {
     private Nodo cabeza;
     private Nodo cola;
-    private int size;
+    private int size=0;
 
     /**
      * Constructor de la clase Lista.
@@ -18,12 +18,24 @@ public class Lista {
     }
 
     /**
-     * M&eacute;todo para insertarNumeroAlFinal un valor en la lista.
+     * M&eacute;todo para InsertarReferenciaACamino un valor en la lista.
      * @author tito_
      * 
-     * @param valor el valor a insertarNumeroAlFinal en la lista.
+     * @param valor el valor a InsertarReferenciaACamino en la lista.
      */
-    public void insertarNumeroAlFinal(double valor) {
+    public void InsertarReferenciaACamino(double valor,int sig,double dist) {
+        Nodo nuevoNodo = new Nodo(valor,sig,dist);
+        if (cabeza == null) {
+            cabeza = nuevoNodo;
+            cola = nuevoNodo;
+        } else {
+            cola.setSiguiente(nuevoNodo);
+            cola = nuevoNodo;
+        }
+        size++;
+    }
+    
+    public void InsertarNumeroAlFinal(double valor) {
         Nodo nuevoNodo = new Nodo(valor);
         if (cabeza == null) {
             cabeza = nuevoNodo;

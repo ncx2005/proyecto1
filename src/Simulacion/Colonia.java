@@ -1,6 +1,7 @@
 package Simulacion;
 import Grafo.Camino;
 import Grafo.GrafoMatriz;
+import ListaSimple.NodoCamino;
 import javax.swing.JOptionPane;
  
 
@@ -34,6 +35,7 @@ public class Colonia {
      * @param cantidadHormigas La cantidad inicial de hormigas en la colonia.
      * @author nelsoncarrillo
      * @version 13 feb 2024
+     * @param numVertices numero de ciudades.
      */
     public Colonia(int cantidadHormigas, int numVertices) { //Agregar params..;
         this.CantidadDeHormigas = cantidadHormigas;
@@ -87,8 +89,20 @@ public class Colonia {
         for (int r = 0; r < numCiudades; r++) {
             for (int s = 0; s < numCiudades; s++) {
                 if (r != s) { // Evitar actualizar feromonas en bucles de una ciudad a sí misma
-                    this.getMatriz().getMatAd()[r][s].setFeromonas(    (1 - rho) * this.getMatriz().getMatAd()[r][s].getFeromonas());
-                    this.getMatriz().getMatAd()[s][r].setFeromonas(    (1 - rho) * this.getMatriz().getMatAd()[s][r].getFeromonas());
+                    if(!this.getMatriz().getMatAd()[r][s].esVacia()){
+                        NodoCamino aux = this.getMatriz().getMatAd()[r][s].getCabeza();
+                        while(aux!=null){
+                            aux.getValor().setFeromonas(    (1 - rho) * aux.getValor().getFeromonas());
+                            aux = aux.getSiguiente();
+                        }
+                    }
+                    if(!this.getMatriz().getMatAd()[s][r].esVacia()){
+                        NodoCamino aux2 = this.getMatriz().getMatAd()[r][s].getCabeza();
+                        while(aux2!=null){
+                            aux2.getValor().setFeromonas(    (1 - rho) * aux2.getValor().getFeromonas());
+                            aux2 = aux2.getSiguiente();
+                        }
+                    }
                 }
             }
         }
@@ -109,7 +123,7 @@ public class Colonia {
      *         <code>false</code> si bien no existe una de las ciudades anexas o un tipo de dato malo.          
      */
     public boolean AgregarCiudad(int NumeroDeNuevaCiudad,String[] CiudadesAnexas,String[] DistanciaCiudades){
-        if(this.getMatriz().getNumVerts()==20){ //esta en el limite
+        if(this.getMatriz().getNumVerts() == 20){ //esta en el limite
             return false;
         }
         for(int i=0;i<CiudadesAnexas.length;i++){
