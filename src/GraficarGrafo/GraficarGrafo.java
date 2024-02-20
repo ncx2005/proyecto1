@@ -4,6 +4,7 @@ import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 
 /**
+<<<<<<< HEAD
  * Esta clase se encarga de mostrar un gr&aacute;fico utilizando GraphStream y Swing.
  * Proporciona un método para mostrar el gr&aacute;fico basado en una matriz dada.
  * 
@@ -17,6 +18,12 @@ public class GraficarGrafo {
      * 
      * @param matriz La matriz del gr&aacute;fico.
      */
+=======
+ *
+ * @author nelsoncarrillo
+ */
+public class GraficarGrafo {
+>>>>>>> 3ae2c71585e06c0fba68f0ce9be275655ca5bcca
     public void mostrar(GrafoMatriz matriz){
         System.setProperty("org.graphstream.ui", "swing");
         Graph graph = new SingleGraph("Almacenes");
