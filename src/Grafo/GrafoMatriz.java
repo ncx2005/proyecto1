@@ -62,8 +62,8 @@ public class GrafoMatriz {
                 }
             }
             Camino nuevo = new Camino(aux,aux2,Double.parseDouble(detallecamino[2]),numVerts);
-            this.matAd[Integer.parseInt(detallecamino[0])][Integer.parseInt(detallecamino[1])].insertarCaminoAlFinal(nuevo);
-            this.matAd[Integer.parseInt(detallecamino[1])][Integer.parseInt(detallecamino[0])].insertarCaminoAlFinal(nuevo);
+            this.matAd[this.numVertice(detallecamino[0])][this.numVertice(detallecamino[1])].insertarCaminoAlFinal(nuevo);
+            this.matAd[this.numVertice(detallecamino[1])][this.numVertice(detallecamino[0])].insertarCaminoAlFinal(nuevo);
             
         }
         

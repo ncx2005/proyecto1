@@ -16,7 +16,6 @@ public class ListaCaminos {
     private NodoCamino cabeza;
     private NodoCamino cola;
     private int size;
-    private boolean esVacia=true;
     
     /**
      * Constructor de la clase Lista.
@@ -43,7 +42,6 @@ public class ListaCaminos {
             cola = nuevoNodo;
         }
         size++;
-        this.esVacia=false;
     }
     
     /**
@@ -89,7 +87,7 @@ public class ListaCaminos {
      *         <code>false</code> si apunta a cualquier otro Nodo. 
      */
     public boolean esVacia(){
-        return esVacia;
+        return this.cabeza==null;
     }
     
 }

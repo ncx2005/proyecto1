@@ -237,7 +237,9 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
                         this.contenidoFile=documento;
                         this.interfazMenu.setColonia(new Colonia(ciudades.length,ciudades,caminos));
                         System.out.println(this.interfazMenu.coloniaAST.getMatriz().getNumVerts());
-                                                System.out.println(this.interfazMenu.coloniaAST.getMatriz().getMatAd()[0][2].esVacia());
+                        for(int i =0;i<this.interfazMenu.coloniaAST.getMatriz().getNumVerts();i++)
+                            for(int j =0;j<this.interfazMenu.coloniaAST.getMatriz().getNumVerts();j++)
+                                System.out.println(this.interfazMenu.coloniaAST.getMatriz().getMatAd()[i][j].esVacia()+" "+i+" "+j);
 
                     }
                 }else{
