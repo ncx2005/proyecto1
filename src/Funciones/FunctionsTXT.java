@@ -39,7 +39,7 @@ public class FunctionsTXT {
                 char caracter = (char) ascci; 
                 documento += caracter; 
             }
-        }catch(Exception e){  
+        }catch(IOException e){  
             JOptionPane.showMessageDialog(null, "Error");
         }
         return documento; 
@@ -67,6 +67,13 @@ public class FunctionsTXT {
                 String ciudades = separar [0];
                 String aristas = separar[1];
                 String[] cities = ciudades.split("\n");
+                for (int i = 1; i < cities.length; i++) {
+                    for (int j = i + 1; j < cities.length; j++) {
+                        if (cities[i].equals(cities[j])) {
+                            return false;
+                        }
+                    }
+                }
                 String[] roads = aristas.split("\n");
                 if(cities.length<5||cities.length>21) //Porque dice que el m&iacute;nimo de ciudades es 4 y el m&aacute;ximo es 20.
                     return false;
@@ -74,6 +81,12 @@ public class FunctionsTXT {
                     String[] ciudadesCamino = roads[i].split(",");
                     String ciudadOrigen = ciudadesCamino[0];
                     String ciudadDestino = ciudadesCamino[1];
+                    try{
+                        if(Integer.valueOf(ciudadesCamino[2])==0)
+                            return false;
+                    }catch(Exception e){
+                        return false;
+                    }
                     boolean ciudadOrigenValida = false;
                     boolean ciudadDestinoValida = false;
                     for (int j=1; j<cities.length ; j++) {
