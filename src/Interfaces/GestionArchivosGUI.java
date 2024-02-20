@@ -42,6 +42,22 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
         return guardar;
     }
     
+    /**Devuelve array con las ciudades como <code>String</code>.
+     * Para en la simulaci&oacute;n llamarlo.
+     * @return <code>arr</code> de ciudades.
+     */
+    public String[] getCiudades(){
+        return this.ciudades;
+    }
+    
+    /**Devuelve array con las distancias como <code>String</code>.
+     * Para en la simulaci&oacute;n llamarlo.
+     * @return <code>arr</code> de distancias hacia respectivas ciudades.
+     */
+    public String[] getCaminos(){
+        return this.caminos;
+    }
+    
     /**
      * Creates new form ArchivosGrafos.
      * @param interfaz para agregar bot&oacute;n de regresar.
@@ -54,6 +70,7 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
         text.setText("NO SE HA CARGADO UN GRAFO.");
         SavedMessage.setText("Grafo sin guardar.");
         text.setEditable(false);
+        SavedMessage.setEditable(false);
         Exit.setContentAreaFilled(false);
         Exit.setBorderPainted(false);
     }

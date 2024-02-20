@@ -82,7 +82,7 @@ public class FunctionsTXT {
                     String ciudadOrigen = ciudadesCamino[0];
                     String ciudadDestino = ciudadesCamino[1];
                     try{
-                        if(Integer.valueOf(ciudadesCamino[2])==0)
+                        if(Double.valueOf(ciudadesCamino[2]) <= 0.0)
                             return false;
                     }catch(Exception e){
                         return false;

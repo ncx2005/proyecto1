@@ -147,4 +147,8 @@ public class Colonia {
         }
         return true;
     }
+    
+    public boolean armarGrafo(String[] cities,String[] distancias){
+        return true;
+    }
 }
