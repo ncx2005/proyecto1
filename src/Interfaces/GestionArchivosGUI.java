@@ -19,7 +19,7 @@ import javax.swing.JOptionPane;
  * @author nelsoncarrillo
  */
 public class GestionArchivosGUI extends javax.swing.JFrame {
-    
+     
     // Atributos de la clase
     JFileChooser seleccionar = new JFileChooser();
     File archivo; 
@@ -72,20 +72,17 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         Abrir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         text = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         Exit = new javax.swing.JButton();
-        Atras = new javax.swing.JButton();
         GuardarArchivo = new javax.swing.JButton();
         SavedMessage = new javax.swing.JTextField();
         Wallpaper = new javax.swing.JLabel();
+        Atras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         Abrir.setText("Cargar Nuevo Archivo");
         Abrir.addActionListener(new java.awt.event.ActionListener() {
@@ -93,19 +90,15 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
                 AbrirActionPerformed(evt);
             }
         });
-        jPanel1.add(Abrir, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 120, 170, -1));
 
         text.setColumns(20);
         text.setRows(5);
         jScrollPane1.setViewportView(text);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 290, 390));
-
         jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("El último grafo guardado en el programa:");
         jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
 
         Exit.setForeground(new java.awt.Color(255, 255, 255));
         Exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton.png"))); // NOI18N
@@ -116,19 +109,6 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
                 ExitActionPerformed(evt);
             }
         });
-        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 20, 40, 40));
-
-        Atras.setBackground(null);
-        Atras.setForeground(null);
-        Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rounded-back-icon-element-free-png-2.png"))); // NOI18N
-        Atras.setBorder(null);
-        Atras.setBorderPainted(false);
-        Atras.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AtrasActionPerformed(evt);
-            }
-        });
-        jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 550, -1, -1));
 
         GuardarArchivo.setText("Guardar Archivo Como");
         GuardarArchivo.addActionListener(new java.awt.event.ActionListener() {
@@ -136,19 +116,85 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
                 GuardarArchivoActionPerformed(evt);
             }
         });
-        jPanel1.add(GuardarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 170, -1));
 
         SavedMessage.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SavedMessageActionPerformed(evt);
             }
         });
-        jPanel1.add(SavedMessage, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 290, -1));
 
         Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HD-wallpaper-sand-waves-wavy-desert-traces-texture.jpg"))); // NOI18N
-        jPanel1.add(Wallpaper, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 610));
 
-        getContentPane().add(jPanel1, java.awt.BorderLayout.CENTER);
+        Atras.setText("Atras");
+        Atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AtrasActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addComponent(Atras)
+                .addContainerGap(463, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(510, 510, 510)
+                            .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(360, 360, 360)
+                            .addComponent(GuardarArchivo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(360, 360, 360)
+                            .addComponent(Abrir, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(SavedMessage, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(jLabel1))
+                        .addComponent(Wallpaper, javax.swing.GroupLayout.PREFERRED_SIZE, 570, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(555, Short.MAX_VALUE)
+                .addComponent(Atras)
+                .addGap(32, 32, 32))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(Exit, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(100, 100, 100)
+                            .addComponent(GuardarArchivo))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(120, 120, 120)
+                            .addComponent(Abrir))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(110, 110, 110)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(510, 510, 510)
+                            .addComponent(SavedMessage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(80, 80, 80)
+                            .addComponent(jLabel1))
+                        .addComponent(Wallpaper, javax.swing.GroupLayout.PREFERRED_SIZE, 610, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -159,7 +205,7 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
             archivo = seleccionar.getSelectedFile();
             if (archivo.canRead()){
                 if (archivo.getName().endsWith("txt")){
-                    
+
                     String documento = f.AbrirArchivo(archivo);
                     String path = archivo.getAbsolutePath();
                     this.contenidoFile = content.leertxt(path);
@@ -175,7 +221,7 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
                 }else{
                     JOptionPane.showMessageDialog(null, "Archivo No Compatible");
                 }
-            } 
+            }
         }
     }//GEN-LAST:event_AbrirActionPerformed
 
@@ -184,21 +230,21 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ExitActionPerformed
 
-    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
-        // TODO add your handling code here:
-        this.interfazMenu.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_AtrasActionPerformed
-
     private void GuardarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarArchivoActionPerformed
         // TODO add your handling code here:
         if(f.guardarArchivo(contenidoFile))
-            SavedMessage.setText("Archivo Guardado "+dtf.format(now));
+        SavedMessage.setText("Archivo Guardado "+dtf.format(now));
     }//GEN-LAST:event_GuardarArchivoActionPerformed
 
     private void SavedMessageActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SavedMessageActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_SavedMessageActionPerformed
+
+    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
+        // TODO add your handling code here:
+        this.interfazMenu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_AtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,7 +272,6 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(GestionArchivosGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
@@ -241,7 +286,6 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
     private javax.swing.JTextField SavedMessage;
     private javax.swing.JLabel Wallpaper;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea text;
     // End of variables declaration//GEN-END:variables
