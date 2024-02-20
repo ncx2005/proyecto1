@@ -31,6 +31,7 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
     private String[] caminos;
     private String contenidoFile;
     private MenuPrincipalGUI interfazMenu;
+    
 
 
     /**Devuelve si tiene guardado un grafo.
@@ -97,8 +98,8 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
         Exit = new javax.swing.JButton();
         GuardarArchivo = new javax.swing.JButton();
         SavedMessage = new javax.swing.JTextField();
-        Wallpaper = new javax.swing.JLabel();
         Atras = new javax.swing.JButton();
+        Wallpaper = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,14 +142,14 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
             }
         });
 
-        Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HD-wallpaper-sand-waves-wavy-desert-traces-texture.jpg"))); // NOI18N
-
         Atras.setText("Atras");
         Atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtrasActionPerformed(evt);
             }
         });
+
+        Wallpaper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HD-wallpaper-sand-waves-wavy-desert-traces-texture.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -236,11 +237,6 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
                         text.setText(documento);
                         this.contenidoFile=documento;
                         this.interfazMenu.setColonia(new Colonia(ciudades.length,ciudades,caminos));
-                        System.out.println(this.interfazMenu.coloniaAST.getMatriz().getNumVerts());
-                        for(int i =0;i<this.interfazMenu.coloniaAST.getMatriz().getNumVerts();i++)
-                            for(int j =0;j<this.interfazMenu.coloniaAST.getMatriz().getNumVerts();j++)
-                                System.out.println(this.interfazMenu.coloniaAST.getMatriz().getMatAd()[i][j].esVacia()+" "+i+" "+j);
-
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Archivo No Compatible");

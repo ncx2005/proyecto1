@@ -172,13 +172,6 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SavedMessageActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="Wallpaper">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/Imagenes/HD-wallpaper-sand-waves-wavy-desert-traces-texture.jpg"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JButton" name="Atras">
       <Properties>
         <Property name="text" type="java.lang.String" value="Atras"/>
@@ -186,6 +179,13 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="AtrasActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="Wallpaper">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/Imagenes/HD-wallpaper-sand-waves-wavy-desert-traces-texture.jpg"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

@@ -23,8 +23,13 @@ public class GraficarGrafo {
         graph.setAutoCreate(true);
         graph.setAttribute("ui.quality");
         graph.setAttribute("ui.antialias");
-        graph.setAttribute("ui.stylesheet", "node { size-mode: fit; shape: circle; fill-color: white; stroke-mode: plain; padding: 4px, 3px; } edge { arrow-shape: arrow; size: 2px; fill-color: #444; }");
-        
+        graph.setAttribute("ui.stylesheet", "node { text-alignment: center; text-size: 23px; text-background-mode: rounded-box; text-background-color: white; }");
+        graph.setAttribute("ui.stylesheet", "node { size-mode: fit; shape: circle; fill-color: white; stroke-mode: plain; padding: 6px, 6px; } edge { arrow-shape: arrow; size: 2px; fill-color: #444; }");
+        graph.setAttribute("ui.stylesheet", "graph { fill-color: brown; }");
+        for(int i =0;i<matriz.getNumVerts();i++){
+            Node nuevo = graph.addNode(matriz.getVerts()[i].getNombreDeCiudad());
+            nuevo.setAttribute("ui.label",matriz.getVerts()[i].getNombreDeCiudad());
+        }
     }
 
 }

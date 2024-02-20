@@ -1,5 +1,6 @@
 package Simulacion;
 import Grafo.Camino;
+import Grafo.Ciudad;
 import Grafo.GrafoMatriz;
 import ListaSimple.NodoCamino;
 import javax.swing.JOptionPane;
@@ -21,8 +22,8 @@ public class Colonia {
     //Atrtibutos (LOS INDICA EL USUARIO).
     private int CantidadDeHormigas;
     //private int CantidadDeCiclos;
-    //private Ciudad CiudadInicio;
-    //private Ciudad CiudadFin; Usaremos en este metodo de simulacion while ciudad actual!=fin;
+    public Ciudad CiudadInicio;
+    public Ciudad CiudadFin;
     
     
     public GrafoMatriz getMatriz() {
@@ -39,9 +40,14 @@ public class Colonia {
     public Colonia(int numVertices,String[] cities,String[] aristas) { //Agregar params..;
         this.CantidadDeHormigas = 0;
         this.matriz = new GrafoMatriz(numVertices,cities,aristas);
+        this.CiudadInicio =this.matriz.getCiudad(Integer.parseInt(cities[0]));
+        this.CiudadInicio=this.matriz.getCiudad(Integer.parseInt(cities[0]));
+        this.CiudadFin=this.matriz.getCiudad(Integer.parseInt(cities[this.matriz.getNumVerts()-1]));
         //this.CiudadInicio = new Ciudad();
         //this.CiudadFin = new Ciudad();
     }
+    
+    
     
     /**
      * Obtiene la cantidad de hormigas en la colonia.

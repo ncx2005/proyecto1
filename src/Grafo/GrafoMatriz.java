@@ -260,6 +260,16 @@ public class GrafoMatriz {
         return this.matAd;
     }
     
+    /**Getter de array de ciudades.
+     * 
+     * @author nelsoncarrillo
+     * @version 20 feb 2024
+     * @return array con objetos tipo <code>Ciudad</code>.
+     */
+    public Ciudad[] getVerts(){
+        return this.verts;
+    }
+    
     /**Setter de la matriz de caminos.
      * 
      * @author nelsoncarrillo
@@ -270,7 +280,7 @@ public class GrafoMatriz {
         this.matAd=nueva;
     }
     
-    /**Getter de una de las ciudades conociendo su index.
+    /**Getter de una de las ciudades conociendo su numero.
      * 
      * @author nelsoncarrillo
      * @version 12 feb 2024
@@ -278,9 +288,22 @@ public class GrafoMatriz {
      * @return la Ciudad como objeto.
      */
     public Ciudad getCiudad(int n) {
-        return this.verts[n];
+        for(int i =0;i<this.numVerts;i++){
+            if(this.verts[i].getNombreDeCiudad().equals(Integer.toString(n)))
+                return this.verts[i];
+        }
+        return null;
     }
     
+    
+    /**M&eacute;todo auxiliar para iniciar la matriz.
+     * Se utiliza solo en el cosntructor, puede obviarse.
+     * 
+     * @author nelsoncarrillo
+     * @version 20 feb 2024
+     * @return <code>true</code> Si se han agregado ciudades.
+     *         <code>false</code> Si no hay data.
+     */
     public boolean esVacia(){
         return this.verts[0]==null;
     }

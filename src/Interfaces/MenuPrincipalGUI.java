@@ -15,6 +15,7 @@ public class MenuPrincipalGUI extends javax.swing.JFrame {
     
     private GestionArchivosGUI interfazArchivos = new GestionArchivosGUI(MenuPrincipalGUI.this);
     private AgregarCiudadGUI interfazGrafos = new AgregarCiudadGUI(MenuPrincipalGUI.this);
+    private IndicarSimulacionGUI interfazSimulacion = new IndicarSimulacionGUI(MenuPrincipalGUI.this);
     Colonia coloniaAST;
 
     /**
@@ -39,6 +40,7 @@ public class MenuPrincipalGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         Exit = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -47,7 +49,13 @@ public class MenuPrincipalGUI extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         OpenGrafos = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        AbrirSimulacion = new javax.swing.JButton();
         background = new javax.swing.JLabel();
+
+        jLabel5.setFont(new java.awt.Font("Malayalam MN", 3, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(51, 102, 0));
+        jLabel5.setText("Cargar o Guardar Grafo");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,17 +71,17 @@ public class MenuPrincipalGUI extends javax.swing.JFrame {
                 ExitActionPerformed(evt);
             }
         });
-        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 20, 40, -1));
+        jPanel1.add(Exit, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 20, 40, -1));
 
         jLabel1.setFont(new java.awt.Font("Malayalam MN", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(102, 204, 0));
         jLabel1.setText("BIENVENIDO AL ANT SYSTEM SIMULATOR.");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(309, 10, 390, 50));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 20, 390, 50));
 
         jLabel3.setFont(new java.awt.Font("Malayalam MN", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 255, 204));
         jLabel3.setText("BIENVENIDO AL ANT SYSTEM SIMULATOR.");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 20, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 30, -1, -1));
 
         OpenArchivos.setBackground(null);
         OpenArchivos.setForeground(null);
@@ -109,16 +117,31 @@ public class MenuPrincipalGUI extends javax.swing.JFrame {
         });
         jPanel1.add(OpenGrafos, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, 50));
 
+        jLabel6.setFont(new java.awt.Font("Malayalam MN", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(153, 255, 51));
+        jLabel6.setText("Nueva Simulación");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 130, -1, -1));
+
+        AbrirSimulacion.setBackground(null);
+        AbrirSimulacion.setForeground(null);
+        AbrirSimulacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/119-1191261_this-free-icons-png-design-of-button-2.png"))); // NOI18N
+        AbrirSimulacion.setBorder(null);
+        AbrirSimulacion.setBorderPainted(false);
+        AbrirSimulacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AbrirSimulacionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(AbrirSimulacion, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 160, -1, -1));
+
         background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/5213870201_b6c98f7202_o.jpg"))); // NOI18N
-        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 958, -1));
+        jPanel1.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 880, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,6 +173,16 @@ public class MenuPrincipalGUI extends javax.swing.JFrame {
             this.interfazGrafos.setVisible(true);
         }
     }//GEN-LAST:event_OpenGrafosActionPerformed
+
+    private void AbrirSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirSimulacionActionPerformed
+        // TODO add your handling code here:
+        if(!this.interfazArchivos.isGuardar()){
+            JOptionPane.showMessageDialog(null, "No Hay Grafo Guardado Para Iniciar.","ERROR", JOptionPane.WARNING_MESSAGE);
+        }else{
+            this.setVisible(false);
+            this.interfazSimulacion.setVisible(true);
+        }
+    }//GEN-LAST:event_AbrirSimulacionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -188,6 +221,7 @@ public class MenuPrincipalGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AbrirSimulacion;
     private javax.swing.JButton Exit;
     private javax.swing.JButton OpenArchivos;
     private javax.swing.JButton OpenGrafos;
@@ -196,6 +230,8 @@ public class MenuPrincipalGUI extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
