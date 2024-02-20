@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class GrafoMatriz {
     
     //Los atributos.
-    private int numVerts; //Numero de vertices
+    private int numVerts=0; //Numero de vertices
     private Ciudad [] verts; //Array describe las columnas y las filas.
     private ListaCaminos [][] matAd; //La matriz.
     
@@ -33,14 +33,40 @@ public class GrafoMatriz {
     * @author nelsoncarrillo
     * @version 8 feb 2024
     * @param numeroDeVertices n&uacute;mero de v&eacute;rtices.
+     * @param ciudades
+     * @param caminos
     */
-    public GrafoMatriz(int numeroDeVertices){ 
+    public GrafoMatriz(int numeroDeVertices, String[]ciudades,String[]caminos){ 
         this.numVerts=numeroDeVertices;
         this.matAd = new ListaCaminos [numeroDeVertices][numeroDeVertices]; 
         this.verts = new Ciudad[numeroDeVertices]; 
-        for (int i = 0; i < numeroDeVertices; i++)  //En la matriz habr&aacute;n listas ya quw puede haber multiponderadas. 
-            for (int j = 0; j < numeroDeVertices; j++) 
-                matAd[i][j] = new ListaCaminos();
+        for (int i = 0; i < numeroDeVertices; i++){  //En la matriz habr&aacute;n listas ya quw puede haber multiponderadas. 
+            this.verts[i] = new Ciudad(ciudades[i]);
+            this.verts[i].asigVert(i);
+            for (int j = 0; j < numeroDeVertices; j++){
+                matAd[i][j] = new ListaCaminos();                
+            }
+        }
+        
+        for (String camino : caminos) {
+            String[] detallecamino = camino.split(",");
+            Ciudad aux = new Ciudad(detallecamino[0]);
+            Ciudad aux2 =new Ciudad(detallecamino[1]);
+            for(int c =0;c<this.numVerts;c++){
+                if(verts[c].getNombreDeCiudad().equalsIgnoreCase(detallecamino[0])&&verts[c].getNombreDeCiudad().equalsIgnoreCase(detallecamino[1])){
+                    aux = this.verts[c];
+                }else if(verts[c].getNombreDeCiudad().equalsIgnoreCase(detallecamino[0])){
+                    aux = this.verts[c];
+                }else if(verts[c].getNombreDeCiudad().equalsIgnoreCase(detallecamino[1])){
+                    aux2 = this.verts[c];
+                }
+            }
+            Camino nuevo = new Camino(aux,aux2,Double.parseDouble(detallecamino[2]),numVerts);
+            this.matAd[Integer.parseInt(detallecamino[0])][Integer.parseInt(detallecamino[1])].insertarCaminoAlFinal(nuevo);
+            this.matAd[Integer.parseInt(detallecamino[1])][Integer.parseInt(detallecamino[0])].insertarCaminoAlFinal(nuevo);
+            
+        }
+        
     }
     
     /** * M&eacute;todo que permite añadir un v&eacute;rtice.
@@ -130,14 +156,17 @@ public class GrafoMatriz {
     */
     public int numVertice(String vs){
         boolean encontrado = false;
-        int i =0;
-        for (; (i < numVerts) && !encontrado;){
-            encontrado = verts[i].getNombreDeCiudad().equals(vs);
-            if (!encontrado) i++ ;
+        if(!this.esVacia()){
+            int i =0;
+            for (; (i < numVerts) && !encontrado;){
+                encontrado = verts[i].getNombreDeCiudad().equals(vs);
+                if (!encontrado) i++ ;
+            }
+            return (i < numVerts) ? i : -1 ; //devuelve el valor de `i` si `i` es menor que `numVerts`, de lo contrario, devuelve -1.
         }
-        return (i < numVerts) ? i : -1 ; //devuelve el valor de `i` si `i` es menor que `numVerts`, de lo contrario, devuelve -1.
+        return -1;
     }   
-    
+
     /** * M&eacute;todo que crea un nuevo arco o camino.En este caso, un camino entre dos ciudades.
     *
     * @author nelsoncarrillo
@@ -250,6 +279,10 @@ public class GrafoMatriz {
      */
     public Ciudad getCiudad(int n) {
         return this.verts[n];
+    }
+    
+    public boolean esVacia(){
+        return this.verts[0]==null;
     }
 }
 

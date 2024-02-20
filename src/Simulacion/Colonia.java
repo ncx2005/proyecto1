@@ -32,14 +32,13 @@ public class Colonia {
     /**
      * Constructor de la clase Colonia.
      * 
-     * @param cantidadHormigas La cantidad inicial de hormigas en la colonia.
      * @author nelsoncarrillo
      * @version 13 feb 2024
      * @param numVertices numero de ciudades.
      */
-    public Colonia(int cantidadHormigas, int numVertices) { //Agregar params..;
-        this.CantidadDeHormigas = cantidadHormigas;
-        this.matriz = new GrafoMatriz(numVertices);
+    public Colonia(int numVertices,String[] cities,String[] aristas) { //Agregar params..;
+        this.CantidadDeHormigas = 0;
+        this.matriz = new GrafoMatriz(numVertices,cities,aristas);
         //this.CiudadInicio = new Ciudad();
         //this.CiudadFin = new Ciudad();
     }
@@ -148,7 +147,5 @@ public class Colonia {
         return true;
     }
     
-    public boolean armarGrafo(String[] cities,String[] distancias){
-        return true;
-    }
+    
 }

@@ -6,6 +6,7 @@ package Interfaces;
 
 import Funciones.FunctionsTXT;
 import Funciones.LeerArchivo;
+import Simulacion.Colonia;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -29,7 +30,7 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
     private String[] ciudades;
     private String[] caminos;
     private String contenidoFile;
-    private MenuPrincipal interfazMenu;
+    private MenuPrincipalGUI interfazMenu;
 
 
     /**Devuelve si tiene guardado un grafo.
@@ -62,7 +63,7 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
      * Creates new form ArchivosGrafos.
      * @param interfaz para agregar bot&oacute;n de regresar.
      */
-    public GestionArchivosGUI(MenuPrincipal interfaz) {
+    public GestionArchivosGUI(MenuPrincipalGUI interfaz) {
         initComponents();
         this.interfazMenu=interfaz;
         this.setResizable(false);
@@ -234,6 +235,10 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
                         this.ciudades= f.getCiudades(contenidoFile);
                         text.setText(documento);
                         this.contenidoFile=documento;
+                        this.interfazMenu.setColonia(new Colonia(ciudades.length,ciudades,caminos));
+                        System.out.println(this.interfazMenu.coloniaAST.getMatriz().getNumVerts());
+                                                System.out.println(this.interfazMenu.coloniaAST.getMatriz().getMatAd()[0][2].esVacia());
+
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Archivo No Compatible");

@@ -11,19 +11,23 @@ import javax.swing.JOptionPane;
  *
  * @author nelsoncarrillo
  */
-public class MenuPrincipal extends javax.swing.JFrame {
+public class MenuPrincipalGUI extends javax.swing.JFrame {
     
-    private GestionArchivosGUI interfazArchivos = new GestionArchivosGUI(MenuPrincipal.this);
-    private AgregarCiudad interfazGrafos = new AgregarCiudad(MenuPrincipal.this);
+    private GestionArchivosGUI interfazArchivos = new GestionArchivosGUI(MenuPrincipalGUI.this);
+    private AgregarCiudadGUI interfazGrafos = new AgregarCiudadGUI(MenuPrincipalGUI.this);
     Colonia coloniaAST;
 
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuPrincipalGUI() {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+    }
+    
+    public void setColonia(Colonia nueva){
+        this.coloniaAST=nueva;
     }
 
     /**
@@ -164,20 +168,21 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPrincipalGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPrincipalGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPrincipalGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MenuPrincipalGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                new MenuPrincipalGUI().setVisible(true);
             }
         });
     }
