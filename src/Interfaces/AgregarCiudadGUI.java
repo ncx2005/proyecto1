@@ -112,6 +112,12 @@ public class AgregarCiudadGUI extends javax.swing.JFrame {
         jLabel5.setText("Distancia Hacia Cada Ciudad ");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, 20));
         jPanel1.add(DistanciasHaciaAnexas, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 260, 140, -1));
+
+        AgregarString.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarStringActionPerformed(evt);
+            }
+        });
         jPanel1.add(AgregarString, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 180, 50, -1));
 
         CiudadesAnexas1.addActionListener(new java.awt.event.ActionListener() {
@@ -268,6 +274,10 @@ public class AgregarCiudadGUI extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_EliminarActionPerformed
+
+    private void AgregarStringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarStringActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AgregarStringActionPerformed
 
     /**
      * @param args the command line arguments

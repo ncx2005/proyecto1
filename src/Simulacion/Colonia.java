@@ -87,10 +87,10 @@ public class Colonia {
      * 
      * @author titobalza
      * @version 15 feb 2024
-     * @param rho es el factor de evaporaci&oacute;n
+     * @param rho es el factor de evaporacion
+     * @param numCiudades
      */
-    public void actualizarPorEvaporacion(double rho) {
-        int numCiudades = this.getMatriz().getNumVerts();
+    public void actualizarPorEvaporacion(double rho, int numCiudades) {
         for (int r = 0; r < numCiudades; r++) {
             for (int s = 0; s < numCiudades; s++) {
                 if (r != s) { // Evitar actualizar feromonas en bucles de una ciudad a sí misma
@@ -153,5 +153,8 @@ public class Colonia {
         return true;
     }
     
+   public int getNumVerts() {
+    return this.matriz.getNumVerts();
+} 
     
 }

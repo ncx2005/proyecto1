@@ -1,4 +1,5 @@
 package main;
+import Interfaces.IndicarSimulacionGUI;
 import Interfaces.MenuPrincipalGUI;
 
     /**
@@ -20,6 +21,7 @@ public class main {
         // TODO code application logic here
         MenuPrincipalGUI a = new MenuPrincipalGUI();
         a.setVisible(true);
+        
         
     }
     

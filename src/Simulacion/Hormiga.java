@@ -215,7 +215,7 @@ public final class Hormiga {
      *         <code>false</code> si ya han sido visitadas todas las ciudades anexas y no se mueve.
      * @throws java.lang.Exception en caso que se mueva a un v&eacute;rtice que no existe.
      */
-    public boolean irHaciaSiguienteCiudad(int CantidadDeHormigas,int alfa,int beta) throws Exception {
+    public boolean irHaciaSiguienteCiudad(int CantidadDeHormigas, double alfa, double beta) throws Exception {
         //SE UTILIZA EL M&Eacute:TODO ANTERIOR;
         double[] SiguienteMovimiento = this.getSiguienteCiudad(alfa,beta); //tienes la distancia que es unica y la ciudad.
         int m = CantidadDeHormigas;
@@ -237,7 +237,7 @@ public final class Hormiga {
             //SE HACE LA ACTUALIZACI&OACUTEN POR INCREMENTO (F&OACUTE;RMULA).
             if(CaminoTransitado.getHormigasQueHanPasado().getSize()>0){ //Si la sumatoria da un valor, sino pues da 0.
                 Nodo aux = CaminoTransitado.getHormigasQueHanPasado().getCabeza();
-                for(int k=0;k<CantidadDeHormigas && aux!=null;k++){
+                for(int k=0;k<m && aux!=null;k++){
                     SumaPorIncremento += (Q/aux.getValor());
                     aux=aux.getSiguiente();
                 }

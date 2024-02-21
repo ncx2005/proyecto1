@@ -4,6 +4,10 @@
  */
 package Interfaces;
 
+import Simulacion.Colonia;
+import Simulacion.Hormiga;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author nelsoncarrillo
@@ -28,21 +32,220 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        softBevelBorder1 = new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED);
+        jPanel1 = new javax.swing.JPanel();
+        sacsac = new javax.swing.JLabel();
+        alphaValue = new javax.swing.JTextField();
+        betaValue = new javax.swing.JTextField();
+        assadsa = new javax.swing.JLabel();
+        rhoValue = new javax.swing.JTextField();
+        caasacs = new javax.swing.JLabel();
+        numHormigas = new javax.swing.JTextField();
+        dsasd = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        numCiclos = new javax.swing.JTextField();
+        sacdads = new javax.swing.JLabel();
+        numHormigas1 = new javax.swing.JLabel();
+        numCiclos1 = new javax.swing.JLabel();
+        ciudadFinal = new javax.swing.JTextField();
+        ciudadInicio = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        sacsac.setForeground(new java.awt.Color(255, 255, 255));
+        sacsac.setText(" Valor α");
+        jPanel1.add(sacsac, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
+
+        alphaValue.setText("1           ");
+        alphaValue.setToolTipText("");
+        alphaValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                alphaValueActionPerformed(evt);
+            }
+        });
+        jPanel1.add(alphaValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, -1, -1));
+
+        betaValue.setText("2           ");
+        betaValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                betaValueActionPerformed(evt);
+            }
+        });
+        jPanel1.add(betaValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+
+        assadsa.setForeground(new java.awt.Color(255, 255, 255));
+        assadsa.setText("Valor β ");
+        jPanel1.add(assadsa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
+
+        rhoValue.setText("0.5          ");
+        rhoValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rhoValueActionPerformed(evt);
+            }
+        });
+        jPanel1.add(rhoValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+
+        caasacs.setForeground(new java.awt.Color(255, 255, 255));
+        caasacs.setText("Valor ρ");
+        jPanel1.add(caasacs, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
+
+        numHormigas.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        numHormigas.setMinimumSize(new java.awt.Dimension(120, 50));
+        numHormigas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numHormigasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(numHormigas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 90, -1));
+
+        dsasd.setForeground(new java.awt.Color(255, 255, 255));
+        dsasd.setText("Número de Hormigas");
+        jPanel1.add(dsasd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
+
+        jButton1.setText("INICIAR SIMULACIÓN");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
+
+        numCiclos.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        numCiclos.setMinimumSize(new java.awt.Dimension(120, 50));
+        numCiclos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numCiclosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(numCiclos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 90, -1));
+
+        sacdads.setForeground(new java.awt.Color(255, 255, 255));
+        sacdads.setText("Número de Ciclos");
+        jPanel1.add(sacdads, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
+
+        numHormigas1.setForeground(new java.awt.Color(255, 255, 255));
+        numHormigas1.setText("Ciudad de Inicio");
+        jPanel1.add(numHormigas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
+
+        numCiclos1.setForeground(new java.awt.Color(255, 255, 255));
+        numCiclos1.setText("Ciudad de Final");
+        jPanel1.add(numCiclos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+
+        ciudadFinal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        ciudadFinal.setMinimumSize(new java.awt.Dimension(120, 50));
+        ciudadFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ciudadFinalActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ciudadFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 90, -1));
+
+        ciudadInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        ciudadInicio.setMinimumSize(new java.awt.Dimension(120, 50));
+        ciudadInicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ciudadInicioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(ciudadInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 90, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nature-insect-macro-animals-wallpaper-preview.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void numHormigasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numHormigasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numHormigasActionPerformed
+
+    private void alphaValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_alphaValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_alphaValueActionPerformed
+
+    private void betaValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_betaValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_betaValueActionPerformed
+
+    private void rhoValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rhoValueActionPerformed
+         try {
+        double input = Double.parseDouble(rhoValue.getText());
+        if (input > 0 && input < 1) {
+            JOptionPane.showMessageDialog(null,"El número es válido");
+      
+        } else {
+ 
+            JOptionPane.showMessageDialog(null,"El número no cumple la validación");
+        }
+    } catch (NumberFormatException e) {
+         JOptionPane.showMessageDialog(null,"El valor ingresado no es un número válido");
+    }
+    }//GEN-LAST:event_rhoValueActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      // Obtener los valores de alpha, beta y la cantidad de hormigas desde los campos de texto
+double alpha = Double.parseDouble(alphaValue.getText());
+double beta = Double.parseDouble(betaValue.getText());
+double rho = Double.parseDouble(rhoValue.getText());
+int cantidadDeHormigas = Integer.parseInt(numCiclos.getText());
+int cityInicio = Integer.parseInt(ciudadInicio.getText());
+int cityFinal = Integer.parseInt(ciudadFinal.getText());
+int numCiudades = this.interfazMenu.coloniaAST.getNumVerts();
+
+    
+// Crear un arreglo para almacenar las instancias de Hormiga
+Hormiga[] hormigasArray = new Hormiga[cantidadDeHormigas];
+
+// Crear las instancias de Hormiga y almacenarlas en el arreglo
+for (int i = 0; i < cantidadDeHormigas; i++) {
+    hormigasArray[i] = new Hormiga(this.interfazMenu.coloniaAST.getMatriz(),cityInicio,this.interfazMenu.coloniaAST.getNumVerts());
+}
+
+boolean todasFalse = false;  // Variable para verificar si todas las hormigas han devuelto false
+
+while (!todasFalse) {
+    todasFalse = true;  // Establecer en true al comienzo del ciclo
+
+    try {
+        for (Hormiga hormiga : hormigasArray) {
+            boolean resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas,alpha, beta);
+            if (resultado) {
+                todasFalse = false;  
+            }
+        }
+    } catch (Exception e) {
+        // Manejar la excepción si es necesario
+    }
+}
+this.interfazMenu.coloniaAST.actualizarPorEvaporacion(rho, numCiudades);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void numCiclosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numCiclosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numCiclosActionPerformed
+
+    private void ciudadFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadFinalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ciudadFinalActionPerformed
+
+    private void ciudadInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadInicioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ciudadInicioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -77,5 +280,23 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField alphaValue;
+    private javax.swing.JLabel assadsa;
+    private javax.swing.JTextField betaValue;
+    private javax.swing.JLabel caasacs;
+    private javax.swing.JTextField ciudadFinal;
+    private javax.swing.JTextField ciudadInicio;
+    private javax.swing.JLabel dsasd;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField numCiclos;
+    private javax.swing.JLabel numCiclos1;
+    private javax.swing.JTextField numHormigas;
+    private javax.swing.JLabel numHormigas1;
+    private javax.swing.JTextField rhoValue;
+    private javax.swing.JLabel sacdads;
+    private javax.swing.JLabel sacsac;
+    private javax.swing.border.SoftBevelBorder softBevelBorder1;
     // End of variables declaration//GEN-END:variables
 }
