@@ -90,4 +90,35 @@ public class ListaCaminos {
         return this.cabeza==null;
     }
     
+    /**
+    * Método que devuelve una nueva lista enlazada sin elementos repetidos.
+    * Recorre la lista original y elimina los nodos duplicados.
+    *
+    * @return Una nueva Lista sin elementos repetidos.
+    */
+     public ListaCaminos obtenerListaSinRepetidos() {
+        ListaCaminos listaSinRepetidos = new ListaCaminos();
+
+        NodoCamino actual = cabeza;
+        while (actual != null) {
+            boolean duplicado = false;
+            NodoCamino temp = listaSinRepetidos.cabeza;
+            while (temp != null) {
+                if (temp.getValor().getCiudadOrigen().equals(actual.getValor().getCiudadOrigen())&&temp.getValor().getCiudadDestino().equals(actual.getValor().getCiudadDestino())&&temp.getValor().getDistancia()==actual.getValor().getDistancia()) {
+                    duplicado = true;
+                    break;
+                }
+                temp = temp.getSiguiente();
+            }
+
+            if (!duplicado) {
+                listaSinRepetidos.insertarCaminoAlFinal(actual.getValor());
+            }
+
+            actual = actual.getSiguiente();
+        }
+
+        return listaSinRepetidos;
+    }
+    
 }

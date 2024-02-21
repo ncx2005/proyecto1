@@ -6,6 +6,8 @@ package Interfaces;
 
 import Funciones.FunctionsTXT;
 import Funciones.LeerArchivo;
+import GraficarGrafo.GraficarGrafo;
+import ListaSimple.ListaCaminos;
 import Simulacion.Colonia;
 import java.io.File;
 import java.io.FileInputStream;
@@ -237,6 +239,8 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
                         text.setText(documento);
                         this.contenidoFile=documento;
                         this.interfazMenu.setColonia(new Colonia(ciudades.length,ciudades,caminos));
+                        GraficarGrafo nuevo = new GraficarGrafo();
+                        nuevo.mostrar(this.interfazMenu.coloniaAST.getMatriz());
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Archivo No Compatible");

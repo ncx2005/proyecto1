@@ -1,5 +1,6 @@
 package Grafo;
 import ListaSimple.ListaCaminos;
+import ListaSimple.NodoCamino;
 import javax.swing.JOptionPane;
 
 /**Clase que determina la matriz de adyacencia de nuestro grafo.
@@ -306,6 +307,24 @@ public class GrafoMatriz {
      */
     public boolean esVacia(){
         return this.verts[0]==null;
+    }
+    
+    public ListaCaminos getTodosLosCaminosExistentes(){
+        boolean reps = false;
+        ListaCaminos lista = new ListaCaminos();
+        for(int i =0;i<this.numVerts;i++){
+            for(int y=0;y<this.numVerts;y++){
+                if(!this.matAd[i][y].esVacia()){
+                    NodoCamino aux = this.matAd[i][y].getCabeza();
+                    while(aux!=null){
+                        lista.insertarCaminoAlFinal(aux.getValor());
+                        aux=aux.getSiguiente();
+                    }
+                }
+            }
+        }
+        lista = lista.obtenerListaSinRepetidos();
+        return lista;
     }
 }
 
