@@ -229,7 +229,7 @@ public class AgregarCiudadGUI extends javax.swing.JFrame {
         
         if((CiudadesAnexas.length == DistanciaCiudadesAnexas.length) && (!hayEspaciosEnBlanco)){
             try{
-                int NumeroNuevaCiudad = Integer.parseInt(this.AgregarString.getText());
+                int NumeroNuevaCiudad = Integer.parseInt(this.AgregarString.getText().trim());
                 boolean agregado = this.interfazMenu.coloniaAST.AgregarCiudad(NumeroNuevaCiudad, CiudadesAnexas, DistanciaCiudadesAnexas);
                 if(agregado){
                     JOptionPane.showMessageDialog(null, "Agregada Con Exito!");
