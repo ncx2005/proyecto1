@@ -36,6 +36,8 @@ public class Colonia {
      * @author nelsoncarrillo
      * @version 13 feb 2024
      * @param numVertices numero de ciudades.
+     * @param cities
+     * @param aristas
      */
     public Colonia(int numVertices,String[] cities,String[] aristas) { //Agregar params..;
         this.CantidadDeHormigas = 0;

@@ -5,6 +5,7 @@
 package Interfaces;
 
 import GraficarGrafo.GraficarGrafo;
+import Grafo.Ciudad;
 import javax.swing.JOptionPane;
 
 /**
@@ -263,8 +264,14 @@ public class AgregarCiudadGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         try{
             Integer.valueOf(AEliminar.getText());
+            Ciudad aux = this.interfazMenu.coloniaAST.getMatriz().getVerts()[this.interfazMenu.coloniaAST.getMatriz().getNumVerts()-1];
+            Ciudad aux2 = this.interfazMenu.coloniaAST.getMatriz().getVerts()[0];
             boolean borrado = this.interfazMenu.coloniaAST.getMatriz().borrarVertice(AEliminar.getText());
             if(borrado){
+                if(!aux.equals(this.interfazMenu.coloniaAST.getMatriz().getVerts()[this.interfazMenu.coloniaAST.getMatriz().getNumVerts()-1]))
+                    this.interfazMenu.coloniaAST.CiudadFin=this.interfazMenu.coloniaAST.getMatriz().getVerts()[this.interfazMenu.coloniaAST.getMatriz().getNumVerts()-1];
+                if(!aux2.equals(this.interfazMenu.coloniaAST.getMatriz().getVerts()[0]))
+                    this.interfazMenu.coloniaAST.CiudadInicio=this.interfazMenu.coloniaAST.getMatriz().getVerts()[0];
                 JOptionPane.showMessageDialog(null, "Eliminada con éxito.");
             }else{
                 JOptionPane.showMessageDialog(null, "Error en el Input.\nRecuerde debe ser una ciudad existente.\nPara la simulación deben quedar al menos 4 ciudades.", "ERROR", JOptionPane.WARNING_MESSAGE);
