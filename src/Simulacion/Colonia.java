@@ -87,7 +87,7 @@ public class Colonia {
      * por evaporaci&oacute;n una vez que todas las hormigas han culminado 
      * su viaje 
      * 
-     * @author titobalza
+     * @author tito_
      * @version 15 feb 2024
      * @param rho es el factor de evaporacion
      * @param numCiudades

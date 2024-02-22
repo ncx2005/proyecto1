@@ -211,11 +211,12 @@ public final class Hormiga {
      * @param CantidadDeHormigas de la simulaci&oacute;n puesta por el usuario.
      * @param alfa puede ser modificado por usuario entonces se deja como param.
      * @param beta puede ser modificado por usuario entonces se deja como param.
+     * @param tau
      * @return <code>true</code> si se movi&oacute; con &eacute;xito.
      *         <code>false</code> si ya han sido visitadas todas las ciudades anexas y no se mueve.
      * @throws java.lang.Exception en caso que se mueva a un v&eacute;rtice que no existe.
      */
-    public boolean irHaciaSiguienteCiudad(int CantidadDeHormigas, double alfa, double beta) throws Exception {
+    public boolean irHaciaSiguienteCiudad(int CantidadDeHormigas, double alfa, double beta, double tau) throws Exception {
         //SE UTILIZA EL M&Eacute:TODO ANTERIOR;
         double[] SiguienteMovimiento = this.getSiguienteCiudad(alfa,beta); //tienes la distancia que es unica y la ciudad.
         int m = CantidadDeHormigas;
@@ -229,7 +230,7 @@ public final class Hormiga {
             primero = primero.getSiguiente();
         }
         var Q = 1;
-        double SumaPorIncremento=0.0;
+        double SumaPorIncremento=tau;
         if ((SiguienteMovimiento[0]==0.0)&&(SiguienteMovimiento[1]==0.0)) {
             //Ya que no se habr&iacute;a movido de ciudad la hormiga.
             return false; 
