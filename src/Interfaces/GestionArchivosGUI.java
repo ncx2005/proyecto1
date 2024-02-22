@@ -29,8 +29,8 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
     FileInputStream entrada; 
     FileOutputStream salida;
     private boolean guardar = false;
-    private String[] ciudades;
-    private String[] caminos;
+    String[] ciudades;
+    String[] caminos;
     private String contenidoFile;
     private MenuPrincipalGUI interfazMenu;
     
@@ -144,7 +144,10 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
             }
         });
 
-        Atras.setText("Atras");
+        Atras.setBackground(null);
+        Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rounded-back-icon-element-free-png-2.png"))); // NOI18N
+        Atras.setBorder(null);
+        Atras.setBorderPainted(false);
         Atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtrasActionPerformed(evt);
@@ -158,9 +161,9 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(35, 35, 35)
+                .addGap(38, 38, 38)
                 .addComponent(Atras)
-                .addContainerGap(463, Short.MAX_VALUE))
+                .addContainerGap(487, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -189,9 +192,9 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(555, Short.MAX_VALUE)
+                .addContainerGap(547, Short.MAX_VALUE)
                 .addComponent(Atras)
-                .addGap(32, 32, 32))
+                .addGap(18, 18, 18))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -239,8 +242,8 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
                         text.setText(documento);
                         this.contenidoFile=documento;
                         this.interfazMenu.setColonia(new Colonia(ciudades.length,ciudades,caminos));
-                        GraficarGrafo nuevo = new GraficarGrafo();
-                        nuevo.mostrar(this.interfazMenu.coloniaAST.getMatriz());
+                        //GraficarGrafo nuevo = new GraficarGrafo();
+                        //nuevo.mostrar(this.interfazMenu.coloniaAST.getMatriz());
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Archivo No Compatible");

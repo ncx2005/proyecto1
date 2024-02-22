@@ -116,7 +116,7 @@ public final class Hormiga {
      * @param alfa puede ser modificado por usuario entonces se deja como param.
      * @param beta puede ser modificado por usuario entonces se deja como param.
      */
-    private double[] getSiguienteCiudad(int alfa,int beta) throws Exception {
+    private double[] getSiguienteCiudad(double alfa,double beta) throws Exception {
         
         int NumeroCiudadActual = this.getCiudadActual().getNumeroDeCiudad();
         int numCiudades = this.getMatriz().getNumVerts();

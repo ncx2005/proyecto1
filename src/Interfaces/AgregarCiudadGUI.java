@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import GraficarGrafo.GraficarGrafo;
 import javax.swing.JOptionPane;
 
 /**
@@ -261,7 +262,7 @@ public class AgregarCiudadGUI extends javax.swing.JFrame {
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         // TODO add your handling code here:
         try{
-            int prueba = Integer.parseInt(AEliminar.getText());
+            Integer.valueOf(AEliminar.getText());
             boolean borrado = this.interfazMenu.coloniaAST.getMatriz().borrarVertice(AEliminar.getText());
             if(borrado){
                 JOptionPane.showMessageDialog(null, "Eliminada con éxito.");
@@ -272,6 +273,9 @@ public class AgregarCiudadGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error en el Input.\nRecuerde debe ser un número.", "ERROR", JOptionPane.WARNING_MESSAGE);
             this.AEliminar.setText("");
         }
+        this.AEliminar.setText("");
+        GraficarGrafo nuevo = new GraficarGrafo();
+        nuevo.mostrar(this.interfazMenu.coloniaAST.getMatriz());
         
     }//GEN-LAST:event_EliminarActionPerformed
 

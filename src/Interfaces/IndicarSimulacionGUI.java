@@ -21,7 +21,12 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     public IndicarSimulacionGUI(MenuPrincipalGUI interfaz) {
         initComponents();
         this.interfazMenu=interfaz;
+        this.setResizable(false);
+        this.setLocationRelativeTo(null);
+        this.fin.setText("Ciudad Final número: "+interfaz.coloniaAST.CiudadFin.getNombreDeCiudad());
+        this.inicio.setText("Ciudad Inicial número: "+interfaz.coloniaAST.CiudadInicio.getNombreDeCiudad());
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,10 +50,10 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         numCiclos = new javax.swing.JTextField();
         sacdads = new javax.swing.JLabel();
-        numHormigas1 = new javax.swing.JLabel();
-        numCiclos1 = new javax.swing.JLabel();
-        ciudadFinal = new javax.swing.JTextField();
-        ciudadInicio = new javax.swing.JTextField();
+        inicio = new javax.swing.JLabel();
+        fin = new javax.swing.JLabel();
+        Atras = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -112,7 +117,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 40, 210, 50));
 
         numCiclos.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         numCiclos.setMinimumSize(new java.awt.Dimension(120, 50));
@@ -127,31 +132,37 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
         sacdads.setText("Número de Ciclos");
         jPanel1.add(sacdads, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 170, -1, -1));
 
-        numHormigas1.setForeground(new java.awt.Color(255, 255, 255));
-        numHormigas1.setText("Ciudad de Inicio");
-        jPanel1.add(numHormigas1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 10, -1, -1));
+        inicio.setForeground(new java.awt.Color(255, 255, 255));
+        inicio.setText("Ciudad de Inicio:");
+        jPanel1.add(inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 20, 170, -1));
 
-        numCiclos1.setForeground(new java.awt.Color(255, 255, 255));
-        numCiclos1.setText("Ciudad de Final");
-        jPanel1.add(numCiclos1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, -1, -1));
+        fin.setForeground(new java.awt.Color(255, 255, 255));
+        fin.setText("Ciudad de Final:");
+        jPanel1.add(fin, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 170, -1));
 
-        ciudadFinal.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        ciudadFinal.setMinimumSize(new java.awt.Dimension(120, 50));
-        ciudadFinal.addActionListener(new java.awt.event.ActionListener() {
+        Atras.setBackground(null);
+        Atras.setForeground(null);
+        Atras.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/rounded-back-icon-element-free-png-2.png"))); // NOI18N
+        Atras.setBorder(null);
+        Atras.setBorderPainted(false);
+        Atras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ciudadFinalActionPerformed(evt);
+                AtrasActionPerformed(evt);
             }
         });
-        jPanel1.add(ciudadFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 90, -1));
+        jPanel1.add(Atras, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, -1, -1));
 
-        ciudadInicio.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        ciudadInicio.setMinimumSize(new java.awt.Dimension(120, 50));
-        ciudadInicio.addActionListener(new java.awt.event.ActionListener() {
+        jButton2.setBackground(null);
+        jButton2.setForeground(null);
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton.png"))); // NOI18N
+        jButton2.setBorder(null);
+        jButton2.setBorderPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ciudadInicioActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(ciudadInicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 90, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/nature-insect-macro-animals-wallpaper-preview.jpg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -199,21 +210,20 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       // Obtener los valores de alpha, beta y la cantidad de hormigas desde los campos de texto
+try{
 double alpha = Double.parseDouble(alphaValue.getText());
 double beta = Double.parseDouble(betaValue.getText());
 double rho = Double.parseDouble(rhoValue.getText());
 int cantidadDeHormigas = Integer.parseInt(numCiclos.getText());
-int cityInicio = Integer.parseInt(ciudadInicio.getText());
-int cityFinal = Integer.parseInt(ciudadFinal.getText());
 int numCiudades = this.interfazMenu.coloniaAST.getNumVerts();
-
+this.interfazMenu.coloniaAST=new Colonia(this.interfazMenu.interfazArchivos.ciudades.length,this.interfazMenu.interfazArchivos.ciudades,this.interfazMenu.interfazArchivos.caminos);
     
 // Crear un arreglo para almacenar las instancias de Hormiga
 Hormiga[] hormigasArray = new Hormiga[cantidadDeHormigas];
 
 // Crear las instancias de Hormiga y almacenarlas en el arreglo
 for (int i = 0; i < cantidadDeHormigas; i++) {
-    hormigasArray[i] = new Hormiga(this.interfazMenu.coloniaAST.getMatriz(),cityInicio,this.interfazMenu.coloniaAST.getNumVerts());
+    hormigasArray[i] = new Hormiga(this.interfazMenu.coloniaAST.getMatriz(),this.interfazMenu.coloniaAST.CiudadInicio.getNumeroDeCiudad(),this.interfazMenu.coloniaAST.getNumVerts());
 }
 
 boolean todasFalse = false;  // Variable para verificar si todas las hormigas han devuelto false
@@ -233,19 +243,25 @@ while (!todasFalse) {
     }
 }
 this.interfazMenu.coloniaAST.actualizarPorEvaporacion(rho, numCiudades);
+}catch(Exception e){
+    JOptionPane.showMessageDialog(null, "Input Incorrecto");
+}
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void numCiclosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numCiclosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_numCiclosActionPerformed
 
-    private void ciudadFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadFinalActionPerformed
+    private void AtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ciudadFinalActionPerformed
+        this.interfazMenu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AtrasActionPerformed
 
-    private void ciudadInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ciudadInicioActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ciudadInicioActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -280,20 +296,20 @@ this.interfazMenu.coloniaAST.actualizarPorEvaporacion(rho, numCiudades);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Atras;
     private javax.swing.JTextField alphaValue;
     private javax.swing.JLabel assadsa;
     private javax.swing.JTextField betaValue;
     private javax.swing.JLabel caasacs;
-    private javax.swing.JTextField ciudadFinal;
-    private javax.swing.JTextField ciudadInicio;
     private javax.swing.JLabel dsasd;
+    private javax.swing.JLabel fin;
+    private javax.swing.JLabel inicio;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField numCiclos;
-    private javax.swing.JLabel numCiclos1;
     private javax.swing.JTextField numHormigas;
-    private javax.swing.JLabel numHormigas1;
     private javax.swing.JTextField rhoValue;
     private javax.swing.JLabel sacdads;
     private javax.swing.JLabel sacsac;

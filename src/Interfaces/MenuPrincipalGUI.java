@@ -13,9 +13,8 @@ import javax.swing.JOptionPane;
  */
 public class MenuPrincipalGUI extends javax.swing.JFrame {
     
-    private GestionArchivosGUI interfazArchivos = new GestionArchivosGUI(MenuPrincipalGUI.this);
+    GestionArchivosGUI interfazArchivos = new GestionArchivosGUI(MenuPrincipalGUI.this);
     private AgregarCiudadGUI interfazGrafos = new AgregarCiudadGUI(MenuPrincipalGUI.this);
-    private IndicarSimulacionGUI interfazSimulacion = new IndicarSimulacionGUI(MenuPrincipalGUI.this);
     Colonia coloniaAST;
 
     /**
@@ -176,12 +175,13 @@ public class MenuPrincipalGUI extends javax.swing.JFrame {
 
     private void AbrirSimulacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirSimulacionActionPerformed
         // TODO add your handling code here:
-        //if(!this.interfazArchivos.isGuardar()){
-            //JOptionPane.showMessageDialog(null, "No Hay Grafo Guardado Para Iniciar.","ERROR", JOptionPane.WARNING_MESSAGE);
-        //}else{
+        if(!this.interfazArchivos.isGuardar()){
+            JOptionPane.showMessageDialog(null, "No Hay Grafo Guardado Para Iniciar.","ERROR", JOptionPane.WARNING_MESSAGE);
+        }else{
             this.setVisible(false);
-            this.interfazSimulacion.setVisible(true);
-        //}
+            IndicarSimulacionGUI interfazSimulacion = new IndicarSimulacionGUI(MenuPrincipalGUI.this);
+            interfazSimulacion.setVisible(true);
+        }
     }//GEN-LAST:event_AbrirSimulacionActionPerformed
 
     /**

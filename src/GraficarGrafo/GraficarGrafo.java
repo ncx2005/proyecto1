@@ -13,7 +13,11 @@ import org.graphstream.graph.implementations.*;
  * @version 20 feb 2024
  */
 public class GraficarGrafo {
-    
+    /**
+    * Muestra un grafo utilizando GraphStream.
+    * 
+    * @param matriz El grafo a ser visualizado.
+    */
     public void mostrar(GrafoMatriz matriz){
         System.setProperty("org.graphstream.ui", "swing");
         Graph graph = new MultiGraph("Almacenes");
