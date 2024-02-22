@@ -84,7 +84,11 @@ public class GrafoMatriz {
         if (!esta){ 
             Ciudad v = new Ciudad(nombreDevertice); //Se utiliza el constructor de la clase Ciudad.
             v.asigVert(numVerts);
-            verts[numVerts] = v; //se agrega una nueva fila y columna en la matriz.
+            Ciudad[] aux = new Ciudad[numVerts+1];
+            for(int i=0;i<this.getNumVerts();i++)
+                aux[i]=verts[i];
+            aux[numVerts] = v; //se agrega una nueva fila y columna en la matriz.
+            this.verts=aux;
             ListaCaminos[][] nuevaMatriz = new ListaCaminos[numVerts + 1][numVerts + 1];
             // Copiar los valores de la matriz original a la nueva matriz.
             for (int i = 0; i < numVerts; i++) {
@@ -309,6 +313,13 @@ public class GrafoMatriz {
         return this.verts[0]==null;
     }
     
+    /**
+    * Devuelve una lista con todos los caminos existentes.
+    * Sabiendo que en la matriz pues aparece dos veces un mismo camino
+    * Este reduce el problema y devuelve cada uno una sola vez. 
+    * 
+    * @return <code>ListaCaminos</code>  Lista de caminos existentes.
+    */
     public ListaCaminos getTodosLosCaminosExistentes(){
         boolean reps = false;
         ListaCaminos lista = new ListaCaminos();
@@ -325,6 +336,31 @@ public class GrafoMatriz {
         }
         lista = lista.obtenerListaSinRepetidos();
         return lista;
+    }
+    
+    
+    /**Devuelve un string en formato para el txt del usuario.
+     * Este pues actualizado cada vez que se llame si bien se elimina una
+     * ciudad, en este string ya no aparece.
+     * 
+     * @return <code>String</code> Formato.
+     */
+    @Override
+    public String toString(){
+      String nuevotxt = "ciudades\n";
+      for(int i =0;i<this.numVerts;i++){
+          nuevotxt += this.verts[i].getNombreDeCiudad()+"\n";
+      }
+      nuevotxt+="aristas\n";
+      ListaCaminos nueva =this.getTodosLosCaminosExistentes();
+      if(!nueva.esVacia()){
+          NodoCamino aux = nueva.getCabeza();
+          while(aux!=null){
+              nuevotxt+=aux.getValor().getCiudadOrigen().getNombreDeCiudad()+","+aux.getValor().getCiudadDestino().getNombreDeCiudad()+","+aux.getValor().getDistancia()+"\n";
+              aux=aux.getSiguiente();
+          }
+      }
+      return nuevotxt;
     }
 }
 

@@ -236,6 +236,8 @@ public class AgregarCiudadGUI extends javax.swing.JFrame {
                     this.AgregarString.setText("");
                     this.CiudadesAnexas1.setText("");
                     this.DistanciasHaciaAnexas.setText("");
+                    this.interfazMenu.interfazArchivos.text.setText(this.interfazMenu.coloniaAST.getMatriz().toString());
+
                 }else{
                     JOptionPane.showMessageDialog(null, "Error en el Input.\nRevise Acorde al grafo y tipo de datos.", "ERROR", JOptionPane.WARNING_MESSAGE);
                     this.AgregarString.setText("");
@@ -281,8 +283,9 @@ public class AgregarCiudadGUI extends javax.swing.JFrame {
             this.AEliminar.setText("");
         }
         this.AEliminar.setText("");
-        GraficarGrafo nuevo = new GraficarGrafo();
-        nuevo.mostrar(this.interfazMenu.coloniaAST.getMatriz());
+        //GraficarGrafo nuevo = new GraficarGrafo();
+        //nuevo.mostrar(this.interfazMenu.coloniaAST.getMatriz());
+        this.interfazMenu.interfazArchivos.text.setText(this.interfazMenu.coloniaAST.getMatriz().toString());
         
     }//GEN-LAST:event_EliminarActionPerformed
 
