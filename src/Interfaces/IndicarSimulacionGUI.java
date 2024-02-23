@@ -231,18 +231,17 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
 
             double tau = 1 / numCiudades;
             System.out.println("tau: " + tau);
-
+            
+            
             this.interfazMenu.coloniaAST = new Colonia(this.interfazMenu.interfazArchivos.ciudades.length, this.interfazMenu.interfazArchivos.ciudades, this.interfazMenu.interfazArchivos.caminos);
 
 //            // Crear un arreglo para almacenar las instancias de Hormiga
-            Hormiga[] hormigasArray = new Hormiga[cantidadDeHormigas];
-//      
-            // Crear las instancias de Hormiga y almacenarlas en el arreglo
-            for (int i = 0; i < cantidadDeHormigas; i++) {
-                hormigasArray[i] = new Hormiga(this.interfazMenu.coloniaAST.getMatriz(), Integer.parseInt(this.interfazMenu.coloniaAST.CiudadInicio.getNombreDeCiudad()), this.interfazMenu.interfazArchivos.ciudades.length);
-            }
+             Hormiga[] hormigasArray = new Hormiga[cantidadDeHormigas];
+    for (int i = 0; i < cantidadDeHormigas; i++) {
+        hormigasArray[i] = new Hormiga(this.interfazMenu.coloniaAST.getMatriz(), Integer.parseInt(this.interfazMenu.coloniaAST.CiudadInicio.getNombreDeCiudad()), numCiudades);
+    }
             for (Hormiga hormiga : hormigasArray) {
-                    System.out.println(hormiga.getCiudadActual());
+                    System.out.println(hormiga);
                 }
 
             for (int i = 0; i < ciclos; i++) {

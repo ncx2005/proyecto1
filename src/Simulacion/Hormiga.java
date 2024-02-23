@@ -27,18 +27,25 @@ public final class Hormiga {
      * Constructor de la clase Hormiga que recibe una Ciudad.
      * @param ciudadActual la ciudad actual
      * @param numeroDeCiudades para hacer el arreglo de las visitadas.
+     * @param numCiudades
      * @param matr el grafo matriz
      */
-    public Hormiga(GrafoMatriz matr,int ciudadActual, int numeroDeCiudades) {
-        this.setCiudadActual(ciudadActual);
-        this.ciudadesVisitadas = new boolean[numeroDeCiudades];
-        for(int i = 0;i<matr.getNumVerts();i++){
-            this.ciudadesVisitadas[i] = ciudadActual == i;     
-        }
-        Hormiga.matriz=matr;
-        this.setDistanciaRecorrida(0);
-    }
+//    public Hormiga(GrafoMatriz matr,int ciudadActual, int numeroDeCiudades) {
+//        this.setCiudadActual(ciudadActual);
+//        this.ciudadesVisitadas = new boolean[numeroDeCiudades];
+//        for(int i = 0;i<matr.getNumVerts();i++){
+//            this.ciudadesVisitadas[i] = ciudadActual == i;     
+//        }
+//        Hormiga.matriz=matr;
+//        this.setDistanciaRecorrida(0);
+//    }
 
+    public Hormiga(GrafoMatriz matr, int ciudadActual, float numCiudades) {
+    Hormiga.matriz = matr;
+    this.setCiudadActual(ciudadActual);
+    this.ciudadesVisitadas = new boolean[(int) numCiudades];
+    this.setDistanciaRecorrida(0);
+}
     /**
      * Obtiene la ciudad actual de la hormiga.
      * @return la ciudad actual

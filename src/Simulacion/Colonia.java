@@ -26,9 +26,7 @@ public class Colonia {
     public Ciudad CiudadFin;
     
     
-    public GrafoMatriz getMatriz() {
-        return matriz;
-    }
+    
     
     /**
      * Constructor de la clase Colonia.
@@ -49,7 +47,9 @@ public class Colonia {
         //this.CiudadFin = new Ciudad();
     }
     
-    
+    public GrafoMatriz getMatriz() {
+        return matriz;
+    }
     
     /**
      * Obtiene la cantidad de hormigas en la colonia.
