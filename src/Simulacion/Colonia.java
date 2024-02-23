@@ -152,6 +152,7 @@ public class Colonia {
                 return false;
             this.getMatriz().nuevoCamino(Integer.toString(NumeroDeNuevaCiudad),CiudadesAnexas[i], Double.parseDouble(DistanciaCiudades[i]));
         }
+        this.CiudadFin = this.getMatriz().getVerts()[this.getMatriz().getNumVerts()-1];
         return true;
     }
     

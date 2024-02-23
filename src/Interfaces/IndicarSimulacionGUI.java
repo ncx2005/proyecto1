@@ -15,9 +15,12 @@ import javax.swing.JOptionPane;
 public class IndicarSimulacionGUI extends javax.swing.JFrame {
 
     private MenuPrincipalGUI interfazMenu;
+    private ResultSimulacionGUI interfazResultado;
+    private String ResultadoAnexado="";
 
     /**
      * Creates new form IndicarSimulacionGUI
+     * @param interfaz
      */
     public IndicarSimulacionGUI(MenuPrincipalGUI interfaz) {
         initComponents();
@@ -26,6 +29,10 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.fin.setText("Ciudad Final número: " + interfaz.coloniaAST.CiudadFin.getNombreDeCiudad());
         this.inicio.setText("Ciudad Inicial número: " + interfaz.coloniaAST.CiudadInicio.getNombreDeCiudad());
+    }
+    
+    public String getResultadoAnexado(){
+        return this.ResultadoAnexado;
     }
 
     /**
@@ -245,12 +252,15 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
                 }
 
             for (int i = 0; i < ciclos; i++) {
-
+                this.ResultadoAnexado+= "CICLO No. "+i+":"+"\n\n";
+                int numhoriga =1;
                 for (Hormiga hormiga : hormigasArray) {
                     boolean resultado = true;
                     while (resultado) {
                         resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas, alpha, beta, tau);
                     }
+                    this.ResultadoAnexado+= "Hormiga No. "+numhoriga+" terminó en Ciudad: "+hormiga.getCiudadActual().getNombreDeCiudad()+"\n";
+                    numhoriga++;
                 }
                 this.interfazMenu.coloniaAST.actualizarPorEvaporacion(rho, numCiudades);
                 for (Hormiga hormiga : hormigasArray) {
@@ -258,6 +268,13 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
                 }
 
             }
+            
+            //CODIGO NELSON
+            this.interfazResultado = new ResultSimulacionGUI(this.interfazMenu,this,this.getResultadoAnexado());
+            this.setVisible(false);
+            this.interfazResultado.setVisible(true);
+            //FIN CODIGO NELSON, esto sirve para que al terminar de procesar la sim se abra la de resultados.
+            
         } catch (Exception e) {
            String mensajeError = "Input Incorrecto: " + e.getMessage();
             JOptionPane.showMessageDialog(null, mensajeError);
