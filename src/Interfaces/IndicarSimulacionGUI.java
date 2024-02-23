@@ -13,20 +13,20 @@ import javax.swing.JOptionPane;
  * @author nelsoncarrillo
  */
 public class IndicarSimulacionGUI extends javax.swing.JFrame {
+
     private MenuPrincipalGUI interfazMenu;
-    
+
     /**
      * Creates new form IndicarSimulacionGUI
      */
     public IndicarSimulacionGUI(MenuPrincipalGUI interfaz) {
         initComponents();
-        this.interfazMenu=interfaz;
+        this.interfazMenu = interfaz;
         this.setResizable(false);
         this.setLocationRelativeTo(null);
-        this.fin.setText("Ciudad Final número: "+interfaz.coloniaAST.CiudadFin.getNombreDeCiudad());
-        this.inicio.setText("Ciudad Inicial número: "+interfaz.coloniaAST.CiudadInicio.getNombreDeCiudad());
+        this.fin.setText("Ciudad Final número: " + interfaz.coloniaAST.CiudadFin.getNombreDeCiudad());
+        this.inicio.setText("Ciudad Inicial número: " + interfaz.coloniaAST.CiudadInicio.getNombreDeCiudad());
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -194,61 +194,75 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_betaValueActionPerformed
 
     private void rhoValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rhoValueActionPerformed
-         try {
-        double input = Double.parseDouble(rhoValue.getText());
-        if (input > 0 && input < 1) {
-            JOptionPane.showMessageDialog(null,"El número es válido");
-      
-        } else {
- 
-            JOptionPane.showMessageDialog(null,"El número no cumple la validación");
+        try {
+            double input = Double.parseDouble(rhoValue.getText());
+            if (input > 0 && input < 1) {
+                JOptionPane.showMessageDialog(null, "El número es válido");
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "El número no cumple la validación");
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El valor ingresado no es un número válido");
         }
-    } catch (NumberFormatException e) {
-         JOptionPane.showMessageDialog(null,"El valor ingresado no es un número válido");
-    }
     }//GEN-LAST:event_rhoValueActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-      // Obtener los valores de alpha, beta y la cantidad de hormigas desde los campos de texto
-try{
-double alpha = Double.parseDouble(alphaValue.getText());
-double beta = Double.parseDouble(betaValue.getText());
-double rho = Double.parseDouble(rhoValue.getText());
-double tau = 1/this.interfazMenu.interfazArchivos.ciudades.length;
-int cantidadDeHormigas = Integer.parseInt(numHormigas.getText());
-int ciclos = Integer.parseInt(numCiclos.getText());
-int numCiudades = this.interfazMenu.interfazArchivos.ciudades.length;
-this.interfazMenu.coloniaAST=new Colonia(this.interfazMenu.interfazArchivos.ciudades.length,this.interfazMenu.interfazArchivos.ciudades,this.interfazMenu.interfazArchivos.caminos);
-    
-// Crear un arreglo para almacenar las instancias de Hormiga
-Hormiga[] hormigasArray = new Hormiga[cantidadDeHormigas];
+        // Obtener los valores de alpha, beta y la cantidad de hormigas desde los campos de texto
+        try {
+            double alpha = Double.parseDouble(alphaValue.getText());
+            System.out.println("alpha: " + alpha);
 
-// Crear las instancias de Hormiga y almacenarlas en el arreglo
-for (int i = 0; i < cantidadDeHormigas; i++) {
-    hormigasArray[i] = new Hormiga(this.interfazMenu.coloniaAST.getMatriz(),this.interfazMenu.coloniaAST.CiudadInicio.getNumeroDeCiudad(),this.interfazMenu.interfazArchivos.ciudades.length);
-}
+            double beta = Double.parseDouble(betaValue.getText());
+            System.out.println("beta: " + beta);
 
-boolean todasFalse = false;  // Variable para verificar si todas las hormigas han devuelto false
+            double rho = Double.parseDouble(rhoValue.getText());
+            System.out.println("rho: " + rho);
 
-for (int i = 0; i < ciclos; i++) {
-  
+            int cantidadDeHormigas = Integer.parseInt(numHormigas.getText());
+            System.out.println("cantidadDeHormigas: " + cantidadDeHormigas);
 
-    while (!todasFalse) {
-        todasFalse = true;  // Establecer en true al comienzo del ciclo
+            int ciclos = Integer.parseInt(numCiclos.getText());
+            System.out.println("ciclos: " + ciclos);
 
+            float numCiudades = this.interfazMenu.interfazArchivos.ciudades.length;
+            System.out.println("numCiudades: " + numCiudades);
 
-            for (Hormiga hormiga : hormigasArray) {
-                boolean resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas, alpha, beta, tau);
-                if (resultado) {
-                    todasFalse = false;
-                }
+            double tau = 1 / numCiudades;
+            System.out.println("tau: " + tau);
+
+            this.interfazMenu.coloniaAST = new Colonia(this.interfazMenu.interfazArchivos.ciudades.length, this.interfazMenu.interfazArchivos.ciudades, this.interfazMenu.interfazArchivos.caminos);
+
+//            // Crear un arreglo para almacenar las instancias de Hormiga
+            Hormiga[] hormigasArray = new Hormiga[cantidadDeHormigas];
+//      
+            // Crear las instancias de Hormiga y almacenarlas en el arreglo
+            for (int i = 0; i < cantidadDeHormigas; i++) {
+                hormigasArray[i] = new Hormiga(this.interfazMenu.coloniaAST.getMatriz(), Integer.parseInt(this.interfazMenu.coloniaAST.CiudadInicio.getNombreDeCiudad()), this.interfazMenu.interfazArchivos.ciudades.length);
             }
-        } 
-    
-        this.interfazMenu.coloniaAST.actualizarPorEvaporacion(rho, numCiudades);
-    }} catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Input Incorrecto");
-    }
+            for (Hormiga hormiga : hormigasArray) {
+                    System.out.println(hormiga.getCiudadActual());
+                }
+
+            for (int i = 0; i < ciclos; i++) {
+
+                for (Hormiga hormiga : hormigasArray) {
+                    boolean resultado = true;
+                    while (resultado) {
+                        resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas, alpha, beta, tau);
+                    }
+                }
+                this.interfazMenu.coloniaAST.actualizarPorEvaporacion(rho, numCiudades);
+                for (Hormiga hormiga : hormigasArray) {
+                    System.out.println(hormiga.getDistanciaRecorrida());
+                }
+
+            }
+        } catch (Exception e) {
+           String mensajeError = "Input Incorrecto: " + e.getMessage();
+            JOptionPane.showMessageDialog(null, mensajeError);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void numCiclosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numCiclosActionPerformed

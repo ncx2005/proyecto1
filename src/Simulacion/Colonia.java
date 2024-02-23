@@ -92,7 +92,7 @@ public class Colonia {
      * @param rho es el factor de evaporacion
      * @param numCiudades
      */
-    public void actualizarPorEvaporacion(double rho, int numCiudades) {
+    public void actualizarPorEvaporacion(double rho, float numCiudades) {
         for (int r = 0; r < numCiudades; r++) {
             for (int s = 0; s < numCiudades; s++) {
                 if (r != s) { // Evitar actualizar feromonas en bucles de una ciudad a sí misma
