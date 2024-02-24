@@ -247,6 +247,7 @@ public class GestionArchivosGUI extends javax.swing.JFrame {
                     }
                 }else{
                     JOptionPane.showMessageDialog(null, "Archivo No Compatible");
+                
                 }
             }
         }

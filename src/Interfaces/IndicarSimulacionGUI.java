@@ -247,9 +247,6 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     for (int i = 0; i < cantidadDeHormigas; i++) {
         hormigasArray[i] = new Hormiga(this.interfazMenu.coloniaAST.getMatriz(), Integer.parseInt(this.interfazMenu.coloniaAST.CiudadInicio.getNombreDeCiudad()), numCiudades);
     }
-            for (Hormiga hormiga : hormigasArray) {
-                    System.out.println(hormiga);
-                }
 
             for (int i = 0; i < ciclos; i++) {
                 this.ResultadoAnexado+= "CICLO No. "+i+":"+"\n\n";
@@ -258,6 +255,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
                     boolean resultado = true;
                     while (resultado) {
                         resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas, alpha, beta, tau);
+                        System.out.println(hormiga.getCiudadActual().getNombreDeCiudad());
                     }
                     this.ResultadoAnexado+= "Hormiga No. "+numhoriga+" terminó en Ciudad: "+hormiga.getCiudadActual().getNombreDeCiudad()+"\n";
                     numhoriga++;
@@ -277,7 +275,8 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
             
         } catch (Exception e) {
            String mensajeError = "Input Incorrecto: " + e.getMessage();
-            JOptionPane.showMessageDialog(null, mensajeError);
+           JOptionPane.showMessageDialog(null, mensajeError);
+           e.printStackTrace(System.out);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

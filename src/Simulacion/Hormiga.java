@@ -27,18 +27,17 @@ public final class Hormiga {
      * Constructor de la clase Hormiga que recibe una Ciudad.
      * @param ciudadActual la ciudad actual
      * @param numeroDeCiudades para hacer el arreglo de las visitadas.
-     * @param numCiudades
      * @param matr el grafo matriz
      */
-//    public Hormiga(GrafoMatriz matr,int ciudadActual, int numeroDeCiudades) {
+//    public Hormiga(GrafoMatriz matr,int ciudadActual, float numeroDeCiudades) {
 //        this.setCiudadActual(ciudadActual);
-//        this.ciudadesVisitadas = new boolean[numeroDeCiudades];
+//        this.ciudadesVisitadas = new boolean[(int) numeroDeCiudades];
 //        for(int i = 0;i<matr.getNumVerts();i++){
 //            this.ciudadesVisitadas[i] = ciudadActual == i;     
 //        }
-//        Hormiga.matriz=matr;
+//        this.matriz=matr;
 //        this.setDistanciaRecorrida(0);
-//    }
+    
 
     public Hormiga(GrafoMatriz matr, int ciudadActual, float numCiudades) {
     Hormiga.matriz = matr;
@@ -46,6 +45,7 @@ public final class Hormiga {
     this.ciudadesVisitadas = new boolean[(int) numCiudades];
     this.setDistanciaRecorrida(0);
 }
+    
     /**
      * Obtiene la ciudad actual de la hormiga.
      * @return la ciudad actual
@@ -123,7 +123,7 @@ public final class Hormiga {
      * @param alfa puede ser modificado por usuario entonces se deja como param.
      * @param beta puede ser modificado por usuario entonces se deja como param.
      */
-    private double[] getSiguienteCiudad(double alfa,double beta) throws Exception {
+    public double[] getSiguienteCiudad(double alfa,double beta) throws Exception {
         
         int NumeroCiudadActual = this.getCiudadActual().getNumeroDeCiudad();
         int numCiudades = this.getMatriz().getNumVerts();
@@ -167,7 +167,7 @@ public final class Hormiga {
             rangos[0]=0;
             Nodo aux = Probabilidades.getCabeza();
             for(int j = 0;j<Probabilidades.getSize();j++){
-                rangos[j+1] = aux.getValor() + rangos[j];
+                rangos[j] = aux.getValor() + rangos[j];
                 aux=aux.getSiguiente();
             }
             
@@ -226,6 +226,7 @@ public final class Hormiga {
     public boolean irHaciaSiguienteCiudad(int CantidadDeHormigas, double alfa, double beta, double tau) throws Exception {
         //SE UTILIZA EL M&Eacute:TODO ANTERIOR;
         double[] SiguienteMovimiento = this.getSiguienteCiudad(alfa,beta); //tienes la distancia que es unica y la ciudad.
+        
         int m = CantidadDeHormigas;
         ListaCaminos listaposiblescaminos = this.getMatriz().getMatAd()[(int)SiguienteMovimiento[0]][this.getCiudadActual().getNumeroDeCiudad()];
         NodoCamino primero = listaposiblescaminos.getCabeza();
