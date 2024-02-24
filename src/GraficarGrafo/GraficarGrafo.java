@@ -1,7 +1,7 @@
 package GraficarGrafo;
 import Grafo.GrafoMatriz;
-import ListaSimple.ListaCaminos;
-import ListaSimple.NodoCamino;
+import EDD.ListaCaminos;
+import EDD.NodoCamino;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 

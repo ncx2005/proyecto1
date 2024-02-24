@@ -1,5 +1,4 @@
 package main;
-import Interfaces.IndicarSimulacionGUI;
 import Interfaces.MenuPrincipalGUI;
 
     /**

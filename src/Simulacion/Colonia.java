@@ -2,7 +2,7 @@ package Simulacion;
 import Grafo.Camino;
 import Grafo.Ciudad;
 import Grafo.GrafoMatriz;
-import ListaSimple.NodoCamino;
+import EDD.NodoCamino;
 import javax.swing.JOptionPane;
  
 

@@ -4,7 +4,7 @@
  * @author nelsoncarrillo
  * @version 13 feb 2024
  */
-package ListaSimple;
+package EDD;
 
 public class Nodo {
     private double valor;

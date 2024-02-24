@@ -1,5 +1,5 @@
 package Grafo;
-import ListaSimple.Lista;
+import EDD.Lista;
 
 /**
  * Clase que representa un camino entre dos ciudades.

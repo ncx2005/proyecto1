@@ -1,4 +1,4 @@
-package ListaSimple;
+package EDD;
 import Grafo.Camino;
 
 /**Clase que representa un nodo de una lista enlazada.

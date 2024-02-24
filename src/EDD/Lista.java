@@ -1,4 +1,4 @@
-package ListaSimple;
+package EDD;
 
 /**
  * Clase que representa una lista enlazada.

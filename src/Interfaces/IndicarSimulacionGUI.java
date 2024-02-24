@@ -112,7 +112,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
                 numHormigasActionPerformed(evt);
             }
         });
-        jPanel1.add(numHormigas, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, 90, -1));
+        jPanel1.add(numHormigas, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, 90, -1));
 
         dsasd.setForeground(new java.awt.Color(255, 255, 255));
         dsasd.setText("Número de Hormigas");
@@ -133,7 +133,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
                 numCiclosActionPerformed(evt);
             }
         });
-        jPanel1.add(numCiclos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 170, 90, -1));
+        jPanel1.add(numCiclos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 90, -1));
 
         sacdads.setForeground(new java.awt.Color(255, 255, 255));
         sacdads.setText("Número de Ciclos");
@@ -249,7 +249,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     }
 
             for (int i = 0; i < ciclos; i++) {
-                this.ResultadoAnexado+= "CICLO No. "+i+":"+"\n\n";
+                this.ResultadoAnexado+= "\nCICLO No. "+(i+1)+":"+"\n\n";
                 int numhoriga =1;
                 for (Hormiga hormiga : hormigasArray) {
                     boolean resultado = true;
@@ -266,6 +266,8 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
                 }
 
             }
+            
+            
             
             //CODIGO NELSON
             this.interfazResultado = new ResultSimulacionGUI(this.interfazMenu,this,this.getResultadoAnexado());

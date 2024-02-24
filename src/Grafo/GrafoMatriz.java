@@ -1,6 +1,6 @@
 package Grafo;
-import ListaSimple.ListaCaminos;
-import ListaSimple.NodoCamino;
+import EDD.ListaCaminos;
+import EDD.NodoCamino;
 import javax.swing.JOptionPane;
 
 /**Clase que determina la matriz de adyacencia de nuestro grafo.

@@ -7,7 +7,7 @@ package Interfaces;
 import Funciones.FunctionsTXT;
 import Funciones.LeerArchivo;
 import GraficarGrafo.GraficarGrafo;
-import ListaSimple.ListaCaminos;
+import EDD.ListaCaminos;
 import Simulacion.Colonia;
 import java.io.File;
 import java.io.FileInputStream;

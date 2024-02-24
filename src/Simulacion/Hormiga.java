@@ -2,10 +2,12 @@ package Simulacion;
 import Grafo.Camino;
 import Grafo.GrafoMatriz;
 import Grafo.Ciudad;        
-import ListaSimple.Lista;
-import ListaSimple.ListaCaminos;
-import ListaSimple.Nodo;
-import ListaSimple.NodoCamino;
+import EDD.Lista;
+import EDD.ListaCaminos;
+import EDD.ListaCiudades;
+import EDD.Nodo;
+import EDD.NodoCamino;
+import EDD.NodoCiudad;
 import java.util.Random;
         
 /**
@@ -22,6 +24,7 @@ public final class Hormiga {
     private Ciudad ciudadActual;
     private final boolean [] ciudadesVisitadas;
     private double distanciarecorrida = 0;
+    private ListaCiudades trayecto;
 
     /**
      * Constructor de la clase Hormiga que recibe una Ciudad.
@@ -44,6 +47,7 @@ public final class Hormiga {
     this.setCiudadActual(ciudadActual);
     this.ciudadesVisitadas = new boolean[(int) numCiudades];
     this.setDistanciaRecorrida(0);
+    this.trayecto=new ListaCiudades();
 }
     
     /**
@@ -196,6 +200,8 @@ public final class Hormiga {
                 auxiliar4.getValor().getHormigasQueHanPasado().InsertarNumeroAlFinal(this.getDistanciaRecorrida());
                 resultado[0]= auxiliar2.getCiudad();
                 resultado[1]=auxiliar4.getValor().getDistancia();
+                Ciudad copia = new Ciudad(Integer.toString(auxiliar2.getCiudad()));
+                this.trayecto.InsertarCiudad(copia);
                 return resultado;
                 }
                 verifier++;
@@ -258,4 +264,27 @@ public final class Hormiga {
             return true;
         }
     } 
+    
+    /**Devuelve formato del camino recorrido por la hormiga.
+    * Es decir las ciudades que ha visitado y el orden.
+    * @return <code>String</code> Formato.
+    * @author nelsoncarrillo
+    */
+    public String getPath(){
+        String path="";
+        if(!(this.trayecto.getSize()==0)){
+        NodoCiudad aux = this.trayecto.getCabeza();
+        while(aux!=null){
+            if(aux.equals(this.trayecto.getCola())){
+                    path+=aux.getValor().getNombreDeCiudad();
+            }else{
+            path+=aux.getValor().getNombreDeCiudad()+" --> ";
+            
+            }
+            aux=aux.getSiguiente();
+        }
+        }
+        return path;
+    }
+        
 }
