@@ -4,12 +4,11 @@
  */
 package Interfaces;
 
+import EDD.AuxList;
 import Grafo.Ciudad;
 import Grafo.GrafoMatriz;
 import Simulacion.Colonia;
 import Simulacion.Hormiga;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -236,7 +235,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     this.optimepathgral="";
     String optimepathciclo="";
  
-    List<Ciudad> ciudadesVisitadas = new ArrayList<>();
+    AuxList ciudadesVisitadas = new AuxList();
     if (this.interfazMenu.coloniaAST==null){
     this.interfazMenu.coloniaAST = new Colonia(this.interfazMenu.interfazArchivos.ciudades.length, this.interfazMenu.interfazArchivos.ciudades, this.interfazMenu.interfazArchivos.caminos);}
     GrafoMatriz auxiliarParaCiclos = this.interfazMenu.coloniaAST.getMatriz();
@@ -265,6 +264,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
             }
             StringBuilder ciudadesVisitadasStr = new StringBuilder();
             for (int k = 0; k < ciudadesVisitadas.size(); k++) {
+                
                 Ciudad ciudad = ciudadesVisitadas.get(k);
                 ciudadesVisitadasStr.append(ciudad.getNombreDeCiudad());
                 if (k < ciudadesVisitadas.size() - 1) {

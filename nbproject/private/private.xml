@@ -3,14 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/EDD/ListaCaminos.java</file>
             <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/EDD/ListaCiudades.java</file>
-            <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/Grafo/Ciudad.java</file>
             <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/Interfaces/ResultSimulacionGUI.java</file>
             <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/Grafo/Camino.java</file>
-            <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/Interfaces/IndicarSimulacionGUI.java</file>
             <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/Simulacion/Hormiga.java</file>
             <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/EDD/NodoCamino.java</file>
+            <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/Interfaces/GestionArchivosGUI.java</file>
+            <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/EDD/AuxList.java</file>
+            <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/EDD/AuxNodo.java</file>
+            <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/EDD/ListaCaminos.java</file>
+            <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/Grafo/Ciudad.java</file>
+            <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/Interfaces/IndicarSimulacionGUI.java</file>
+            <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/EDD/Lista.java</file>
             <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/Interfaces/MenuPrincipalGUI.java</file>
             <file>file:/C:/Users/tito_/Documents/GitHub/proyecto1/src/Simulacion/Colonia.java</file>
         </group>

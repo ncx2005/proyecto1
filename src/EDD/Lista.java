@@ -46,7 +46,43 @@ public class Lista {
         }
         size++;
     }
+    
+    /**
+     * Método para obtener el elemento en el índice especificado.
+     *
+     * @param indice el índice del elemento a obtener.
+     * @return el elemento en el índice especificado.
+     * @throws IndexOutOfBoundsException si el índice está fuera de rango (menor que 0 o mayor o igual al tamaño de la lista).
+     */
+    public double get(double indice) {
+        if (indice < 0 || indice >= size) {
+            throw new IndexOutOfBoundsException("Índice fuera de rango");
+        }
 
+        Nodo nodoActual = cabeza;
+        for (int i = 0; i < indice; i++) {
+            nodoActual = nodoActual.getSiguiente();
+        }
+        return nodoActual.getValor();
+    }
+    
+ /**
+     * Método para insertar un valor en la lista.
+     *
+     * @param valor el valor a insertar en la lista.
+     */
+    public void add(double valor) {
+        Nodo nuevoNodo = new Nodo(valor);
+        if (cabeza == null) {
+            cabeza = nuevoNodo;
+            cola = nuevoNodo;
+        } else {
+            cola.setSiguiente(nuevoNodo);
+            cola = nuevoNodo;
+        }
+        size++;
+    }
+    
     /**
      * M&eacute;todo para mostrar los valores de la lista.
      * @author tito_
