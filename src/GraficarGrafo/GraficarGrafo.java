@@ -13,13 +13,14 @@ import org.graphstream.graph.implementations.*;
  * @version 20 feb 2024
  */
 public class GraficarGrafo {
+    
     /**
     * Muestra un grafo utilizando GraphStream.Se resalta en color verde el camino mas optimo de todos los ciclos realizados.
     * 
     * @author nelsoncarrillo
     * @version 25feb 2024
     * @param matriz El grafo a ser visualizado.
-     * @param path con el optimepath;
+    * @param path con el optimepath;
     */
     public void mostrar(GrafoMatriz matriz, String path){
         System.setProperty("org.graphstream.ui", "swing");
@@ -39,7 +40,7 @@ public class GraficarGrafo {
             Node nuevo = graph.addNode(matriz.getVerts()[i].getNombreDeCiudad());
             nuevo.setAttribute("ui.label",matriz.getVerts()[i].getNombreDeCiudad());
         }
-        //"1, 7"
+        
         String[] optimepath = path.split(", ");
         ListaCaminos todos = matriz.getTodosLosCaminosExistentes();
         NodoCamino nuevo = todos.getCabeza();

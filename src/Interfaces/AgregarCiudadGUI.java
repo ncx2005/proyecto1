@@ -2,7 +2,8 @@ package Interfaces;
 import Grafo.Ciudad;
 import javax.swing.JOptionPane;
 
-/**
+/**Interfaz que describe la posibilidad de editar el grafo.
+ * Bien sea eliminando o agregando una ciudad a &eacute;l.
  *
  * @author nelsoncarrillo
  */
@@ -11,7 +12,7 @@ public class AgregarCiudadGUI extends javax.swing.JFrame {
     private MenuPrincipalGUI interfazMenu;
 
     /**
-     * Creates new form AgregarCiudad
+     * Creates new form AgregarCiudad.
      * @param interfaz
      */
     public AgregarCiudadGUI(MenuPrincipalGUI interfaz) {

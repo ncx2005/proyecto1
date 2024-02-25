@@ -1,13 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interfaces;
-
 import Simulacion.Colonia;
 import javax.swing.JOptionPane;
 
-/**
+/**Describe el inicio del proyecto.
+ * Primera interacci&oacute;n con el usuario.
  *
  * @author nelsoncarrillo
  */
@@ -26,6 +22,10 @@ public class MenuPrincipalGUI extends javax.swing.JFrame {
         this.setResizable(false);
     }
     
+    /**Setter de la colonia.
+     * 
+     * @param nueva colonia formada.
+     */
     public void setColonia(Colonia nueva){
         this.coloniaAST=nueva;
     }

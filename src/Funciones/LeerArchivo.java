@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
 public class LeerArchivo {
 
     /**
-     * Funcion para guardar el contenido del archivo seleccionado como string lo cual permite contruir el grafo inicial 
+     * Funcion para guardar el contenido del archivo seleccionado como string.
+     * lo cual permite contruir el grafo inicial.
      * @param url, ruta del archivo 
      * @return Contenido del archivo 
      */

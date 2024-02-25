@@ -1,12 +1,9 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interfaces;
 
 import GraficarGrafo.GraficarGrafo;
 
-/**
+/**Interfaz que muestra resultados de la simulaci&oacute;n.
+ * Permite abrir el graphstream.
  *
  * @author nelsoncarrillo
  */

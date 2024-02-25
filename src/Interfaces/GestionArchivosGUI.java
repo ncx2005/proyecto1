@@ -1,13 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interfaces;
-
 import Funciones.FunctionsTXT;
 import Funciones.LeerArchivo;
-import GraficarGrafo.GraficarGrafo;
-import EDD.ListaCaminos;
 import Simulacion.Colonia;
 import java.io.File;
 import java.io.FileInputStream;
@@ -17,7 +10,8 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
-/**
+/**Interfaz que describe la posibilidad de cargar y guardar archivos.
+ * estos de tipo <code>txt</code>
  *
  * @author nelsoncarrillo
  */

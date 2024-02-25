@@ -73,5 +73,4 @@ public class AuxList {
         return size;
     }
 
-    // Resto de los métodos de la clase AuxList...
 }

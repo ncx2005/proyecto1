@@ -3,8 +3,6 @@ import Grafo.Ciudad;
 import Grafo.GrafoMatriz;
 import EDD.NodoCamino;
 import javax.swing.JOptionPane;
- 
-
 
 /**
  * Clase que representa una colonia de hormigas que realiza una optimizaci&oacute;n.
@@ -20,21 +18,18 @@ public class Colonia {
     
     //Atrtibutos (LOS INDICA EL USUARIO).
     private int CantidadDeHormigas;
-    //private int CantidadDeCiclos;
     public Ciudad CiudadInicio;
     public Ciudad CiudadFin;
     
-    
-    
-    
     /**
      * Constructor de la clase Colonia.
+     * Se pasan par&aacute;metros le&iacute;dos de la interfaz.
      * 
      * @author nelsoncarrillo
      * @version 13 feb 2024
      * @param numVertices numero de ciudades.
-     * @param cities
-     * @param aristas
+     * @param cities desglose array del txt.
+     * @param aristas desglose array del txt.
      */
     public Colonia(int numVertices,String[] cities,String[] aristas) { //Agregar params..;
         this.CantidadDeHormigas = 0;
@@ -42,10 +37,13 @@ public class Colonia {
         this.CiudadInicio =this.matriz.getCiudad(Integer.parseInt(cities[0]));
         this.CiudadInicio=this.matriz.getCiudad(Integer.parseInt(cities[0]));
         this.CiudadFin=this.matriz.getCiudad(Integer.parseInt(cities[this.matriz.getNumVerts()-1]));
-        //this.CiudadInicio = new Ciudad();
-        //this.CiudadFin = new Ciudad();
     }
     
+    /**Devuelve la clase matriz sobre la que se simula.
+     * Para obtener bien sea caminos o ciudades.
+     * 
+     * @return <code>GrafoMatriz</code> del grafo en el programa.
+     */
     public GrafoMatriz getMatriz() {
         return matriz;
     }
@@ -73,23 +71,15 @@ public class Colonia {
     }
     
     /**
-     * Inicia la optimización. Este método contiene la lógica para inicializar
-     * la optimización, crear las hormigas, etc.
-     */
-    public void iniciarOptimizacion() {
-        // Lógica para inicializar la optimización, crear las hormigas, etc.
-    }
-    
-    /**
-     *Actualiza la cantidad de feromonas de todos los caminos entre las ciudades.
+     * Actualiza la cantidad de feromonas de todos los caminos entre las ciudades.
      * Esto mediante la ecuaci&oacute;n planteada de actualizaci&oacute;n
      * por evaporaci&oacute;n una vez que todas las hormigas han culminado 
-     * su viaje 
+     * su viaje.
      * 
      * @author tito_
      * @version 15 feb 2024
-     * @param rho es el factor de evaporacion
-     * @param numCiudades
+     * @param rho es el factor de evaporaci&oacute;n.
+     * @param numCiudades en el grafo.
      */
     public void actualizarPorEvaporacion(double rho, float numCiudades) {
         for (int r = 0; r < numCiudades; r++) {
@@ -155,8 +145,12 @@ public class Colonia {
         return true;
     }
     
-   public int getNumVerts() {
-    return this.matriz.getNumVerts();
-} 
-    
+    /**Devuelve la cantidad de ciudades.
+     * Guardadas en el grafo.
+     * 
+     * @return <code>int</code> de la cantidad de cities.
+     */
+    public int getNumVerts() {
+     return this.matriz.getNumVerts();
+    } 
 }

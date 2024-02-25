@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package Interfaces;
-
 import EDD.AuxList;
 import Grafo.Ciudad;
 import Grafo.GrafoMatriz;
@@ -11,7 +6,8 @@ import Simulacion.Colonia;
 import Simulacion.Hormiga;
 import javax.swing.JOptionPane;
 
-/**
+/**Interfaz en el que se indican los valores iniciales para los ciclos.
+ * Estos afectan la probabilidad de elegir camino.
  *
  * @author nelsoncarrillo
  */
@@ -35,11 +31,21 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
         this.inicio.setText("Ciudad Inicial número: " + interfaz.coloniaAST.CiudadInicio.getNombreDeCiudad());
     }
 
+    /**
+    * Devuelve el resultado anexado.
+    *
+    * @return el resultado anexado
+    */
     public String getResultadoAnexado() {
         return this.ResultadoAnexado;
     }
-    
-    public String getOptimePath(){
+
+    /**
+     * Devuelve la ruta de optime.
+     *
+     * @return la ruta de optime
+     */
+    public String getOptimePath() {
         return this.optimepathgral;
     }   
 
@@ -107,7 +113,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
                 rhoValueActionPerformed(evt);
             }
         });
-        jPanel1.add(rhoValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, -1));
+        jPanel1.add(rhoValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, 80, -1));
 
         caasacs.setForeground(new java.awt.Color(255, 255, 255));
         caasacs.setText("Valor ρ");
@@ -126,7 +132,11 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
         dsasd.setText("Número de Hormigas");
         jPanel1.add(dsasd, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, -1, -1));
 
+        jButton1.setBackground(new java.awt.Color(204, 51, 0));
+        jButton1.setFont(new java.awt.Font("Malayalam MN", 1, 13)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("INICIAR SIMULACIÓN");
+        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
