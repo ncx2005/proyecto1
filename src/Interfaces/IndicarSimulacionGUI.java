@@ -230,7 +230,8 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     float numCiudades = this.interfazMenu.interfazArchivos.ciudades.length;
     double tau = 1 / numCiudades;
     List<Ciudad> ciudadesVisitadas = new ArrayList<>();
-    this.interfazMenu.coloniaAST = new Colonia(this.interfazMenu.interfazArchivos.ciudades.length, this.interfazMenu.interfazArchivos.ciudades, this.interfazMenu.interfazArchivos.caminos);
+    if (this.interfazMenu.coloniaAST==null){
+    this.interfazMenu.coloniaAST = new Colonia(this.interfazMenu.interfazArchivos.ciudades.length, this.interfazMenu.interfazArchivos.ciudades, this.interfazMenu.interfazArchivos.caminos);}
     GrafoMatriz auxiliarParaCiclos = this.interfazMenu.coloniaAST.getMatriz();
 
     double menorDistanciaGeneral = Double.MAX_VALUE;
@@ -250,9 +251,9 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
         for (Hormiga hormiga : hormigasArray) {
             boolean resultado = true;
             while (resultado && (!hormiga.getCiudadActual().getNombreDeCiudad().equals(this.interfazMenu.coloniaAST.CiudadFin.getNombreDeCiudad()))) {
-                resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas, alpha, beta, tau);
-                ciudadesVisitadas.add(hormiga.getCiudadActual());
-            }
+                resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas, alpha, beta);
+                
+            }ciudadesVisitadas.add(hormiga.getCiudadActual());
             StringBuilder ciudadesVisitadasStr = new StringBuilder();
             for (int k = 0; k < ciudadesVisitadas.size(); k++) {
                 Ciudad ciudad = ciudadesVisitadas.get(k);

@@ -197,40 +197,34 @@ public final class Hormiga {
      *         <code>false</code> si ya han sido visitadas todas las ciudades anexas y no se mueve.
      * @throws java.lang.Exception en caso que se mueva a un v&eacute;rtice que no existe.
      */
-    public boolean irHaciaSiguienteCiudad(int CantidadDeHormigas, double alfa, double beta, double tau) throws Exception {
-        //SE UTILIZA EL M&Eacute:TODO ANTERIOR;
-        Camino nextCamino = this.calcularProbabilidad(alfa, beta);
-        int m = CantidadDeHormigas;
-        var Q = 1;
-        double SumaPorIncremento=tau;
-        if(nextCamino != null){ //Ya que no se habr&iacute;a movido de ciudad la hormiga.
-        /*
-        //SE HACE LA ACTUALIZACI&OACUTEN POR INCREMENTO (F&OACUTE;RMULA).
-        if(nextCamino.getHormigasQueHanPasado().getSize()>0){ //Si la sumatoria da un valor, sino pues da 0.
-        Nodo aux = nextCamino.getHormigasQueHanPasado().getCabeza();
-        for(int k=0;k<m && aux!=null;k++){
-        SumaPorIncremento += (Q/aux.getValor());
-        aux=aux.getSiguiente();
-        }
-        }
-        //Tao <- Tao + Sumatoria de recorridos de las hormigas que han pasado por el camino o arista.
-        CaminoTransitado.setFeromonas(CaminoTransitado.getFeromonas() + SumaPorIncremento);
-        //Se confirma el cambio de ciudad ya con la cantidad de feromonas actualizada del camino que acaba de recorrer.*/
-        if(nextCamino.getCiudadDestino().getNombreDeCiudad().equals(this.ciudadActual.getNombreDeCiudad())){
+   public boolean irHaciaSiguienteCiudad(int CantidadDeHormigas, double alfa, double beta) throws Exception {
+    //SE UTILIZA EL MÉTODO ANTERIOR;
+    Camino nextCamino = this.calcularProbabilidad(alfa, beta);
+    int m = CantidadDeHormigas;
+    var Q = 1;
+    
+    if (nextCamino != null) { //Ya que no se habría movido de ciudad la hormiga.
+        
+        
+        if (nextCamino.getCiudadDestino().getNombreDeCiudad().equals(this.ciudadActual.getNombreDeCiudad())) {
             this.setCiudadActual(nextCamino.getCiudadOrigen().getNombreDeCiudad());
             this.caminos.insertarCaminoAlFinal(nextCamino);
-            this.distanciarecorrida+=nextCamino.getDistancia();
-        }else{
+            this.distanciarecorrida += nextCamino.getDistancia();
+        } else {
             this.setCiudadActual(nextCamino.getCiudadDestino().getNombreDeCiudad());
             this.caminos.insertarCaminoAlFinal(nextCamino);
-            this.distanciarecorrida+=nextCamino.getDistancia();
+            this.distanciarecorrida += nextCamino.getDistancia();
         }
+        double tau = nextCamino.getFeromonas();
+        double SumaPorIncremento = tau + (Q / this.distanciarecorrida);
+        
+        // Tao <- Tao + Sumatoria de recorridos de las hormigas que han pasado por el camino o arista.
+        nextCamino.setFeromonas(SumaPorIncremento);
         return true;
-        }else{
+    } else {
         return false;
-        }
-    } 
-    
+    }
+}
     
     
     /**Devuelve formato del camino recorrido por la hormiga.
