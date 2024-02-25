@@ -11,13 +11,14 @@ import Simulacion.Hormiga;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import EDD.ListaCaminos;
 
 /**
  *
  * @author nelsoncarrillo
  */
 public class IndicarSimulacionGUI extends javax.swing.JFrame {
-
+ 
     private MenuPrincipalGUI interfazMenu;
     private ResultSimulacionGUI interfazResultado;
     private String ResultadoAnexado = "";
@@ -228,7 +229,8 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     int cantidadDeHormigas = Integer.parseInt(numHormigas.getText());
     int ciclos = Integer.parseInt(numCiclos.getText());
     float numCiudades = this.interfazMenu.interfazArchivos.ciudades.length;
-    double tau = 1 / numCiudades;
+    Hormiga ultimaHormiga = null;
+ 
     List<Ciudad> ciudadesVisitadas = new ArrayList<>();
     if (this.interfazMenu.coloniaAST==null){
     this.interfazMenu.coloniaAST = new Colonia(this.interfazMenu.interfazArchivos.ciudades.length, this.interfazMenu.interfazArchivos.ciudades, this.interfazMenu.interfazArchivos.caminos);}
@@ -250,10 +252,12 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
         int hormigaMenorDistanciaEnCiclo = -1;
         for (Hormiga hormiga : hormigasArray) {
             boolean resultado = true;
+             ultimaHormiga = hormigasArray[hormigasArray.length - 1];
             while (resultado && (!hormiga.getCiudadActual().getNombreDeCiudad().equals(this.interfazMenu.coloniaAST.CiudadFin.getNombreDeCiudad()))) {
                 resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas, alpha, beta);
-                
-            }ciudadesVisitadas.add(hormiga.getCiudadActual());
+               ciudadesVisitadas.add(hormiga.getCiudadActual());
+               
+            }
             StringBuilder ciudadesVisitadasStr = new StringBuilder();
             for (int k = 0; k < ciudadesVisitadas.size(); k++) {
                 Ciudad ciudad = ciudadesVisitadas.get(k);
@@ -281,6 +285,11 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
             hormigaMenorDistancia = hormigaMenorDistanciaEnCiclo;
         }
     }
+    if (ultimaHormiga != null) {
+    ultimaHormiga.evap(rho);
+}
+    
+    
 
     this.ResultadoAnexado += "\nLa menor distancia general fue " + menorDistanciaGeneral + " y fue obtenida en el ciclo No. " + cicloMenorDistancia + " por la hormiga No. " + hormigaMenorDistancia + "\n";
 

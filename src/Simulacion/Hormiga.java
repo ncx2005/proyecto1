@@ -52,6 +52,7 @@ public final class Hormiga {
     this.caminos=new ListaCaminos();
 }
     
+    
     /**
      * Obtiene la ciudad actual de la hormiga.
      * @return la ciudad actual
@@ -87,7 +88,18 @@ public final class Hormiga {
     public GrafoMatriz getMatriz() {
         return matriz;
     }
+    public void multiplicarFeromona(double rho) {
+    NodoCamino actual = caminos.getCabeza();
     
+    while (actual != null) {    
+        Camino camino = actual.getValor();
+        System.out.println(camino.getFeromonas());
+        double nuevaFeromona = camino.getFeromonas() * (1-rho);
+        camino.setFeromonas(nuevaFeromona);
+        System.out.println(camino.getFeromonas());
+        actual = actual.getSiguiente();
+    }
+}
     /**
      * Obtiene la total distancia recorrida.
      * @return distancia.
@@ -220,6 +232,7 @@ public final class Hormiga {
         
         // Tao <- Tao + Sumatoria de recorridos de las hormigas que han pasado por el camino o arista.
         nextCamino.setFeromonas(SumaPorIncremento);
+        
         return true;
     } else {
         return false;
@@ -227,11 +240,13 @@ public final class Hormiga {
 }
     
     
+
     /**Devuelve formato del camino recorrido por la hormiga.
     * Es decir las ciudades que ha visitado y el orden.
     * @return <code>String</code> Formato.
     * @author nelsoncarrillo
     */
+   
     public String getPath(){
         String path="";
         if(!(this.trayecto.getSize()==0)){
