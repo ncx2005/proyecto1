@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="proyecto1">
+  <ClassDiagramComponents>
+    <Class name="AuxList" package="EDD" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="cabeza" type="AuxNodo" visibility="private"/>
+        <Field name="cola" type="AuxNodo" visibility="private"/>
+        <Field name="size" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="add" returnType="void" visibility="public">
+          <Argument type="Ciudad" name="ciudad"/>
+        </Method>
+        <Method name="clear" returnType="void" visibility="public"/>
+        <Method name="get" returnType="Ciudad" visibility="public">
+          <Argument type="int" name="indice"/>
+        </Method>
+        <Method name="size" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AuxNodo" package="EDD" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="ciudad" type="Ciudad" visibility="private"/>
+        <Field name="siguiente" type="AuxNodo" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Ciudad" name="ciudad"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCiudad" returnType="Ciudad" visibility="public"/>
+        <Method name="setCiudad" returnType="void" visibility="public">
+          <Argument type="Ciudad" name="ciudad"/>
+        </Method>
+        <Method name="getSiguiente" returnType="AuxNodo" visibility="public"/>
+        <Method name="setSiguiente" returnType="void" visibility="public">
+          <Argument type="AuxNodo" name="siguiente"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Lista" package="EDD" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="cabeza" type="Nodo" visibility="private"/>
+        <Field name="cola" type="Nodo" visibility="private"/>
+        <Field name="size" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="InsertarReferenciaACamino" returnType="void" visibility="public">
+          <Argument type="double" name="valor"/>
+          <Argument type="int" name="sig"/>
+          <Argument type="double" name="dist"/>
+        </Method>
+        <Method name="InsertarNumeroAlFinal" returnType="void" visibility="public">
+          <Argument type="double" name="valor"/>
+        </Method>
+        <Method name="get" returnType="double" visibility="public">
+          <Argument type="double" name="indice"/>
+        </Method>
+        <Method name="add" returnType="void" visibility="public">
+          <Argument type="double" name="valor"/>
+        </Method>
+        <Method name="mostrar" returnType="void" visibility="public"/>
+        <Method name="getCabeza" returnType="Nodo" visibility="public"/>
+        <Method name="getSize" returnType="int" visibility="public"/>
+        <Method name="getCola" returnType="Nodo" visibility="public"/>
+        <Method name="vaciar" returnType="void" visibility="public"/>
+        <Method name="sumarNumeros" returnType="double" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="ListaCaminos" package="EDD" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="cabeza" type="NodoCamino" visibility="private"/>
+        <Field name="cola" type="NodoCamino" visibility="private"/>
+        <Field name="size" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="insertarCaminoAlFinal" returnType="void" visibility="public">
+          <Argument type="Camino" name="valor"/>
+        </Method>
+        <Method name="getCabeza" returnType="NodoCamino" visibility="public"/>
+        <Method name="getSize" returnType="int" visibility="public"/>
+        <Method name="getCola" returnType="NodoCamino" visibility="public"/>
+        <Method name="vaciar" returnType="void" visibility="public"/>
+        <Method name="esVacia" returnType="boolean" visibility="public"/>
+        <Method name="obtenerListaSinRepetidos" returnType="ListaCaminos" visibility="public"/>
+        <Method name="contains" returnType="boolean" visibility="public">
+          <Argument type="Camino" name="valor"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ListaCiudades" package="EDD" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="cabeza" type="NodoCiudad" visibility="private"/>
+        <Field name="cola" type="NodoCiudad" visibility="private"/>
+        <Field name="size" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="InsertarCiudad" returnType="void" visibility="public">
+          <Argument type="Ciudad" name="valor"/>
+        </Method>
+        <Method name="getCabeza" returnType="NodoCiudad" visibility="public"/>
+        <Method name="getSize" returnType="int" visibility="public"/>
+        <Method name="getCola" returnType="NodoCiudad" visibility="public"/>
+        <Method name="vaciar" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Nodo" package="EDD" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields>
+        <Field name="valor" type="double" visibility="private"/>
+        <Field name="VoyHaciaCiudad" type="int" visibility="private"/>
+        <Field name="siguiente" type="Nodo" visibility="private"/>
+        <Field name="distancia" type="double" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="double" name="valor"/>
+        </Constructor>
+        <Constructor visibility="public">
+          <Argument type="double" name="valor"/>
+          <Argument type="int" name="sig"/>
+          <Argument type="double" name="dist"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getValor" returnType="double" visibility="public"/>
+        <Method name="setValor" returnType="void" visibility="public">
+          <Argument type="double" name="valor"/>
+        </Method>
+        <Method name="getSiguiente" returnType="Nodo" visibility="public"/>
+        <Method name="setSiguiente" returnType="void" visibility="public">
+          <Argument type="Nodo" name="siguiente"/>
+        </Method>
+        <Method name="getCiudad" returnType="int" visibility="public"/>
+        <Method name="getDistancia" returnType="double" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="NodoCamino" package="EDD" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Fields>
+        <Field name="valor" type="Camino" visibility="private"/>
+        <Field name="siguiente" type="NodoCamino" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Camino" name="valor"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getValor" returnType="Camino" visibility="public"/>
+        <Method name="setValor" returnType="void" visibility="public">
+          <Argument type="Camino" name="valor"/>
+        </Method>
+        <Method name="getSiguiente" returnType="NodoCamino" visibility="public"/>
+        <Method name="setSiguiente" returnType="void" visibility="public">
+          <Argument type="NodoCamino" name="siguiente"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="NodoCiudad" package="EDD" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="valor" type="Ciudad" visibility="private"/>
+        <Field name="siguiente" type="NodoCiudad" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Ciudad" name="valor"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getValor" returnType="Ciudad" visibility="public"/>
+        <Method name="setValor" returnType="void" visibility="public">
+          <Argument type="Ciudad" name="valor"/>
+        </Method>
+        <Method name="getSiguiente" returnType="NodoCiudad" visibility="public"/>
+        <Method name="setSiguiente" returnType="void" visibility="public">
+          <Argument type="NodoCiudad" name="siguiente"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="FunctionsTXT" package="Funciones" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields>
+        <Field name="archivo" type="File" visibility="package"/>
+        <Field name="entrada" type="FileInputStream" visibility="package"/>
+        <Field name="salida" type="FileOutputStream" visibility="package"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="AbrirArchivo" returnType="String" visibility="public">
+          <Argument type="File" name="archivo"/>
+        </Method>
+        <Method name="ValidarTxt" returnType="boolean" visibility="public">
+          <Argument type="String" name="contenido"/>
+        </Method>
+        <Method name="getCiudades" returnType="String[]" visibility="public">
+          <Argument type="String" name="contenido"/>
+        </Method>
+        <Method name="getCaminos" returnType="String[]" visibility="public">
+          <Argument type="String" name="contenido"/>
+        </Method>
+        <Method name="guardarArchivo" returnType="boolean" visibility="public">
+          <Argument type="String" name="contenido"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="LeerArchivo" package="Funciones" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="leertxt" returnType="String" visibility="public">
+          <Argument type="String" name="url"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GraficarGrafo" package="GraficarGrafo" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="mostrar" returnType="void" visibility="public">
+          <Argument type="GrafoMatriz" name="matriz"/>
+          <Argument type="String" name="path"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Camino" package="Grafo" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields>
+        <Field name="ciudadOrigen" type="Ciudad" visibility="private"/>
+        <Field name="ciudadDestino" type="Ciudad" visibility="private"/>
+        <Field name="distancia" type="double" visibility="private"/>
+        <Field name="feromonas" type="double" visibility="private"/>
+        <Field name="DistanciasDeHormigasQueHanPasado" type="Lista" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Ciudad" name="ciudadOrigen"/>
+          <Argument type="Ciudad" name="ciudadDestino"/>
+          <Argument type="double" name="distancia"/>
+          <Argument type="int" name="numeroDeCiudades"/>
+        </Constructor>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="getCiudadOrigen" returnType="Ciudad" visibility="public"/>
+        <Method name="setCiudadOrigen" returnType="void" visibility="public">
+          <Argument type="Ciudad" name="ciudadOrigen"/>
+        </Method>
+        <Method name="getCiudadDestino" returnType="Ciudad" visibility="public"/>
+        <Method name="setCiudadDestino" returnType="void" visibility="public">
+          <Argument type="Ciudad" name="ciudadDestino"/>
+        </Method>
+        <Method name="getDistancia" returnType="double" visibility="public"/>
+        <Method name="getFeromonas" returnType="double" visibility="public"/>
+        <Method name="setFeromonas" returnType="void" visibility="public">
+          <Argument type="double" name="feromona"/>
+        </Method>
+        <Method name="setDistancia" returnType="void" visibility="public">
+          <Argument type="double" name="distancia"/>
+        </Method>
+        <Method name="getHormigasQueHanPasado" returnType="Lista" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Ciudad" package="Grafo" visibility="public" xPosition="1220.0" yPosition="420.0">
+      <Fields>
+        <Field name="nombre" type="String" visibility="private" isFinal="true"/>
+        <Field name="numVertice" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="x"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getNombreDeCiudad" returnType="String" visibility="public"/>
+        <Method name="getNumeroDeCiudad" returnType="int" visibility="public"/>
+        <Method name="equals" returnType="boolean" visibility="public">
+          <Argument type="Ciudad" name="n"/>
+        </Method>
+        <Method name="asigVert" returnType="void" visibility="public">
+          <Argument type="int" name="n"/>
+        </Method>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="GrafoMatriz" package="Grafo" visibility="public" xPosition="1520.0" yPosition="420.0">
+      <Fields>
+        <Field name="numVerts" type="int" visibility="private"/>
+        <Field name="verts" type="Ciudad[]" visibility="private"/>
+        <Field name="matAd" type="ListaCaminos[][]" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+        <Constructor visibility="public">
+          <Argument type="int" name="numeroDeVertices"/>
+          <Argument type="String[]" name="ciudades"/>
+          <Argument type="String[]" name="caminos"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="nuevoVertice" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreDevertice"/>
+        </Method>
+        <Method name="borrarVertice" returnType="boolean" visibility="public">
+          <Argument type="String" name="nombreDevertice"/>
+        </Method>
+        <Method name="numVertice" returnType="int" visibility="public">
+          <Argument type="String" name="vs"/>
+        </Method>
+        <Method name="nuevoCamino" returnType="void" visibility="public">
+          <Argument type="String" name="a"/>
+          <Argument type="String" name="b"/>
+          <Argument type="double" name="distancia"/>
+        </Method>
+        <Method name="nuevoCamino" returnType="void" visibility="public">
+          <Argument type="int" name="va"/>
+          <Argument type="int" name="vb"/>
+          <Argument type="int" name="distancia"/>
+          <Argument type="int" name="feromonas"/>
+        </Method>
+        <Method name="adyacente" returnType="boolean" visibility="public">
+          <Argument type="String" name="a"/>
+          <Argument type="String" name="b"/>
+        </Method>
+        <Method name="adyacente" returnType="boolean" visibility="public">
+          <Argument type="int" name="va"/>
+          <Argument type="int" name="vb"/>
+        </Method>
+        <Method name="getNumVerts" returnType="int" visibility="public"/>
+        <Method name="getMatAd" returnType="ListaCaminos[][]" visibility="public"/>
+        <Method name="getVerts" returnType="Ciudad[]" visibility="public"/>
+        <Method name="setMatAd" returnType="void" visibility="public">
+          <Argument type="ListaCaminos[][]" name="nueva"/>
+        </Method>
+        <Method name="getCiudad" returnType="Ciudad" visibility="public">
+          <Argument type="int" name="n"/>
+        </Method>
+        <Method name="esVacia" returnType="boolean" visibility="public"/>
+        <Method name="getTodosLosCaminosExistentes" returnType="ListaCaminos" visibility="public"/>
+        <Method name="toString" returnType="String" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="AgregarCiudadGUI" package="Interfaces" visibility="public" xPosition="1820.0" yPosition="420.0">
+      <Fields>
+        <Field name="interfazMenu" type="MenuPrincipalGUI" visibility="private"/>
+        <Field name="AEliminar" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="AgregarCiudad" type="javax.swing.JButton" visibility="private"/>
+        <Field name="AgregarString" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Atras" type="javax.swing.JButton" visibility="private"/>
+        <Field name="CiudadesAnexas1" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="DistanciasHaciaAnexas" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Eliminar" type="javax.swing.JButton" visibility="private"/>
+        <Field name="Exit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="background" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel10" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel11" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel7" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel8" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel9" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MenuPrincipalGUI" name="interfaz"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="ExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="AtrasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="AgregarCiudadActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="CiudadesAnexas1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="EliminarActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="AgregarStringActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GestionArchivosGUI" package="Interfaces" visibility="public" xPosition="2120.0" yPosition="420.0">
+      <Fields>
+        <Field name="seleccionar" type="JFileChooser" visibility="package"/>
+        <Field name="archivo" type="File" visibility="package"/>
+        <Field name="entrada" type="FileInputStream" visibility="package"/>
+        <Field name="salida" type="FileOutputStream" visibility="package"/>
+        <Field name="guardar" type="boolean" visibility="private"/>
+        <Field name="ciudades" type="String[]" visibility="package"/>
+        <Field name="caminos" type="String[]" visibility="package"/>
+        <Field name="contenidoFile" type="String" visibility="private"/>
+        <Field name="interfazMenu" type="MenuPrincipalGUI" visibility="private"/>
+        <Field name="f" type="FunctionsTXT" visibility="package"/>
+        <Field name="content" type="LeerArchivo" visibility="package"/>
+        <Field name="dtf" type="DateTimeFormatter" visibility="package"/>
+        <Field name="now" type="LocalDateTime" visibility="package"/>
+        <Field name="Abrir" type="javax.swing.JButton" visibility="private"/>
+        <Field name="Atras" type="javax.swing.JButton" visibility="private"/>
+        <Field name="Exit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="GuardarArchivo" type="javax.swing.JButton" visibility="private"/>
+        <Field name="SavedMessage" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="Wallpaper" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+        <Field name="text" type="javax.swing.JTextArea" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MenuPrincipalGUI" name="interfaz"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="isGuardar" returnType="boolean" visibility="public"/>
+        <Method name="getCiudades" returnType="String[]" visibility="public"/>
+        <Method name="getCaminos" returnType="String[]" visibility="public"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="AbrirActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="ExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="GuardarArchivoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="SavedMessageActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="AtrasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="IndicarSimulacionGUI" package="Interfaces" visibility="public" xPosition="20.0" yPosition="820.0">
+      <Fields>
+        <Field name="interfazMenu" type="MenuPrincipalGUI" visibility="private"/>
+        <Field name="interfazResultado" type="ResultSimulacionGUI" visibility="private"/>
+        <Field name="ResultadoAnexado" type="String" visibility="private"/>
+        <Field name="optimepathgral" type="String" visibility="private"/>
+        <Field name="Atras" type="javax.swing.JButton" visibility="private"/>
+        <Field name="alphaValue" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="assadsa" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="betaValue" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="caasacs" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="dsasd" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="fin" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="inicio" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jButton1" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jButton2" type="javax.swing.JButton" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="numCiclos" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="numHormigas" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="rhoValue" type="javax.swing.JTextField" visibility="private"/>
+        <Field name="sacdads" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="sacsac" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="softBevelBorder1" type="javax.swing.border.SoftBevelBorder" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MenuPrincipalGUI" name="interfaz"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getResultadoAnexado" returnType="String" visibility="public"/>
+        <Method name="getOptimePath" returnType="String" visibility="public"/>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="numHormigasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="alphaValueActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="betaValueActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="rhoValueActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton1ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="numCiclosActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="AtrasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="jButton2ActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="MenuPrincipalGUI" package="Interfaces" visibility="public" xPosition="320.0" yPosition="820.0">
+      <Fields>
+        <Field name="interfazArchivos" type="GestionArchivosGUI" visibility="package"/>
+        <Field name="interfazGrafos" type="AgregarCiudadGUI" visibility="private"/>
+        <Field name="coloniaAST" type="Colonia" visibility="package"/>
+        <Field name="AbrirSimulacion" type="javax.swing.JButton" visibility="private"/>
+        <Field name="Exit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="OpenArchivos" type="javax.swing.JButton" visibility="private"/>
+        <Field name="OpenGrafos" type="javax.swing.JButton" visibility="private"/>
+        <Field name="background" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel6" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="setColonia" returnType="void" visibility="public">
+          <Argument type="Colonia" name="nueva"/>
+        </Method>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="ExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="OpenArchivosActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="OpenGrafosActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="AbrirSimulacionActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ResultSimulacionGUI" package="Interfaces" visibility="public" xPosition="620.0" yPosition="820.0">
+      <Fields>
+        <Field name="interfazMenu" type="MenuPrincipalGUI" visibility="private"/>
+        <Field name="indica" type="IndicarSimulacionGUI" visibility="private"/>
+        <Field name="Atras" type="javax.swing.JButton" visibility="private"/>
+        <Field name="Exit" type="javax.swing.JButton" visibility="private"/>
+        <Field name="OpenGrafo" type="javax.swing.JButton" visibility="private"/>
+        <Field name="Results" type="javax.swing.JTextArea" visibility="private"/>
+        <Field name="jLabel1" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel2" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel3" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel4" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jLabel5" type="javax.swing.JLabel" visibility="private"/>
+        <Field name="jPanel1" type="javax.swing.JPanel" visibility="private"/>
+        <Field name="jScrollPane1" type="javax.swing.JScrollPane" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="MenuPrincipalGUI" name="interfaz"/>
+          <Argument type="IndicarSimulacionGUI" name="indicaa"/>
+          <Argument type="String" name="results"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="initComponents" returnType="// &lt;editor-fold defaultstate=&quot;collapsed&quot; desc=&quot;Generated Code&quot;&gt;//GEN-BEGIN:initComponents
+void" visibility="private"/>
+        <Method name="ExitActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="AtrasActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="OpenGrafoActionPerformed" returnType="void" visibility="private">
+          <Argument type="java.awt.event.ActionEvent" name="evt"/>
+        </Method>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="main" package="main" visibility="public" xPosition="920.0" yPosition="820.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Colonia" package="Simulacion" visibility="public" xPosition="1220.0" yPosition="820.0">
+      <Fields>
+        <Field name="matriz" type="GrafoMatriz" visibility="private"/>
+        <Field name="CantidadDeHormigas" type="int" visibility="private"/>
+        <Field name="CiudadInicio" type="Ciudad" visibility="public"/>
+        <Field name="CiudadFin" type="Ciudad" visibility="public"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="numVertices"/>
+          <Argument type="String[]" name="cities"/>
+          <Argument type="String[]" name="aristas"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getMatriz" returnType="GrafoMatriz" visibility="public"/>
+        <Method name="getCantidadHormigas" returnType="int" visibility="public"/>
+        <Method name="setCantidadHormigas" returnType="void" visibility="public">
+          <Argument type="int" name="cantidadHormigas"/>
+        </Method>
+        <Method name="actualizarPorEvaporacion" returnType="void" visibility="public">
+          <Argument type="double" name="rho"/>
+          <Argument type="float" name="numCiudades"/>
+        </Method>
+        <Method name="AgregarCiudad" returnType="boolean" visibility="public">
+          <Argument type="int" name="NumeroDeNuevaCiudad"/>
+          <Argument type="String[]" name="CiudadesAnexas"/>
+          <Argument type="String[]" name="DistanciaCiudades"/>
+        </Method>
+        <Method name="getNumVerts" returnType="int" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Hormiga" package="Simulacion" visibility="public" isFinal="true" xPosition="1520.0" yPosition="820.0">
+      <Fields>
+        <Field name="matriz" type="GrafoMatriz" visibility="private" isStatic="true"/>
+        <Field name="ciudadActual" type="Ciudad" visibility="private"/>
+        <Field name="ciudadesVisitadas" type="boolean[]" visibility="private" isFinal="true"/>
+        <Field name="distanciarecorrida" type="double" visibility="private"/>
+        <Field name="trayecto" type="ListaCiudades" visibility="private" isFinal="true"/>
+        <Field name="caminos" type="ListaCaminos" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="GrafoMatriz" name="matr"/>
+          <Argument type="String" name="ciudadActual"/>
+          <Argument type="float" name="numCiudades"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getCiudadActual" returnType="Ciudad" visibility="public"/>
+        <Method name="setCiudadActual" returnType="void" visibility="public">
+          <Argument type="String" name="ciudadActual"/>
+        </Method>
+        <Method name="getCaminoRecorrido" returnType="boolean[]" visibility="public"/>
+        <Method name="getMatriz" returnType="GrafoMatriz" visibility="public"/>
+        <Method name="evap" returnType="void" visibility="public">
+          <Argument type="double" name="rho"/>
+        </Method>
+        <Method name="getDistanciaRecorrida" returnType="double" visibility="public"/>
+        <Method name="setDistanciaRecorrida" returnType="void" visibility="public">
+          <Argument type="double" name="numero"/>
+        </Method>
+        <Method name="calcularProbabilidad" returnType="Camino" visibility="public">
+          <Argument type="double" name="alfa"/>
+          <Argument type="double" name="beta"/>
+        </Method>
+        <Method name="irHaciaSiguienteCiudad" returnType="boolean" visibility="public">
+          <Argument type="int" name="CantidadDeHormigas"/>
+          <Argument type="double" name="alfa"/>
+          <Argument type="double" name="beta"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="ciudadOrigen" source="Grafo.Camino" target="Grafo.Ciudad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Simulacion.Hormiga" target="Grafo.Camino" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Grafo.Camino" target="EDD.Lista" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="content" source="Interfaces.GestionArchivosGUI" target="Funciones.LeerArchivo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="interfazMenu" source="Interfaces.IndicarSimulacionGUI" target="Interfaces.MenuPrincipalGUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cola" source="EDD.ListaCiudades" target="EDD.NodoCiudad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="interfazMenu" source="Interfaces.GestionArchivosGUI" target="Interfaces.MenuPrincipalGUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cabeza" source="EDD.AuxList" target="EDD.AuxNodo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="matriz" source="Simulacion.Colonia" target="Grafo.GrafoMatriz" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ciudadDestino" source="Grafo.Camino" target="Grafo.Ciudad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Interfaces.MenuPrincipalGUI" target="Simulacion.Colonia" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Simulacion.Colonia" target="Grafo.GrafoMatriz" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="EDD.ListaCaminos" target="Grafo.Camino" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="siguiente" source="EDD.Nodo" target="EDD.Nodo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="EDD.Lista" target="EDD.Nodo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="indica" source="Interfaces.ResultSimulacionGUI" target="Interfaces.IndicarSimulacionGUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="EDD.ListaCiudades" target="Grafo.Ciudad" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ciudadActual" source="Simulacion.Hormiga" target="Grafo.Ciudad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cabeza" source="EDD.ListaCiudades" target="EDD.NodoCiudad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cola" source="EDD.Lista" target="EDD.Nodo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="interfazResultado" source="Interfaces.IndicarSimulacionGUI" target="Interfaces.ResultSimulacionGUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="matriz" source="Simulacion.Hormiga" target="Grafo.GrafoMatriz" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="EDD.AuxNodo" target="Grafo.Ciudad" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="coloniaAST" source="Interfaces.MenuPrincipalGUI" target="Simulacion.Colonia" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="siguiente" source="EDD.NodoCamino" target="EDD.NodoCamino" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="EDD.AuxNodo" target="EDD.Nodo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="GraficarGrafo.GraficarGrafo" target="Grafo.GrafoMatriz" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="EDD.AuxList" target="Grafo.Ciudad" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="EDD.NodoCamino" target="Grafo.Camino" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Simulacion.Hormiga" target="Grafo.GrafoMatriz" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="trayecto" source="Simulacion.Hormiga" target="EDD.ListaCiudades" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ListaCiudades"/>
+    <UseRelation source="Grafo.GrafoMatriz" target="Grafo.Camino" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cabeza" source="EDD.Lista" target="EDD.Nodo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="interfazMenu" source="Interfaces.ResultSimulacionGUI" target="Interfaces.MenuPrincipalGUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="interfazGrafos" source="Interfaces.MenuPrincipalGUI" target="Interfaces.AgregarCiudadGUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="DistanciasDeHormigasQueHanPasado" source="Grafo.Camino" target="EDD.Lista" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="Lista"/>
+    <HasRelation name="cola" source="EDD.ListaCaminos" target="EDD.NodoCamino" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="CiudadInicio" source="Simulacion.Colonia" target="Grafo.Ciudad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Simulacion.Hormiga" target="Grafo.Ciudad" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Grafo.Ciudad" target="Grafo.Ciudad" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cola" source="EDD.AuxList" target="EDD.AuxNodo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="siguiente" source="EDD.AuxNodo" target="EDD.AuxNodo" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="ciudad" source="EDD.AuxNodo" target="Grafo.Ciudad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="cabeza" source="EDD.ListaCaminos" target="EDD.NodoCamino" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="CiudadFin" source="Simulacion.Colonia" target="Grafo.Ciudad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="f" source="Interfaces.GestionArchivosGUI" target="Funciones.FunctionsTXT" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="valor" source="EDD.NodoCamino" target="Grafo.Camino" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="valor" source="EDD.NodoCiudad" target="Grafo.Ciudad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="siguiente" source="EDD.NodoCiudad" target="EDD.NodoCiudad" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="EDD.NodoCiudad" target="Grafo.Ciudad" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Grafo.GrafoMatriz" target="Grafo.Ciudad" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="interfazMenu" source="Interfaces.AgregarCiudadGUI" target="Interfaces.MenuPrincipalGUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="interfazArchivos" source="Interfaces.MenuPrincipalGUI" target="Interfaces.GestionArchivosGUI" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Grafo.Camino" target="Grafo.Ciudad" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="EDD.Nodo" target="EDD.Nodo" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="caminos" source="Simulacion.Hormiga" target="EDD.ListaCaminos" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ListaCaminos"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
