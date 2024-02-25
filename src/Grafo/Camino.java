@@ -26,7 +26,7 @@ public class Camino {
         this.ciudadOrigen = ciudadOrigen;
         this.ciudadDestino = ciudadDestino;
         this.distancia = distancia;
-        this.feromonas = 1/numeroDeCiudades;
+        this.feromonas = (1/Double.valueOf(numeroDeCiudades));
     }
     
     /**

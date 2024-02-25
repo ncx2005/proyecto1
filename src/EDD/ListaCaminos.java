@@ -120,5 +120,19 @@ public class ListaCaminos {
 
         return listaSinRepetidos;
     }
+     
+    public boolean contains(Camino valor){
+        if(this.getSize()==0){
+            return false;
+        }else{
+            NodoCamino aux =this.cabeza;
+            while(aux!=null){
+                if(aux.getValor().equals(valor))
+                    return true;
+                aux=aux.getSiguiente();
+            }
+        }
+        return false;
+    }
     
 }

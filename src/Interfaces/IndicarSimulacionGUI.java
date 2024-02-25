@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Grafo.GrafoMatriz;
 import Simulacion.Colonia;
 import Simulacion.Hormiga;
 import javax.swing.JOptionPane;
@@ -218,6 +219,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Obtener los valores de alpha, beta y la cantidad de hormigas desde los campos de texto
         try {
+            System.out.println("Here");
             double alpha = Double.parseDouble(alphaValue.getText());
             System.out.println("alpha: " + alpha);
 
@@ -241,29 +243,32 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
             
             
             this.interfazMenu.coloniaAST = new Colonia(this.interfazMenu.interfazArchivos.ciudades.length, this.interfazMenu.interfazArchivos.ciudades, this.interfazMenu.interfazArchivos.caminos);
+            GrafoMatriz auxiliarParaCiclos = this.interfazMenu.coloniaAST.getMatriz();
 
-//            // Crear un arreglo para almacenar las instancias de Hormiga
-             Hormiga[] hormigasArray = new Hormiga[cantidadDeHormigas];
-    for (int i = 0; i < cantidadDeHormigas; i++) {
-        hormigasArray[i] = new Hormiga(this.interfazMenu.coloniaAST.getMatriz(), Integer.parseInt(this.interfazMenu.coloniaAST.CiudadInicio.getNombreDeCiudad()), numCiudades);
-    }
 
             for (int i = 0; i < ciclos; i++) {
+                
+                //            // Crear un arreglo para almacenar las instancias de Hormiga
+               Hormiga[] hormigasArray = new Hormiga[cantidadDeHormigas];
+               for (int k = 0; k < cantidadDeHormigas; k++) {
+                   hormigasArray[k] = new Hormiga(auxiliarParaCiclos, this.interfazMenu.coloniaAST.CiudadInicio.getNombreDeCiudad(), numCiudades);
+                   System.out.println(hormigasArray[k].getCiudadActual().getNombreDeCiudad());
+               }
+               
                 this.ResultadoAnexado+= "\nCICLO No. "+(i+1)+":"+"\n\n";
-                int numhoriga =1;
+                int numhormiga =1;
                 for (Hormiga hormiga : hormigasArray) {
                     boolean resultado = true;
-                    while (resultado) {
+                    while (resultado && (!hormiga.getCiudadActual().getNombreDeCiudad().equals(this.interfazMenu.coloniaAST.CiudadFin.getNombreDeCiudad()))) {
+                        System.out.println("HOLA MAMA");
                         resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas, alpha, beta, tau);
+                        System.out.println(resultado);
                         System.out.println(hormiga.getCiudadActual().getNombreDeCiudad());
                     }
-                    this.ResultadoAnexado+= "Hormiga No. "+numhoriga+" terminó en Ciudad: "+hormiga.getCiudadActual().getNombreDeCiudad()+"\n";
-                    numhoriga++;
+                    this.ResultadoAnexado+= "Hormiga No. "+numhormiga+" terminó en Ciudad: " + hormiga.getCiudadActual().getNombreDeCiudad()+"\n";
+                    numhormiga++;
                 }
-                this.interfazMenu.coloniaAST.actualizarPorEvaporacion(rho, numCiudades);
-                for (Hormiga hormiga : hormigasArray) {
-                    System.out.println(hormiga.getDistanciaRecorrida());
-                }
+                
 
             }
             
