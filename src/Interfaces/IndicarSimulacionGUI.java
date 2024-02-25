@@ -4,9 +4,12 @@
  */
 package Interfaces;
 
+import Grafo.Ciudad;
 import Grafo.GrafoMatriz;
 import Simulacion.Colonia;
 import Simulacion.Hormiga;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,10 +20,11 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
 
     private MenuPrincipalGUI interfazMenu;
     private ResultSimulacionGUI interfazResultado;
-    private String ResultadoAnexado="";
+    private String ResultadoAnexado = "";
 
     /**
      * Creates new form IndicarSimulacionGUI
+     *
      * @param interfaz
      */
     public IndicarSimulacionGUI(MenuPrincipalGUI interfaz) {
@@ -31,8 +35,8 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
         this.fin.setText("Ciudad Final número: " + interfaz.coloniaAST.CiudadFin.getNombreDeCiudad());
         this.inicio.setText("Ciudad Inicial número: " + interfaz.coloniaAST.CiudadInicio.getNombreDeCiudad());
     }
-    
-    public String getResultadoAnexado(){
+
+    public String getResultadoAnexado() {
         return this.ResultadoAnexado;
     }
 
@@ -217,73 +221,79 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_rhoValueActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // Obtener los valores de alpha, beta y la cantidad de hormigas desde los campos de texto
-        try {
-            System.out.println("Here");
-            double alpha = Double.parseDouble(alphaValue.getText());
-            System.out.println("alpha: " + alpha);
+      try {
+    double alpha = Double.parseDouble(alphaValue.getText());
+    double beta = Double.parseDouble(betaValue.getText());
+    double rho = Double.parseDouble(rhoValue.getText());
+    int cantidadDeHormigas = Integer.parseInt(numHormigas.getText());
+    int ciclos = Integer.parseInt(numCiclos.getText());
+    float numCiudades = this.interfazMenu.interfazArchivos.ciudades.length;
+    double tau = 1 / numCiudades;
+    List<Ciudad> ciudadesVisitadas = new ArrayList<>();
+    this.interfazMenu.coloniaAST = new Colonia(this.interfazMenu.interfazArchivos.ciudades.length, this.interfazMenu.interfazArchivos.ciudades, this.interfazMenu.interfazArchivos.caminos);
+    GrafoMatriz auxiliarParaCiclos = this.interfazMenu.coloniaAST.getMatriz();
 
-            double beta = Double.parseDouble(betaValue.getText());
-            System.out.println("beta: " + beta);
+    double menorDistanciaGeneral = Double.MAX_VALUE;
+    int cicloMenorDistancia = -1;
+    int hormigaMenorDistancia = -1;
 
-            double rho = Double.parseDouble(rhoValue.getText());
-            System.out.println("rho: " + rho);
+    for (int i = 0; i < ciclos; i++) {
+        Hormiga[] hormigasArray = new Hormiga[cantidadDeHormigas];
+        for (int k = 0; k < cantidadDeHormigas; k++) {
+            hormigasArray[k] = new Hormiga(auxiliarParaCiclos, this.interfazMenu.coloniaAST.CiudadInicio.getNombreDeCiudad(), numCiudades);
+        }
 
-            int cantidadDeHormigas = Integer.parseInt(numHormigas.getText());
-            System.out.println("cantidadDeHormigas: " + cantidadDeHormigas);
-
-            int ciclos = Integer.parseInt(numCiclos.getText());
-            System.out.println("ciclos: " + ciclos);
-
-            float numCiudades = this.interfazMenu.interfazArchivos.ciudades.length;
-            System.out.println("numCiudades: " + numCiudades);
-
-            double tau = 1 / numCiudades;
-            System.out.println("tau: " + tau);
-            
-            
-            this.interfazMenu.coloniaAST = new Colonia(this.interfazMenu.interfazArchivos.ciudades.length, this.interfazMenu.interfazArchivos.ciudades, this.interfazMenu.interfazArchivos.caminos);
-            GrafoMatriz auxiliarParaCiclos = this.interfazMenu.coloniaAST.getMatriz();
-
-
-            for (int i = 0; i < ciclos; i++) {
-                
-                //            // Crear un arreglo para almacenar las instancias de Hormiga
-               Hormiga[] hormigasArray = new Hormiga[cantidadDeHormigas];
-               for (int k = 0; k < cantidadDeHormigas; k++) {
-                   hormigasArray[k] = new Hormiga(auxiliarParaCiclos, this.interfazMenu.coloniaAST.CiudadInicio.getNombreDeCiudad(), numCiudades);
-                   System.out.println(hormigasArray[k].getCiudadActual().getNombreDeCiudad());
-               }
-               
-                this.ResultadoAnexado+= "\nCICLO No. "+(i+1)+":"+"\n\n";
-                int numhormiga =1;
-                for (Hormiga hormiga : hormigasArray) {
-                    boolean resultado = true;
-                    while (resultado && (!hormiga.getCiudadActual().getNombreDeCiudad().equals(this.interfazMenu.coloniaAST.CiudadFin.getNombreDeCiudad()))) {
-                        System.out.println("HOLA MAMA");
-                        resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas, alpha, beta, tau);
-                        System.out.println(resultado);
-                        System.out.println(hormiga.getCiudadActual().getNombreDeCiudad());
-                    }
-                    this.ResultadoAnexado+= "Hormiga No. "+numhormiga+" terminó en Ciudad: " + hormiga.getCiudadActual().getNombreDeCiudad()+"\n";
-                    numhormiga++;
-                }
-                
-
+        this.ResultadoAnexado += "\nCICLO No. " + (i + 1) + ":" + "\n\n";
+        int numHormiga = 1;
+        double menorDistancia = Double.MAX_VALUE;
+        int hormigaMenorDistanciaEnCiclo = -1;
+        for (Hormiga hormiga : hormigasArray) {
+            boolean resultado = true;
+            while (resultado && (!hormiga.getCiudadActual().getNombreDeCiudad().equals(this.interfazMenu.coloniaAST.CiudadFin.getNombreDeCiudad()))) {
+                resultado = hormiga.irHaciaSiguienteCiudad(cantidadDeHormigas, alpha, beta, tau);
+                ciudadesVisitadas.add(hormiga.getCiudadActual());
             }
-            
-            
-            
+            StringBuilder ciudadesVisitadasStr = new StringBuilder();
+            for (int k = 0; k < ciudadesVisitadas.size(); k++) {
+                Ciudad ciudad = ciudadesVisitadas.get(k);
+                ciudadesVisitadasStr.append(ciudad.getNombreDeCiudad());
+                if (k < ciudadesVisitadas.size() - 1) {
+                    ciudadesVisitadasStr.append(", ");
+                }
+            }
+            this.ResultadoAnexado += "Hormiga No. " + numHormiga + " terminó en Ciudad: " + hormiga.getCiudadActual().getNombreDeCiudad() + " y recorrió " + hormiga.getDistanciaRecorrida() + " unidades de distancia\n";
+            this.ResultadoAnexado += "Ciudades visitadas: " + ciudadesVisitadasStr.toString() + "\n";
+            numHormiga++;
+            ciudadesVisitadas.clear();
+
+            if (hormiga.getDistanciaRecorrida() < menorDistancia) {
+                menorDistancia = hormiga.getDistanciaRecorrida();
+                hormigaMenorDistanciaEnCiclo = numHormiga - 1; // Restamos 1 porque numHormiga se incrementa después de esta asignación
+            }
+        }
+
+        this.ResultadoAnexado += "\nLa menor distancia en este ciclo fue " + menorDistancia + " y la logró la hormiga " + hormigaMenorDistanciaEnCiclo + "\n";
+
+        if (menorDistancia < menorDistanciaGeneral) {
+            menorDistanciaGeneral = menorDistancia;
+            cicloMenorDistancia = i + 1;
+            hormigaMenorDistancia = hormigaMenorDistanciaEnCiclo;
+        }
+    }
+
+    this.ResultadoAnexado += "\nLa menor distancia general fue " + menorDistanciaGeneral + " y fue obtenida en el ciclo No. " + cicloMenorDistancia + " por la hormiga No. " + hormigaMenorDistancia + "\n";
+
+    
             //CODIGO NELSON
-            this.interfazResultado = new ResultSimulacionGUI(this.interfazMenu,this,this.getResultadoAnexado());
+            this.interfazResultado = new ResultSimulacionGUI(this.interfazMenu, this, this.getResultadoAnexado());
             this.setVisible(false);
             this.interfazResultado.setVisible(true);
             //FIN CODIGO NELSON, esto sirve para que al terminar de procesar la sim se abra la de resultados.
-            
+
         } catch (Exception e) {
-           String mensajeError = "Input Incorrecto: " + e.getMessage();
-           JOptionPane.showMessageDialog(null, mensajeError);
-           e.printStackTrace(System.out);
+            String mensajeError = "Input Incorrecto: " + e.getMessage();
+            JOptionPane.showMessageDialog(null, mensajeError);
+            e.printStackTrace(System.out);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

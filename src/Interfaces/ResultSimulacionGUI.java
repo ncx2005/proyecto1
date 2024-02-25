@@ -85,7 +85,7 @@ public class ResultSimulacionGUI extends javax.swing.JFrame {
         Results.setRows(5);
         jScrollPane1.setViewportView(Results);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 70, 270, 260));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 330, 260));
 
         OpenGrafo.setBackground(new java.awt.Color(153, 0, 0));
         OpenGrafo.setFont(new java.awt.Font("Malayalam MN", 1, 14)); // NOI18N

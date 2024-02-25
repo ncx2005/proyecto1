@@ -148,7 +148,6 @@ public final class Hormiga {
                 //System.out.println("Distancia: "+aux.getValor().getDistancia());
                 probabilidades[i] = Math.pow(aux.getValor().getFeromonas(), alfa) * Math.pow((1/aux.getValor().getDistancia()), beta);
                 sumatoria += probabilidades[i];
-                System.out.println("Im here");
             } else {
                 probabilidades[i] = 0.0; // No hay camino disponible
                 
@@ -172,7 +171,7 @@ public final class Hormiga {
         for (int i = 0; i < probabilidades.length; i++) {
             probabilidadAcumulada += probabilidades[i];
             if (randomValue <= probabilidadAcumulada) {
-                                System.out.println("CAMINO SIGUIENTE: "+todos[i].getCiudadDestino().getNombreDeCiudad()+" "+todos[i].getCiudadOrigen().getNombreDeCiudad());
+                               
 
                 return todos[i]; // Devolver el índice del camino seleccionado
             }
