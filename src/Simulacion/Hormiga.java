@@ -88,7 +88,7 @@ public final class Hormiga {
     public GrafoMatriz getMatriz() {
         return matriz;
     }
-    public void multiplicarFeromona(double rho) {
+    public void evap(double rho) {
     NodoCamino actual = caminos.getCabeza();
     
     while (actual != null) {    
