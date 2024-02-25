@@ -14,11 +14,14 @@ import org.graphstream.graph.implementations.*;
  */
 public class GraficarGrafo {
     /**
-    * Muestra un grafo utilizando GraphStream.
+    * Muestra un grafo utilizando GraphStream.Se resalta en color verde el camino mas optimo de todos los ciclos realizados.
     * 
+    * @author nelsoncarrillo
+    * @version 25feb 2024
     * @param matriz El grafo a ser visualizado.
+     * @param path con el optimepath;
     */
-    public void mostrar(GrafoMatriz matriz){
+    public void mostrar(GrafoMatriz matriz, String path){
         System.setProperty("org.graphstream.ui", "swing");
         Graph graph = new MultiGraph("Almacenes");
         
@@ -36,12 +39,18 @@ public class GraficarGrafo {
             Node nuevo = graph.addNode(matriz.getVerts()[i].getNombreDeCiudad());
             nuevo.setAttribute("ui.label",matriz.getVerts()[i].getNombreDeCiudad());
         }
-
+        //"1, 7"
+        String[] optimepath = path.split(", ");
         ListaCaminos todos = matriz.getTodosLosCaminosExistentes();
         NodoCamino nuevo = todos.getCabeza();
         while(nuevo!=null){
             Edge camino = graph.addEdge(nuevo.toString(),nuevo.getValor().getCiudadDestino().getNombreDeCiudad(),nuevo.getValor().getCiudadOrigen().getNombreDeCiudad(),false);
-            camino.setAttribute("ui.label",nuevo.getValor().getDistancia());          
+            camino.setAttribute("ui.label",Math.round( nuevo.getValor().getFeromonas()* 100.0) / 100.0);          
+            for(int prueba =0;prueba<optimepath.length-1;prueba++){
+                if((optimepath[prueba].equals(nuevo.getValor().getCiudadDestino().getNombreDeCiudad())|| optimepath[prueba].equals(nuevo.getValor().getCiudadOrigen().getNombreDeCiudad()))&&(optimepath[prueba+1].equals(nuevo.getValor().getCiudadDestino().getNombreDeCiudad())|| optimepath[prueba+1].equals(nuevo.getValor().getCiudadOrigen().getNombreDeCiudad()))){
+                    camino.setAttribute("ui.style", "fill-color: green;");
+                }
+            }
             nuevo=nuevo.getSiguiente();
         }
 

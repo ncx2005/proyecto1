@@ -11,7 +11,6 @@ import Simulacion.Hormiga;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
-import EDD.ListaCaminos;
 
 /**
  *
@@ -22,7 +21,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     private MenuPrincipalGUI interfazMenu;
     private ResultSimulacionGUI interfazResultado;
     private String ResultadoAnexado = "";
-
+    private String optimepathgral;
     /**
      * Creates new form IndicarSimulacionGUI
      *
@@ -40,6 +39,10 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     public String getResultadoAnexado() {
         return this.ResultadoAnexado;
     }
+    
+    public String getOptimePath(){
+        return this.optimepathgral;
+    }   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -230,6 +233,8 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     int ciclos = Integer.parseInt(numCiclos.getText());
     float numCiudades = this.interfazMenu.interfazArchivos.ciudades.length;
     Hormiga ultimaHormiga = null;
+    this.optimepathgral="";
+    String optimepathciclo="";
  
     List<Ciudad> ciudadesVisitadas = new ArrayList<>();
     if (this.interfazMenu.coloniaAST==null){
@@ -274,6 +279,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
             if (hormiga.getDistanciaRecorrida() < menorDistancia) {
                 menorDistancia = hormiga.getDistanciaRecorrida();
                 hormigaMenorDistanciaEnCiclo = numHormiga - 1; // Restamos 1 porque numHormiga se incrementa después de esta asignación
+                optimepathciclo=ciudadesVisitadasStr.toString();
             }
         }
 
@@ -283,6 +289,7 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
             menorDistanciaGeneral = menorDistancia;
             cicloMenorDistancia = i + 1;
             hormigaMenorDistancia = hormigaMenorDistanciaEnCiclo;
+            this.optimepathgral = this.interfazMenu.coloniaAST.CiudadInicio.getNombreDeCiudad()+", "+optimepathciclo.strip();
         }
     }
     if (ultimaHormiga != null) {
@@ -292,8 +299,6 @@ public class IndicarSimulacionGUI extends javax.swing.JFrame {
     
 
     this.ResultadoAnexado += "\nLa menor distancia general fue " + menorDistanciaGeneral + " y fue obtenida en el ciclo No. " + cicloMenorDistancia + " por la hormiga No. " + hormigaMenorDistancia + "\n";
-
-    
             //CODIGO NELSON
             this.interfazResultado = new ResultSimulacionGUI(this.interfazMenu, this, this.getResultadoAnexado());
             this.setVisible(false);

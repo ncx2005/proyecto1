@@ -47,8 +47,8 @@ public class ResultSimulacionGUI extends javax.swing.JFrame {
         Results = new javax.swing.JTextArea();
         OpenGrafo = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,14 +99,17 @@ public class ResultSimulacionGUI extends javax.swing.JFrame {
         });
         jPanel1.add(OpenGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(265, 353, 100, 30));
 
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("NOTA: una vez abra la ventana del GraphStream y la haya ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, -1, -1));
 
-        jLabel4.setText("terminado de observar, le recomendamos minimizarla. Ya que");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, 70));
-
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("si lo cierra, se cerrará el programa.");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 430, -1, -1));
+
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("terminado de observar, le recomendamos minimizarla. Ya que");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, -1, 70));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/HD-wallpaper-brown-fondo-gradient-man-mix-note-para-purple-rose-simple-2.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 470));
@@ -131,7 +134,7 @@ public class ResultSimulacionGUI extends javax.swing.JFrame {
     private void OpenGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenGrafoActionPerformed
         // TODO add your handling code here:
         GraficarGrafo grafo = new GraficarGrafo();
-        grafo.mostrar(this.interfazMenu.coloniaAST.getMatriz());
+        grafo.mostrar(this.interfazMenu.coloniaAST.getMatriz(),this.indica.getOptimePath());
     }//GEN-LAST:event_OpenGrafoActionPerformed
 
     /**
